@@ -9,7 +9,7 @@
     d:DesignHeight="300"
     d:DesignWidth="400">
 
-    <Grid Background="DarkCyan" Margin="0,3,0,-3">
+    <Grid Background="#FF00528B" Margin="0,3,0,-3">
         <Grid.RowDefinitions>
             <RowDefinition Height="80"/>
             <RowDefinition Height="80"/>
@@ -20,13 +20,13 @@
             <ColumnDefinition Width="150"/>
             <ColumnDefinition Width="200"/>
         </Grid.ColumnDefinitions>
-        <TextBlock Text="Server Instance:" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="20" FontWeight="Bold"/>
-        <TextBox x:Name="ServerName" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Margin="0,24,-50,24"/>
-        <TextBlock Text="User Name:" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="20" FontWeight="Bold"/>
-        <TextBox x:Name="UserName" Grid.Row="1" VerticalAlignment="Center"  Grid.Column="1" Margin="0,24,-50,24" />
-        <TextBlock Text="Password:" Grid.Row="2" VerticalAlignment="Center"  Grid.Column="0" HorizontalAlignment="Right" FontSize="20" FontWeight="Bold"/>
-        <PasswordBox x:Name="Password" Grid.Row="2" VerticalAlignment="Center" Grid.Column="1" Margin="0,24,-50,24"/>
-        <Button Grid.Row="3" Grid.Column="1" Height="63" Margin="0,0,0,17"  >
+        <TextBlock Text="Server Instance:" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="20" FontWeight="Bold" Grid.ColumnSpan="2" Margin="0,26,137,30"/>
+        <TextBox x:Name="ServerName" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Margin="81,20,-131,28"/>
+        <TextBlock Text="User Name:" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="20" FontWeight="Bold" Grid.ColumnSpan="2" Margin="0,0,179,-41"/>
+        <TextBox x:Name="UserName" Grid.Row="3" VerticalAlignment="Center"  Grid.Column="1" Margin="81,97,-131,-49" />
+        <TextBlock Text="Password:" Grid.Row="3" VerticalAlignment="Center"  Grid.Column="0" HorizontalAlignment="Right" FontSize="20" FontWeight="Bold" Margin="0,181,190,-125" Grid.ColumnSpan="2"/>
+        <PasswordBox x:Name="Password" Grid.Row="3" VerticalAlignment="Center" Grid.Column="1" Margin="81,181,-131,-133"/>
+        <Button Grid.Row="3" Grid.Column="1" Height="63" Margin="160,260,-39,-243"  >
             <Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
                 <Grid>
                     <Grid Name="backgroundGridbutton" Width="256" Height="256" Visibility="Visible">
