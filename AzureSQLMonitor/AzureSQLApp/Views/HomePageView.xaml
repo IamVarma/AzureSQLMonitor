@@ -7,16 +7,17 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="DarkCyan">
-        <Grid Margin="0,240,0,157">
+    <Grid Background="#FF00528B">
+        <Grid >
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="900"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <local:LoginView HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Height="321" Width="411" Margin="45,25,0,0" />
+
+            <local:LoginView Width="Auto" Height="Auto" Grid.Column="1"/>
 
         </Grid>
-      
+
 
     </Grid>
 </Page>
