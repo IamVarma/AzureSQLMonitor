@@ -32,7 +32,7 @@ namespace AzureSQLWCFService
     {
         string database_name;
         string database_state;
-        //    string database_size;
+        string database_size;
 
         [DataMember]
         public string DatabaseName
@@ -47,6 +47,13 @@ namespace AzureSQLWCFService
         {
             get { return database_state; }
             set { database_state = value; }
+        }
+
+        [DataMember]
+        public string DatabaseSize
+        {
+            get { return database_size; }
+            set { database_size = value; }
         }
                      
     }
