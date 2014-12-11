@@ -27,5 +27,6 @@ namespace AzureSQLApp.Views
             this.InitializeComponent();
             
         }
+
     }
 }

@@ -154,6 +154,11 @@
     <Content Include="Assets\SmallLogo.scale-100.png" />
     <Content Include="Assets\SplashScreen.scale-100.png" />
     <Content Include="Assets\StoreLogo.scale-100.png" />
+    <Content Include="Images\cloud1.jpg" />
+    <Content Include="Images\cloud2.jpg" />
+    <Content Include="Images\cloud3.jpg" />
+    <Content Include="Images\cloud4.jpg" />
+    <Content Include="Images\cloud5.png" />
     <Content Include="Images\heartbeat-monitor.jpg" />
     <None Include="Service References\AzureSQLService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>

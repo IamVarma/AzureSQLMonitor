@@ -8,9 +8,12 @@
     mc:Ignorable="d"
     DataContext="{Binding LoginViewModel, RelativeSource={RelativeSource Self}}">
 
-    <Grid Background="#FF00528B">
-        <Grid >
-            <Grid.ColumnDefinitions>
+    <Grid>
+        <Grid.Background>
+            <ImageBrush Stretch="Fill" ImageSource="/Images/cloud5.png" AlignmentY="Top" AlignmentX="Center"/>
+        </Grid.Background>
+
+        <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*"></ColumnDefinition>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
@@ -20,5 +23,5 @@
         </Grid>
 
 
-    </Grid>
+   
 </Page>
