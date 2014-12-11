@@ -12,6 +12,9 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using AzureSQLApp.ViewModels;
+using AzureSQLApp.Common;
+using AzureSQLApp.Views;
 
 // The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
 
@@ -19,9 +22,28 @@ namespace AzureSQLApp.Views
 {
     public sealed partial class LoginView : UserControl
     {
+
+        private LoginViewModel loginviewmodel = new LoginViewModel();
+
+
+        public LoginViewModel LoginModel
+        {
+
+            get { return loginviewmodel; }
+
+        }
+
+
         public LoginView()
         {
             this.InitializeComponent();
+        }
+
+        private async  void Button_Click(object sender, RoutedEventArgs e)
+        {
+           
+          await LoginModel.Login();
+                
         }
     }
 }
