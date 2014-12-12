@@ -39,11 +39,11 @@ namespace AzureSQLApp.Views
             this.InitializeComponent();
         }
 
-        private async  void Button_Click(object sender, RoutedEventArgs e)
+      /*  private async  void Button_Click(object sender, RoutedEventArgs e)
         {
            
           await LoginModel.Login();
                 
-        }
+        }*/
     }
 }

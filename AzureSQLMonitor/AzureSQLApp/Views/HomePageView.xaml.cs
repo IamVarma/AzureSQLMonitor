@@ -12,7 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-
+using AzureSQLApp.ViewModels;
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace AzureSQLApp.Views
@@ -22,6 +22,16 @@ namespace AzureSQLApp.Views
     /// </summary>
     public sealed partial class HomePageView : Page
     {
+        private LoginViewModel loginviewmodel = new LoginViewModel();
+
+
+        public LoginViewModel LoginModel
+        {
+
+            get { return loginviewmodel; }
+
+        }
+
         public HomePageView()
         {
             this.InitializeComponent();

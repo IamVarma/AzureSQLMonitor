@@ -31,7 +31,7 @@ namespace AzureSQLApp.ViewModels
         public LoginViewModel()
         {
 
-          //  GetLogin = new RelayCommand(()=> Login());
+          GetLogin = new RelayCommand(()=> Login());
 
         }
         
