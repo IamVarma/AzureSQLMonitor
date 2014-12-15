@@ -6,9 +6,9 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    DataContext="{Binding LoginViewModel, RelativeSource={RelativeSource Self}}">
+    DataContext="{Binding LoginModel, RelativeSource={RelativeSource Self}}">
 
-    <Grid>
+    <Grid >
         <Grid.Background>
             <ImageBrush Stretch="Fill" ImageSource="/Images/cloud5.png" AlignmentY="Top" AlignmentX="Center"/>
         </Grid.Background>
@@ -20,7 +20,7 @@
 
             <!-- <local:LoginView Width="Auto" Height="Auto" Grid.Column="1" x:Name="LoginControl" /> -->
 
-        <Grid Background="none" Grid.Column="1">
+        <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="80"/>
                 <RowDefinition Height="80"/>

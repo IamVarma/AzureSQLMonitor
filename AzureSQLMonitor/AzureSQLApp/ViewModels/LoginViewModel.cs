@@ -28,7 +28,7 @@ namespace AzureSQLApp.ViewModels
             }
         }
 
-        public LoginViewModel()
+        public  LoginViewModel()
         {
 
           GetLogin = new RelayCommand(()=> Login());
@@ -50,6 +50,7 @@ namespace AzureSQLApp.ViewModels
 
         }
 
+        
 
     }
 }

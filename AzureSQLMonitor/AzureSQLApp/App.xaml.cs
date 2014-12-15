@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using AzureSQLApp.Views;
+using AzureSQLApp.Common;
 // The Blank Application template is documented at http://go.microsoft.com/fwlink/?LinkId=234227
 
 namespace AzureSQLApp
@@ -44,7 +45,7 @@ namespace AzureSQLApp
         /// will be used such as when the application is launched to open a specific file.
         /// </summary>
         /// <param name="e">Details about the launch request and process.</param>
-        protected override void OnLaunched(LaunchActivatedEventArgs e)
+        protected override async void OnLaunched(LaunchActivatedEventArgs e)
         {
 
 #if DEBUG
@@ -62,6 +63,7 @@ namespace AzureSQLApp
             {
                 // Create a Frame to act as the navigation context and navigate to the first page
                 rootFrame = new Frame();
+                SuspensionManager.RegisterFrame(rootFrame, "AppFrame");
                 // Set the default language
                 rootFrame.Language = Windows.Globalization.ApplicationLanguages.Languages[0];
 
@@ -70,10 +72,23 @@ namespace AzureSQLApp
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {
                     //TODO: Load state from previously suspended application
+
+                    try
+                    {
+                        await SuspensionManager.RestoreAsync();
+                    }
+                    catch (SuspensionManagerException)
+                    {
+                        //Something went wrong restoring state.
+                        //Assume there is no state and continue
+                    }
+
+
                 }
 
                 // Place the frame in the current Window
                 Window.Current.Content = rootFrame;
+               
             }
 
             if (rootFrame.Content == null)
@@ -85,6 +100,7 @@ namespace AzureSQLApp
             }
             // Ensure the current window is active
             Window.Current.Activate();
+            AppFrame = rootFrame;
         }
 
         /// <summary>
