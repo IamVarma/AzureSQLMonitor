@@ -21,7 +21,9 @@ namespace AzureSQLWCFService
 
             ObservableCollection<DatabaseListClass> DBList = new ObservableCollection<DatabaseListClass>();
             DatabaseListClass _dbase;
-            string QueryText = "select DB_NAME(sd.database_id) dbname,sd.state_desc statedesc, inr1.size SizeMB from sys.databases sd join (select database_id,sum((size*8)/1024) size from sys.master_files group by database_id) inr1 on inr1.database_id=sd.database_id";
+         //   string QueryText = "select DB_NAME(sd.database_id) dbname,sd.state_desc statedesc, inr1.size SizeMB from sys.databases sd join (select database_id,sum((size*8)/1024) size from sys.master_files group by database_id) inr1 on inr1.database_id=sd.database_id";
+            string QueryText = "select * from sys.databases";
+            
             SqlCommand sqlcmd;
            
             
@@ -41,7 +43,7 @@ namespace AzureSQLWCFService
                             string db = dr["name"].ToString();
                             if (db != "master")
                             {
-                                _dbase = new DatabaseListClass { DatabaseName = dr["name"].ToString(), DatabaseState = dr["state_desc"].ToString(), DatabaseSize = dr["SizeMB"].ToString() }; //, DatabaseSize = QueryDatabaseSize(dr["name"].ToString()) };
+                                _dbase = new DatabaseListClass { DatabaseName = dr["name"].ToString(), DatabaseState = dr["state_desc"].ToString(), DatabaseSize = dr["name"].ToString() }; //, DatabaseSize = QueryDatabaseSize(dr["name"].ToString()) };
                                 DBList.Add(_dbase);
                                 _dbase = null;
                             }
