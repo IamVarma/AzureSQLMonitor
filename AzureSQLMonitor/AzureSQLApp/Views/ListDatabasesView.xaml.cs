@@ -23,20 +23,27 @@ namespace AzureSQLApp.Views
     /// </summary>
     public sealed partial class ListDatabasesView : Page
     {
-        private ListDatabasesViewModel databaselistmodel = new ListDatabasesViewModel();
+       private ListDatabasesViewModel listdatabasesviewmodel = new ListDatabasesViewModel();
 
-        public ListDatabasesViewModel DatabaseListModel
+
+        public ListDatabasesViewModel ListDatabasesViewModel
         {
-            get
-            {
-                return databaselistmodel;
-            }
 
-       }
+            get { return listdatabasesviewmodel; }
+
+        }
+
+
 
         public ListDatabasesView()
         {
             this.InitializeComponent();
         }
+
+       /* protected async override void OnNavigatedTo(NavigationEventArgs e)
+        {
+           
+
+        }*/
     }
 }

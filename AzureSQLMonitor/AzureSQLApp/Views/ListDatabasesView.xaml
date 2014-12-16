@@ -6,9 +6,21 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    DataContext="{Binding DatabaseListModel, RelativeSource={RelativeSource Self}}">
+    DataContext="{Binding ListDatabasesViewModel, RelativeSource={RelativeSource Self}}">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Button Width="100" Height="100" Background="Aqua" Command="{Binding GetDatabases}"/>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="3*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="1">
+            <GridView x:Name="DatabaseListGrid" HorizontalAlignment="Left" VerticalAlignment="Top">
+                
+            </GridView>
+        </Grid>
+
     </Grid>
+
 </Page>

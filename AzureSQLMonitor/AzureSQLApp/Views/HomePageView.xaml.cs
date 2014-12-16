@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using AzureSQLApp.ViewModels;
+using AzureSQLApp.Views;
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace AzureSQLApp.Views
@@ -35,8 +36,14 @@ namespace AzureSQLApp.Views
         public HomePageView()
         {
             this.InitializeComponent();
+         
             
         }
+
+     /*   public void GotoNextPage(object sender, RoutedEventArgs e)
+        {
+            App.AppFrame.Navigate(typeof(ListDatabasesView));
+        }*/
 
     }
 }

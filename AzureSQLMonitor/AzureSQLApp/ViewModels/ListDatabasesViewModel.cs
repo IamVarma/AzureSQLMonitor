@@ -36,16 +36,18 @@ namespace AzureSQLApp.ViewModels
 
         public async Task GetDatabasesCommand()
         {
-            Databases templist = null;
+           // Databases templist = null;
 
             var dblist = await App.Servicehandle.GetDatabaseListAsync();
           ObservableCollection<Databases> test = JsonConvert.DeserializeObject<ObservableCollection<Databases>>(dblist);
-            foreach(var x in test)
+   /*         foreach(var x in test)
             {
                 templist = new Databases { DatabaseName = x.DatabaseName, DatabaseState = x.DatabaseState, DatabaseSize = x.DatabaseSize };
 
                 DatabaseList.Add(templist);
-            }
+            }*/
+
+          DatabaseList = test;
 
         }
 
