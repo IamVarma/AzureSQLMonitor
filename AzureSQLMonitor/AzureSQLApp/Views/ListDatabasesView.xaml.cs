@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using AzureSQLApp.ViewModels;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -22,6 +23,17 @@ namespace AzureSQLApp.Views
     /// </summary>
     public sealed partial class ListDatabasesView : Page
     {
+        private ListDatabasesViewModel databaselistmodel = new ListDatabasesViewModel();
+
+        public ListDatabasesViewModel DatabaseListModel
+        {
+            get
+            {
+                return databaselistmodel;
+            }
+
+       }
+
         public ListDatabasesView()
         {
             this.InitializeComponent();

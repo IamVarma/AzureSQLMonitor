@@ -32,6 +32,7 @@ namespace AzureSQLApp
         /// 
 
         public static Frame AppFrame { get; set; }
+        public static AzureSQLService.SqlMonitorServiceClient Servicehandle = new AzureSQLService.SqlMonitorServiceClient();
 
 
         public App()

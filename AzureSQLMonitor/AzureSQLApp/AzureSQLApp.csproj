@@ -118,6 +118,7 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\Databases.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service References\AzureSQLService\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -125,6 +126,7 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\HomeViewModel.cs" />
+    <Compile Include="ViewModels\ListDatabasesViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\HomePageView.xaml.cs">
@@ -142,6 +144,7 @@
       <SubType>Designer</SubType>
     </AppxManifest>
     <None Include="AzureSQLApp_TemporaryKey.pfx" />
+    <None Include="packages.config" />
     <None Include="Properties\ServiceReferences.Designer.ClientConfig" />
     <None Include="Service References\AzureSQLService\SqlMonitorService.wsdl" />
     <None Include="Service References\AzureSQLService\SqlMonitorService.xsd">
@@ -194,6 +197,11 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\AzureSQLService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.6\lib\netcore45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>

@@ -12,7 +12,7 @@ namespace AzureSQLApp.ViewModels
 {
     public class LoginViewModel:ViewModelBase
     {
-        private AzureSQLService.SqlMonitorServiceClient Servicehandle = null;
+        
         private string result;
         private string servername;
         private string username;
@@ -91,14 +91,12 @@ namespace AzureSQLApp.ViewModels
         
         public async Task Login()
         {
-            Servicehandle = new AzureSQLService.SqlMonitorServiceClient();
-
-            Result = await Servicehandle.ConnectSQLAzureAsync(ServerName,UserName,Password);
+            
+            Result = await App.Servicehandle.ConnectSQLAzureAsync(ServerName,UserName,Password);
 
             if (Result == "Success")
             {
-
-                App.AppFrame.Navigate(typeof(ListDatabasesView));
+               App.AppFrame.Navigate(typeof(ListDatabasesView));
 
             }
 
