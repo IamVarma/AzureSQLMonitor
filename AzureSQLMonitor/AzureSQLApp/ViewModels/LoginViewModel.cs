@@ -14,7 +14,60 @@ namespace AzureSQLApp.ViewModels
     {
         private AzureSQLService.SqlMonitorServiceClient Servicehandle = null;
         private string result;
+        private string servername;
+        private string username;
+        private string password;
         public RelayCommand GetLogin { get; private set; }
+        
+
+        public string ServerName
+        {
+            get
+            {
+                return servername;
+            }
+
+            set
+            {
+
+                servername = value;
+                RaisePropertyChanged("ServerName");
+            }
+
+        }
+
+        public string UserName
+        {
+            get
+            {
+                return username;
+            }
+
+            set
+            {
+
+                username = value;
+                RaisePropertyChanged("UserName");
+            }
+
+        }
+
+        public string Password
+        {
+            get
+            {
+                return password;
+            }
+
+            set
+            {
+
+                password = value;
+                RaisePropertyChanged("Password");
+            }
+
+        }
+
         public string Result
         {
             get
@@ -28,6 +81,7 @@ namespace AzureSQLApp.ViewModels
             }
         }
 
+
         public  LoginViewModel()
         {
 
@@ -39,7 +93,7 @@ namespace AzureSQLApp.ViewModels
         {
             Servicehandle = new AzureSQLService.SqlMonitorServiceClient();
 
-            Result = await Servicehandle.ConnectSQLAzureAsync("qifwztjnhi.database.windows.net", "varmag", "asdfg123?");
+            Result = await Servicehandle.ConnectSQLAzureAsync(ServerName,UserName,Password);
 
             if (Result == "Success")
             {
