@@ -40,10 +40,7 @@ namespace AzureSQLApp.Views
             
         }
 
-     /*   public void GotoNextPage(object sender, RoutedEventArgs e)
-        {
-            App.AppFrame.Navigate(typeof(ListDatabasesView));
-        }*/
+     
 
     }
 }

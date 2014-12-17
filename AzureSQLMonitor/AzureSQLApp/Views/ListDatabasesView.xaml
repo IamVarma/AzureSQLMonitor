@@ -8,19 +8,67 @@
     mc:Ignorable="d"
     DataContext="{Binding ListDatabasesViewModel, RelativeSource={RelativeSource Self}}">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="DatabaseListTemplate">
+                <Grid HorizontalAlignment="Left" Width="250" Height="250">
+                    <StackPanel VerticalAlignment="Top" Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}" Grid.Row="0">
+                        <TextBlock HorizontalAlignment="Center"  Text="{Binding DatabaseName}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" FontSize="10" FontWeight="Bold" Height="50" Margin="15,0,15,0" />
+                        <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}" VerticalAlignment="Center">
+                            <Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" VerticalAlignment="Center">
+                                <Grid>
+                                    <Grid Name="backgroundGrid" Width="256" Height="180" Visibility="Visible">
+                                        <Rectangle Fill="#FF4F86C5" Name="Rect" Visibility="Visible" />
+                                    </Grid>
+                                    <Path Data="M3.6302565,44.778976L54.463745,44.778976C56.463886,44.778976,58.094002,46.40593,58.094002,48.409958L58.094002,59.032944C58.094002,61.038925,56.463886,62.666977,54.463745,62.666977L3.6302565,62.666977C1.6201072,62.666977,-4.1301246E-07,61.038925,0,59.032944L0,48.409958C-4.1301246E-07,46.40593,1.6201072,44.778976,3.6302565,44.778976z M3.6303759,22.189999L54.463905,22.189999C56.464047,22.189999,58.094158,23.813999,58.094158,25.817999L58.094158,36.441003C58.094158,38.444003,56.464047,40.073003,54.463905,40.073003L3.6303759,40.073003C1.6202369,40.073003,0.00012442552,38.444003,0.00012419682,36.441003L0.00012419682,25.817999C0.00012442552,23.813999,1.6202369,22.189999,3.6303759,22.189999z M10.690867,4.8160019C8.4207087,4.8160019 6.5705806,6.6650047 6.570581,8.9400024 6.5705806,11.215004 8.4207087,13.063005 10.690867,13.063005 12.961024,13.063005 14.811153,11.215004 14.811153,8.9400024 14.811153,6.6650047 12.961024,4.8160019 10.690867,4.8160019z M3.6303769,0L54.463905,0C56.464047,0,58.094158,1.625,58.094158,3.6320038L58.094158,14.254005C58.094158,16.257006,56.464047,17.883005,54.463905,17.883005L3.6303769,17.883005C1.6202369,17.883005,0.00012442552,16.257006,0.00012419682,14.254005L0.00012419682,3.6320038C0.00012442552,1.625,1.6202369,0,3.6303769,0z" Stretch="Uniform" Fill="#FFFFFFFF" Width="138" Height="138" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
+                                        <Path.RenderTransform>
+                                            <TransformGroup>
+                                                <TransformGroup.Children>
+                                                    <RotateTransform Angle="0" />
+                                                    <ScaleTransform ScaleX="1" ScaleY="1" />
+                                                </TransformGroup.Children>
+                                            </TransformGroup>
+                                        </Path.RenderTransform>
+                                    </Path>
+                                </Grid>
+                            </Viewbox>
+                        </Border>
+                    </StackPanel>
+                    <StackPanel VerticalAlignment="Bottom" Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}" >
+                        <TextBlock Text="{Binding DatabaseState}"   Foreground="{StaticResource ListViewItemOverlaySecondaryForegroundThemeBrush}" FontSize="10" FontWeight="Bold" TextWrapping="NoWrap" Margin="15,0,15,10"/>
+                        <TextBlock Text="{Binding DatabaseSize}"  Foreground="{StaticResource ListViewItemOverlaySecondaryForegroundThemeBrush}" FontSize="10" FontWeight="Bold"  TextWrapping="NoWrap" Margin="15,0,15,10"/>
+                    </StackPanel>
+                </Grid>
+            </DataTemplate>
+        </ResourceDictionary>
+    </Page.Resources>
+
+
+
+
+    <Grid Background="#FF4F86C5">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"></RowDefinition>
             <RowDefinition Height="3*"></RowDefinition>
             <RowDefinition Height="1*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="1">
-            <GridView x:Name="DatabaseListGrid" HorizontalAlignment="Left" VerticalAlignment="Top">
-                
-            </GridView>
-        </Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <ProgressRing x:Name="ProgressBar" Grid.Row="1" Height="66" Width="99" Foreground="#FFFCFDFF" />
+        <Grid Grid.Row="1" Grid.Column="1">
+            <GridView x:Name="DatabaseGridView" HorizontalAlignment="Left"  VerticalAlignment="Top" ItemTemplate="{StaticResource DatabaseListTemplate}" ItemsSource="{Binding DatabaseList}" >
+            <ContentPresenter Height="100" Width="100"/>
+        </GridView>
 
     </Grid>
 
+    </Grid>
+
+    
+    
+    
+    
 </Page>
