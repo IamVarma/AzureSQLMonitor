@@ -12,8 +12,9 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using AzureSQLApp.ViewModels;
 using AzureSQLApp.Common;
+using AzureSQLApp.ViewModels;
+
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace AzureSQLApp.Views
@@ -21,39 +22,32 @@ namespace AzureSQLApp.Views
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class ListDatabasesView : Page
+    public sealed partial class DatabaseDetailsView : Page
     {
         private NavigationHelper navigationHelper;
 
-      private ListDatabasesViewModel listdatabasesviewmodel = new ListDatabasesViewModel();
-       public ListDatabasesViewModel ListDatabasesViewModel
-        {
+        DatabaseDetailsViewModel _databasedetails = new DatabaseDetailsViewModel();
 
-            get { return listdatabasesviewmodel; }
-
-        }
-
+            public DatabaseDetailsViewModel DatabaseDetails
+            {
+                get { return _databasedetails; }
+            }
 
 
-        public ListDatabasesView()
+        public DatabaseDetailsView()
         {
             this.InitializeComponent();
-            this.navigationHelper = new NavigationHelper(this);
+               this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += navigationHelper_LoadState;
             this.navigationHelper.SaveState += navigationHelper_SaveState;
-            
-
-
         }
 
-        private async void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
+          private async void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
-            ProgressBar.IsActive = true;
+            await DatabaseDetails.GetTablesCommand();
 
-            await ListDatabasesViewModel.GetDatabasesCommand();
-            DatabaseGridView.SelectedItem = null;
 
-            ProgressBar.IsActive = false;
+
         }
 
 
@@ -83,11 +77,5 @@ namespace AzureSQLApp.Views
         }
 
         #endregion
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            App.AppFrame.Navigate(typeof(DatabaseDetailsView));
-        }
-
     }
 }

@@ -23,6 +23,9 @@ namespace AzureSQLApp.AzureSQLService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISqlMonitorService/GetDatabaseList", ReplyAction="http://tempuri.org/ISqlMonitorService/GetDatabaseListResponse")]
         System.Threading.Tasks.Task<string> GetDatabaseListAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISqlMonitorService/GetTableSizeDetails", ReplyAction="http://tempuri.org/ISqlMonitorService/GetTableSizeDetailsResponse")]
+        System.Threading.Tasks.Task<string> GetTableSizeDetailsAsync(string dbname);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -74,6 +77,10 @@ namespace AzureSQLApp.AzureSQLService {
         
         public System.Threading.Tasks.Task<string> GetDatabaseListAsync() {
             return base.Channel.GetDatabaseListAsync();
+        }
+        
+        public System.Threading.Tasks.Task<string> GetTableSizeDetailsAsync(string dbname) {
+            return base.Channel.GetTableSizeDetailsAsync(dbname);
         }
         
         public virtual System.Threading.Tasks.Task OpenAsync() {
