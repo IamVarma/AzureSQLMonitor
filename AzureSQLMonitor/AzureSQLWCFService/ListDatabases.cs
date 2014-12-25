@@ -25,7 +25,12 @@ namespace AzureSQLWCFService
             string QueryText = "select * from sys.databases";
             
             SqlCommand sqlcmd;
-           
+
+            if (DatabaseName!="master")
+            {
+                ChangeDatabasecontext("master");
+            }
+
             
 
             try

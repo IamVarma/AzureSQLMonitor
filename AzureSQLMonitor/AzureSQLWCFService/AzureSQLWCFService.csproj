@@ -80,6 +80,7 @@
     </Compile>
     <Compile Include="ISqlMonitorService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TableDetails.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -21,6 +21,8 @@ namespace AzureSQLWCFService
         [OperationContract]
         string GetDatabaseList();
 
+        [OperationContract]
+        string GetTableSizeDetails(string dbname);
 
         // TODO: Add your service operations here
     }
@@ -56,6 +58,36 @@ namespace AzureSQLWCFService
             set { database_size = value; }
         }
                      
+    }
+
+    //Class to define the Table size details in a list
+
+    [DataContract]
+    public class TableSizeDetails
+    {
+        string Table_Name;
+        string Table_Size;
+
+        [DataMember]
+        public string TableName
+        {
+            get { return Table_Name; }
+            set { Table_Name = value; }
+
+        }
+
+        [DataMember]
+        public string TableSize
+        {
+            get { return Table_Size; }
+            set
+            {
+                Table_Size = value;
+            }
+
+        }
+
+
     }
 
 

@@ -18,7 +18,7 @@ namespace AzureSQLWCFService
         public static string LoginName { get; set; }
         public static string Password { get; set; }
 
-        public string getConnection(string Servername, string Loginname, string password)
+        public string initialConnection(string Servername, string Loginname, string password)
         {
             ServerName = Servername;
             DatabaseName = "master";
@@ -28,19 +28,41 @@ namespace AzureSQLWCFService
             connectionString = "Server=tcp:" + ServerName + ",1433;Database=" + DatabaseName + ";User ID=" + LoginName + ";Password=" + Password + ";Trusted_Connection=False;Encrypt=True;Connection Timeout=30;";
 
 
+            return getConnection(connectionString);
+           
+
+        }
+
+        public string ChangeDatabasecontext(string databasename)
+        {
+
+            DatabaseName = databasename;
+
+            connectionString = "Server=tcp:" + ServerName + ",1433;Database=" + DatabaseName + ";User ID=" + LoginName + ";Password=" + Password + ";Trusted_Connection=False;Encrypt=True;Connection Timeout=30;";
+
+            return getConnection(connectionString);
+
+
+        }
+
+
+
+
+        string getConnection(string connstring)
+        {
 
             try
             {
 
-                connection = new SqlConnection(connectionString);
+                connection = new SqlConnection(connstring);
                 connection.Open();
-               // connection.OpenWithRetry(retry);
+                // connection.OpenWithRetry(retry);
                 if (connection.State == System.Data.ConnectionState.Open)
 
                     return "Success";
-                
+
                 else
-                
+
                     return "Invalid Server Name/Invalid Login Name";
 
             }
@@ -49,8 +71,10 @@ namespace AzureSQLWCFService
                 return "Server not valid/Login not valid";
             }
 
-
         }
+
+
+       
 
 
     }

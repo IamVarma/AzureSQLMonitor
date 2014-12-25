@@ -22,7 +22,7 @@ namespace AzureSQLWCFService
         {
             ConnectionBase connect = new ConnectionBase();
 
-            var result=connect.getConnection(servername, login, password);
+            var result=connect.initialConnection(servername, login, password);
 
             return result;
         }
@@ -36,6 +36,15 @@ namespace AzureSQLWCFService
             return databaselist.getDatabases();
         
         }
+
+
+        public string GetTableSizeDetails(string database)
+        {
+            TableDetails tablesizes = new TableDetails();
+            return tablesizes.getTableSizeDetails(database);
+
+        }
+
 
 
         
