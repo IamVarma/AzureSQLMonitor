@@ -24,6 +24,9 @@ namespace AzureSQLApp.AzureSQLService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISqlMonitorService/GetDatabaseList", ReplyAction="http://tempuri.org/ISqlMonitorService/GetDatabaseListResponse")]
         System.Threading.Tasks.Task<string> GetDatabaseListAsync();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISqlMonitorService/getSystemInfo", ReplyAction="http://tempuri.org/ISqlMonitorService/getSystemInfoResponse")]
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<string>> getSystemInfoAsync();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISqlMonitorService/GetTableSizeDetails", ReplyAction="http://tempuri.org/ISqlMonitorService/GetTableSizeDetailsResponse")]
         System.Threading.Tasks.Task<string> GetTableSizeDetailsAsync(string dbname);
     }
@@ -77,6 +80,10 @@ namespace AzureSQLApp.AzureSQLService {
         
         public System.Threading.Tasks.Task<string> GetDatabaseListAsync() {
             return base.Channel.GetDatabaseListAsync();
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<string>> getSystemInfoAsync() {
+            return base.Channel.getSystemInfoAsync();
         }
         
         public System.Threading.Tasks.Task<string> GetTableSizeDetailsAsync(string dbname) {

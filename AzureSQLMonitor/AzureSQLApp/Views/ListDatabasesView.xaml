@@ -55,8 +55,42 @@
 
         </Grid.ColumnDefinitions>
         <ProgressRing x:Name="ProgressBar" Grid.Row="1" Height="66" Width="99" Foreground="#FFFCFDFF" />
+        <Grid Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                <TextBlock Name="sname" Text="servername"></TextBlock>
+                </Grid>
+                <Grid Grid.Row="1">
+                <TextBlock Name="uid" Text="userid"></TextBlock>
+                </Grid>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="0" HorizontalAlignment="Right">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <TextBlock Name="date" Text="date"></TextBlock>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <TextBlock Name="time" Text="time"></TextBlock>
+                </Grid>
+
+                <Grid Grid.Row="2">
+                    <TextBlock Name="timezone" Text="timezone"></TextBlock>
+                </Grid>
+            </Grid>
+
+        </Grid>
         <Grid Grid.Row="1" Grid.Column="0">
-            <GridView x:Name="DatabaseGridView" HorizontalAlignment="Stretch" VerticalAlignment="Top" ItemTemplate="{StaticResource DatabaseListTemplate}" ItemsSource="{Binding DatabaseList}"  >
+            <GridView x:Name="DatabaseGridView" HorizontalAlignment="Stretch" VerticalAlignment="Top" ItemTemplate="{StaticResource DatabaseListTemplate}" ItemsSource="{Binding DatabaseList}">
                 <ContentPresenter Height="100" Width="100"/>
             </GridView>
 

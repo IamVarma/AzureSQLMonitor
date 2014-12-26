@@ -24,6 +24,7 @@
     <MetadataSource Address="http://localhost:60693/SqlMonitorService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
+    <MetadataFile FileName="SqlMonitorService2.xsd" MetadataType="Schema" ID="90a3a8db-4c8f-4433-9433-8accf2852f3a" SourceId="1" SourceUrl="http://localhost:60693/SqlMonitorService.svc?xsd=xsd2" />
     <MetadataFile FileName="SqlMonitorService.xsd" MetadataType="Schema" ID="768b84d7-918d-4f39-88c1-08f7109fd6fa" SourceId="1" SourceUrl="http://localhost:60693/SqlMonitorService.svc?xsd=xsd0" />
     <MetadataFile FileName="SqlMonitorService1.xsd" MetadataType="Schema" ID="2132fb09-8c8f-4750-af4d-3686fe47b38a" SourceId="1" SourceUrl="http://localhost:60693/SqlMonitorService.svc?xsd=xsd1" />
     <MetadataFile FileName="SqlMonitorService.disco" MetadataType="Disco" ID="be1e8daa-02ec-438b-a9a2-d6792a840e2d" SourceId="1" SourceUrl="http://localhost:60693/SqlMonitorService.svc?disco" />

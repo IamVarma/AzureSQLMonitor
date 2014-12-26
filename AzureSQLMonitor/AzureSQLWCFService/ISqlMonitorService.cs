@@ -22,6 +22,9 @@ namespace AzureSQLWCFService
         string GetDatabaseList();
 
         [OperationContract]
+        string[] getSystemInfo();
+
+        [OperationContract]
         string GetTableSizeDetails(string dbname);
 
         // TODO: Add your service operations here

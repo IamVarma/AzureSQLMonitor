@@ -4,6 +4,7 @@
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:60693/SqlMonitorService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost:60693/SqlMonitorService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:60693/SqlMonitorService.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="ISqlMonitorService_ConnectSQLAzure_InputMessage">
@@ -17,6 +18,12 @@
   </wsdl:message>
   <wsdl:message name="ISqlMonitorService_GetDatabaseList_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetDatabaseListResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISqlMonitorService_getSystemInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:getSystemInfo" />
+  </wsdl:message>
+  <wsdl:message name="ISqlMonitorService_getSystemInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getSystemInfoResponse" />
   </wsdl:message>
   <wsdl:message name="ISqlMonitorService_GetTableSizeDetails_InputMessage">
     <wsdl:part name="parameters" element="tns:GetTableSizeDetails" />
@@ -32,6 +39,10 @@
     <wsdl:operation name="GetDatabaseList">
       <wsdl:input wsaw:Action="http://tempuri.org/ISqlMonitorService/GetDatabaseList" message="tns:ISqlMonitorService_GetDatabaseList_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ISqlMonitorService/GetDatabaseListResponse" message="tns:ISqlMonitorService_GetDatabaseList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getSystemInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISqlMonitorService/getSystemInfo" message="tns:ISqlMonitorService_getSystemInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISqlMonitorService/getSystemInfoResponse" message="tns:ISqlMonitorService_getSystemInfo_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetTableSizeDetails">
       <wsdl:input wsaw:Action="http://tempuri.org/ISqlMonitorService/GetTableSizeDetails" message="tns:ISqlMonitorService_GetTableSizeDetails_InputMessage" />
@@ -51,6 +62,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetDatabaseList">
       <soap:operation soapAction="http://tempuri.org/ISqlMonitorService/GetDatabaseList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getSystemInfo">
+      <soap:operation soapAction="http://tempuri.org/ISqlMonitorService/getSystemInfo" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

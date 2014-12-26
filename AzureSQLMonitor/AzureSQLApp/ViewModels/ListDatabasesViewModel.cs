@@ -15,6 +15,8 @@ namespace AzureSQLApp.ViewModels
 
         private ObservableCollection<Databases> databaselist;
         public RelayCommand GetDatabases { get; private set; }
+        string[] sysinfocollection = new string[3];
+        public string servername;
 
         public ObservableCollection<Databases> DatabaseList
         {
@@ -29,6 +31,20 @@ namespace AzureSQLApp.ViewModels
             }
         }
 
+        public string Servername
+        {
+            get
+            {
+                return servername;
+            }
+            set
+            {
+                servername = value;
+                RaisePropertyChanged("Servername");
+            }
+        }
+
+
         public ListDatabasesViewModel()
         {
             GetDatabases = new RelayCommand(()=>GetDatabasesCommand());
@@ -40,11 +56,17 @@ namespace AzureSQLApp.ViewModels
 
             var dblist = await App.Servicehandle.GetDatabaseListAsync();
           ObservableCollection<Databases> templist = JsonConvert.DeserializeObject<ObservableCollection<Databases>>(dblist);
-
+            //Databases templist = JsonConvert.DeserializeObject<Databases>(dblist);
 
           DatabaseList = templist;
 
         }
+
+      /*  public async Task getSysInfo()
+        {
+            var sysinfo1 = await App.Servicehandle.getSystemInfoAsync();
+            
+        }*/
 
 
     }

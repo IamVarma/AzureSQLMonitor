@@ -74,15 +74,15 @@ namespace AzureSQLApp
                 {
                     //TODO: Load state from previously suspended application
 
-                    try
-                    {
-                        await SuspensionManager.RestoreAsync();
-                    }
-                    catch (SuspensionManagerException)
-                    {
-                        //Something went wrong restoring state.
-                        //Assume there is no state and continue
-                    }
+                        try
+                        {
+                            await SuspensionManager.RestoreAsync();
+                        }
+                        catch (SuspensionManagerException)
+                        {
+                            //Something went wrong restoring state.
+                            //Assume there is no state and continue
+                        }
 
 
                 }

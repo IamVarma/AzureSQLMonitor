@@ -37,6 +37,11 @@ namespace AzureSQLWCFService
         
         }
 
+        public string[] getSystemInfo()
+        {
+            Utilities UtilitiesInstance = new Utilities();
+            return UtilitiesInstance.getSystemInfo();
+        }
 
         public string GetTableSizeDetails(string database)
         {
