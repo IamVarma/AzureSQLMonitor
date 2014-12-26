@@ -32,7 +32,12 @@ namespace AzureSQLWCFService
                     {
                         SqlCommand sqlcmd = new SqlCommand(querytext[i], connection);
                         SqlDataReader dr = sqlcmd.ExecuteReader();
-                        resultstext[i] = dr["servername"].ToString();
+                        while (dr.Read())
+                        {
+
+                            resultstext[i] = dr.GetValue(0).ToString();
+                        }
+                        dr.Close();
                     }
                 }
 
