@@ -8,6 +8,8 @@
     mc:Ignorable="d"
     DataContext="{Binding LoginModel, RelativeSource={RelativeSource Self}}">
 
+   
+
     <Grid >
         <Grid.Background>
             <ImageBrush Stretch="Fill" ImageSource="/Images/cloud5.png" AlignmentY="Top" AlignmentX="Center"/>
@@ -58,10 +60,10 @@
                 </Viewbox>
             </Button>
         </Grid>
-
-        <Popup x:Name="ExceptionPop" IsLightDismissEnabled="True"  IsOpen="False" HorizontalAlignment="Stretch">
+        <!--<BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" "{Binding ImageVisibility}" />-->
+        <Popup x:Name="ExceptionPop" HorizontalAlignment="Stretch" IsOpen="{Binding PopUpVisibility}" Height="100" Width="100">
             <Grid Background="#FF22476C" Height="600" Width="1069">
-                <TextBlock HorizontalAlignment="Center"  Text="{Binding Result}" Width="1077" FontSize="18" Grid.Column="0" Grid.Row="0" TextWrapping="Wrap" Margin="187,28,436,26" />
+                <TextBlock HorizontalAlignment="Center"  Text="{Binding Result}" Width="1077" FontSize="18" Grid.Column="0" Grid.Row="0" TextWrapping="Wrap"  />
             </Grid>
         </Popup>
 

@@ -40,12 +40,7 @@ namespace AzureSQLApp.Views
         public HomePageView()
         {
             this.InitializeComponent();
-            //this.DataContext = LoginModel;
-            string x=LoginModel.Result;
-            if (x!="Success")
-            {
-                ExceptionPop.IsOpen = true;
-            }
+           
         }
 
        
