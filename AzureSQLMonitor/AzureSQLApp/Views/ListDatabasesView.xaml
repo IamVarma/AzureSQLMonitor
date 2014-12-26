@@ -46,60 +46,89 @@
     <Grid Background="#FF4F86C5">
 
         <Grid.RowDefinitions>
+            <RowDefinition Height="0.5*"></RowDefinition>
             <RowDefinition Height="1*"></RowDefinition>
             <RowDefinition Height="3*"></RowDefinition>
             <RowDefinition Height="1*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-
+          
         </Grid.ColumnDefinitions>
-        <ProgressRing x:Name="ProgressBar" Grid.Row="1" Height="66" Width="99" Foreground="#FFFCFDFF" />
-        <Grid Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="1*"></RowDefinition>
-                    <RowDefinition Height="1*"></RowDefinition>
-                </Grid.RowDefinitions>
-                <Grid Grid.Row="0">
-                <TextBlock Name="sname" Text="servername"></TextBlock>
-                </Grid>
-                <Grid Grid.Row="1">
-                <TextBlock Name="uid" Text="userid"></TextBlock>
-                </Grid>
-            </Grid>
-        </Grid>
-        <Grid Grid.Row="0" HorizontalAlignment="Right">
+        <ProgressRing x:Name="ProgressBar" Grid.Row="2" Height="66" Width="99" Foreground="#FFFCFDFF" />
+        <Grid Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*"></RowDefinition>
                     <RowDefinition Height="1*"></RowDefinition>
                     <RowDefinition Height="1*"></RowDefinition>
                 </Grid.RowDefinitions>
-                <Grid Grid.Row="0">
-                    <TextBlock Name="date" Text="date"></TextBlock>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Row="0" Grid.Column="0">
+                    <TextBlock Name="snametext" Text="Server Name:  " FontSize="20"></TextBlock>
                 </Grid>
-                <Grid Grid.Row="1">
-                    <TextBlock Name="time" Text="time"></TextBlock>
+                <Grid Grid.Row="0" Grid.Column="1">
+                <TextBlock Name="sname" Text="{Binding Servername}" FontSize="20"></TextBlock>
                 </Grid>
-
-                <Grid Grid.Row="2">
-                    <TextBlock Name="timezone" Text="timezone"></TextBlock>
+                <Grid Grid.Row="1" Grid.Column="0">
+                    <TextBlock Name="useridtext" Text="Login Name:  " FontSize="20"></TextBlock>
+                </Grid>
+                <Grid Grid.Row="1" Grid.Column="1">
+                    <TextBlock Name="uid" Text="{Binding Userid}" FontSize="20"></TextBlock>
+                </Grid>
+                <Grid Grid.Row="2" Grid.Column="0">
+                    <TextBlock Name="versiontext" Text="Version:  " FontSize="20"></TextBlock>
+                </Grid>
+                <Grid Grid.Row="2" Grid.Column="1">
+                    <TextBlock Name="version" Text="{Binding Version}" FontSize="20"></TextBlock>
                 </Grid>
             </Grid>
+        </Grid>        
+        <Grid Grid.Row="1" HorizontalAlignment="Right">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Row="0" Grid.Column="0">
+                    <TextBlock Name="datetext" Text="Date:  " FontSize="20"></TextBlock>
+                </Grid>
+                <Grid Grid.Row="0" Grid.Column="1">
+                    <TextBlock Name="date" Text="{Binding Datetext}" FontSize="20"></TextBlock>
+                </Grid>
+                <Grid Grid.Row="1" Grid.Column="0">
+                    <TextBlock Name="timetext" Text="Time (GMT):  " FontSize="20"></TextBlock>
+                </Grid>
+                <Grid Grid.Row="1" Grid.Column="1">
+                    <TextBlock Name="time" Text="{Binding Timetext}" FontSize="20"></TextBlock>
+                </Grid>
+                
+            </Grid>
+            
 
         </Grid>
-        <Grid Grid.Row="1" Grid.Column="0">
+        
+        <Grid Grid.Row="2" Grid.Column="0">
             <GridView x:Name="DatabaseGridView" HorizontalAlignment="Stretch" VerticalAlignment="Top" ItemTemplate="{StaticResource DatabaseListTemplate}" ItemsSource="{Binding DatabaseList}">
                 <ContentPresenter Height="100" Width="100"/>
             </GridView>
 
         </Grid>
 
-        <Button Margin="0,68,0,45" Width="103" Height="41" Click="Button_Click" />
+        <!--  <Button Margin="0,68,0,45" Width="103" Height="41" Click="Button_Click" />-->
 
 
-    </Grid>
+        </Grid>
+    
 
 
 

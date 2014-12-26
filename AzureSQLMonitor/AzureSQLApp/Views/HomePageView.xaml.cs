@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using AzureSQLApp.ViewModels;
 using AzureSQLApp.Views;
+using AzureSQLApp.Common;
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace AzureSQLApp.Views
@@ -24,6 +25,7 @@ namespace AzureSQLApp.Views
     public sealed partial class HomePageView : Page
     {
         private LoginViewModel loginviewmodel = new LoginViewModel();
+       
 
 
         public LoginViewModel LoginModel
@@ -33,14 +35,25 @@ namespace AzureSQLApp.Views
 
         }
 
+        
+
         public HomePageView()
         {
             this.InitializeComponent();
-         
+            //this.DataContext = LoginModel;
+            string x=LoginModel.Result;
+            if (x!="Success")
+            {
+                ExceptionPop.IsOpen = true;
+            }
+        }
+
+       
+
+       
+
             
         }
 
-     
-
     }
-}
+

@@ -51,7 +51,7 @@ namespace AzureSQLApp.Views
             ProgressBar.IsActive = true;
 
             await ListDatabasesViewModel.GetDatabasesCommand();
-            //await ListDatabasesViewModel.getSysInfo();
+            await ListDatabasesViewModel.getSysInfo();
             DatabaseGridView.SelectedItem = null;
 
             ProgressBar.IsActive = false;

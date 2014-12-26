@@ -59,6 +59,12 @@
             </Button>
         </Grid>
 
+        <Popup x:Name="ExceptionPop" IsLightDismissEnabled="True"  IsOpen="False" HorizontalAlignment="Stretch">
+            <Grid Background="#FF22476C" Height="600" Width="1069">
+                <TextBlock HorizontalAlignment="Center"  Text="{Binding Result}" Width="1077" FontSize="18" Grid.Column="0" Grid.Row="0" TextWrapping="Wrap" Margin="187,28,436,26" />
+            </Grid>
+        </Popup>
+
     </Grid>
 
 

@@ -99,7 +99,7 @@ namespace AzureSQLApp.ViewModels
                App.AppFrame.Navigate(typeof(ListDatabasesView));
 
             }
-
+                       
         }
 
         

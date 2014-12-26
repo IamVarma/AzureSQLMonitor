@@ -17,6 +17,10 @@ namespace AzureSQLApp.ViewModels
         public RelayCommand GetDatabases { get; private set; }
         string[] sysinfocollection = new string[3];
         public string servername;
+        public string userid;
+        public string version;
+        public string datetext;
+        public string timetext;
 
         public ObservableCollection<Databases> DatabaseList
         {
@@ -44,10 +48,59 @@ namespace AzureSQLApp.ViewModels
             }
         }
 
+        public string Userid
+        {
+            get
+            {
+                return userid;
+            }
+            set
+            {
+                userid = value;
+                RaisePropertyChanged("Userid");
+            }
+        }
+
+        public string Version
+        {
+            get
+            {
+                return version;
+            }
+            set
+            {
+                version = value;
+                RaisePropertyChanged("Version");
+            }
+        }
+        public string Datetext
+        {
+            get
+            {
+                return datetext;
+            }
+            set
+            {
+                datetext = value;
+                RaisePropertyChanged("Datetext");
+            }
+        }
+        public string Timetext
+        {
+            get
+            {
+                return timetext;
+            }
+            set
+            {
+                timetext = value;
+                RaisePropertyChanged("Timetext");
+            }
+        }
 
         public ListDatabasesViewModel()
         {
-            GetDatabases = new RelayCommand(()=>GetDatabasesCommand());
+            //GetDatabases = new RelayCommand(()=>GetDatabasesCommand());
         }
 
         public async Task GetDatabasesCommand()
@@ -55,18 +108,26 @@ namespace AzureSQLApp.ViewModels
            
 
             var dblist = await App.Servicehandle.GetDatabaseListAsync();
-          ObservableCollection<Databases> templist = JsonConvert.DeserializeObject<ObservableCollection<Databases>>(dblist);
-            //Databases templist = JsonConvert.DeserializeObject<Databases>(dblist);
+            ObservableCollection<Databases> templist = JsonConvert.DeserializeObject<ObservableCollection<Databases>>(dblist);
+            
 
           DatabaseList = templist;
 
         }
 
-      /*  public async Task getSysInfo()
+        public async Task getSysInfo()
         {
-            var sysinfo1 = await App.Servicehandle.getSystemInfoAsync();
-            
-        }*/
+            var sysinfoobject = await App.Servicehandle.getSystemInfoAsync();
+            Servername = sysinfoobject[0].ToString();
+            Userid = sysinfoobject[1].ToString();
+            Version = sysinfoobject[2].ToString();
+            string[] tmpversion = Version.Split('\n');
+            Version = tmpversion[0];
+            Datetext = sysinfoobject[3].ToString();
+            string[] tempdatetimetext = Datetext.Split(' ');
+            Datetext = tempdatetimetext[0];
+            Timetext = tempdatetimetext[1];
+        }
 
 
     }
