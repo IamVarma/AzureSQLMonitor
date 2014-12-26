@@ -48,7 +48,7 @@ namespace AzureSQLWCFService
 
             }
 
-            catch
+            catch (Exception ex)
             {
 
                 return "There is a problem listing the Table details";
