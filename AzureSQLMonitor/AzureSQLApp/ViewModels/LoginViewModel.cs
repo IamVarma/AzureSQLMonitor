@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using AzureSQLApp.AzureSQLService;
 using AzureSQLApp.Common;
 using AzureSQLApp.Views;
+using Windows.UI.Xaml;
 
 namespace AzureSQLApp.ViewModels
 {
@@ -17,6 +18,8 @@ namespace AzureSQLApp.ViewModels
         private string servername;
         private string username;
         private string password;
+        private bool popupvisibility;
+        private bool shouldShowImage;
         public RelayCommand GetLogin { get; private set; }
         
 
@@ -82,11 +85,32 @@ namespace AzureSQLApp.ViewModels
         }
 
 
+        public bool PopUpVisibility
+        {
+            get { return popupvisibility; }
+            set
+            {
+                popupvisibility = value;
+                RaisePropertyChanged("PopUpVisibility");
+            }
+        }
+
+       // public Visibility ImageVisibility
+       //  {
+       //      get { return shouldShowImage ? Visibility.Visible : Visibility.Collapsed; }
+
+       //      set
+       //      {
+       //          popupvisibility = shouldShowImage ? Visibility.Visible : Visibility.Collapsed;
+       //          RaisePropertyChanged("ImageVisibility");
+       //      }
+       //}
+
         public  LoginViewModel()
         {
 
           GetLogin = new RelayCommand(() => Login());
-
+          popupvisibility = false;
         }
         
         public async Task Login()
@@ -99,6 +123,14 @@ namespace AzureSQLApp.ViewModels
                App.AppFrame.Navigate(typeof(ListDatabasesView));
 
             }
+            else
+            {
+
+                popupvisibility = true;
+
+            }
+
+           // var ggg = ImageVisibility;
                        
         }
 
