@@ -21,28 +21,45 @@ namespace AzureSQLWCFService
 
             ChangeDatabasecontext(dbname);
 
-            string querytext = "SELECT TOP 15 sys.objects.name as TableName, SUM(reserved_page_count) * 8.0 / 1024 as Size FROM sys.dm_db_partition_stats, sys.objects WHERE sys.dm_db_partition_stats.object_id = sys.objects.object_id and sys.object GROUP BY sys.objects.name ORDER BY Size Desc";
-            if (connection.State == System.Data.ConnectionState.Open)
+            string querytext = "SELECT TOP 15 sys.objects.name as TableName, SUM(reserved_page_count) * 8.0 / 1024 as Size FROM sys.dm_db_partition_stats, sys.objects WHERE sys.dm_db_partition_stats.object_id = sys.objects.object_id GROUP BY sys.objects.name ORDER BY Size Desc";
+
+            try
             {
-
-                sqlcmd = new SqlCommand(querytext, connection);
-
-                using (SqlDataReader dr = sqlcmd.ExecuteReader())
+                if (connection.State == System.Data.ConnectionState.Open)
                 {
 
-                    while (dr.Read())
+                    sqlcmd = new SqlCommand(querytext, connection);
+
+                    using (SqlDataReader dr = sqlcmd.ExecuteReader())
                     {
-                        _tabledetails = new TableSizeDetails { TableName = dr["TableName"].ToString(), TableSize = dr["Size"].ToString() };
-                        DatabaseTableDetails.Add(_tabledetails);
-                        _tabledetails = null;
+
+                        while (dr.Read())
+                        {
+                            _tabledetails = new TableSizeDetails { TableName = dr["TableName"].ToString(), TableSize = dr["Size"].ToString() };
+                            DatabaseTableDetails.Add(_tabledetails);
+                            _tabledetails = null;
 
 
+                        }
                     }
                 }
+
+                return JsonConvert.SerializeObject(DatabaseTableDetails);
+
             }
 
+            catch
+            {
 
-            return JsonConvert.SerializeObject(DatabaseTableDetails);
+                return "There is a problem listing the Table details";
+            }
+
+            finally
+            {
+
+                connection.Close();
+            }
+           
 
 
         }
