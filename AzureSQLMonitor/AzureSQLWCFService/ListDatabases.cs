@@ -26,7 +26,7 @@ namespace AzureSQLWCFService
             
             SqlCommand sqlcmd;
 
-            if (DatabaseName!="master")
+            if (DatabaseName != "master" || connection.State != System.Data.ConnectionState.Open)
             {
                 ChangeDatabasecontext("master");
             }
@@ -55,6 +55,7 @@ namespace AzureSQLWCFService
 
                         }
 
+                      
                         
                     }
 
@@ -67,6 +68,11 @@ namespace AzureSQLWCFService
             catch (Exception ex)
             {
                 return "There is an exception listing the databases in the instance";
+            }
+
+            finally
+            {
+                connection.Close();
             }
         }
     }
