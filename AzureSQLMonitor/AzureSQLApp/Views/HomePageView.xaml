@@ -60,8 +60,7 @@
                 </Viewbox>
             </Button>
         </Grid>
-        <!--<BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" "{Binding ImageVisibility}" />-->
-        <Popup x:Name="ExceptionPop" HorizontalAlignment="Stretch" IsOpen="{Binding PopUpVisibility}" Height="100" Width="100">
+        <Popup x:Name="ExceptionPop" HorizontalAlignment="Stretch" IsOpen="True" Visibility="{Binding PopUpVisibility}" Height="100" Width="100">
             <Grid Background="#FF22476C" Height="600" Width="1069">
                 <TextBlock HorizontalAlignment="Center"  Text="{Binding Result}" Width="1077" FontSize="18" Grid.Column="0" Grid.Row="0" TextWrapping="Wrap"  />
             </Grid>

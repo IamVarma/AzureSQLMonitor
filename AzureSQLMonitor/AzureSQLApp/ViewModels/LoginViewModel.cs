@@ -18,8 +18,8 @@ namespace AzureSQLApp.ViewModels
         private string servername;
         private string username;
         private string password;
-        private bool popupvisibility;
-        private bool shouldShowImage;
+        private Visibility popupvisibility;
+        private bool shouldShowPopUp;
         public RelayCommand GetLogin { get; private set; }
         
 
@@ -85,32 +85,23 @@ namespace AzureSQLApp.ViewModels
         }
 
 
-        public bool PopUpVisibility
+       
+        public Visibility PopUpVisibility
         {
-            get { return popupvisibility; }
+            get { return shouldShowPopUp ? Visibility.Visible : Visibility.Collapsed; }
+
             set
             {
-                popupvisibility = value;
+                popupvisibility = shouldShowPopUp ? Visibility.Visible : Visibility.Collapsed;
                 RaisePropertyChanged("PopUpVisibility");
             }
         }
-
-       // public Visibility ImageVisibility
-       //  {
-       //      get { return shouldShowImage ? Visibility.Visible : Visibility.Collapsed; }
-
-       //      set
-       //      {
-       //          popupvisibility = shouldShowImage ? Visibility.Visible : Visibility.Collapsed;
-       //          RaisePropertyChanged("ImageVisibility");
-       //      }
-       //}
-
+        
         public  LoginViewModel()
         {
 
           GetLogin = new RelayCommand(() => Login());
-          popupvisibility = false;
+          shouldShowPopUp = false;
         }
         
         public async Task Login()
@@ -125,12 +116,12 @@ namespace AzureSQLApp.ViewModels
             }
             else
             {
-
-                popupvisibility = true;
+                shouldShowPopUp = true;
+                PopUpVisibility =  shouldShowPopUp ? Visibility.Visible : Visibility.Collapsed;
 
             }
 
-           // var ggg = ImageVisibility;
+            
                        
         }
 
