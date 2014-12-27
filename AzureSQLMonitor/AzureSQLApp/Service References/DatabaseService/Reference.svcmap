@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="915aff24-ef9c-40af-bd0c-97babc9b3bd6" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.ObjectModel.ObservableCollection`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>false</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:60693/SqlMonitorService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="SqlMonitorService.xsd" MetadataType="Schema" ID="57ead482-d914-44a0-adf8-a5d2e168f2ea" SourceId="1" SourceUrl="http://localhost:60693/SqlMonitorService.svc?xsd=xsd0" />
+    <MetadataFile FileName="SqlMonitorService1.xsd" MetadataType="Schema" ID="75c44892-9f63-4aba-894e-0702b1336ad2" SourceId="1" SourceUrl="http://localhost:60693/SqlMonitorService.svc?xsd=xsd1" />
+    <MetadataFile FileName="SqlMonitorService.disco" MetadataType="Disco" ID="74295204-e9cd-466e-9f8b-a8be1a649395" SourceId="1" SourceUrl="http://localhost:60693/SqlMonitorService.svc?disco" />
+    <MetadataFile FileName="SqlMonitorService.wsdl" MetadataType="Wsdl" ID="a18cfb75-1071-4395-b643-8df0bc57302f" SourceId="1" SourceUrl="http://localhost:60693/SqlMonitorService.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
