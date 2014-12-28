@@ -63,12 +63,12 @@ namespace AzureSQLWCFService
 
                 else
 
-                    return "Invalid Server Name/Invalid Login Name";
+                    return "Invalid Server Name / Login Name";
 
             }
             catch
             {
-                return "Server not valid/Login not valid";
+                return "Oops! Server name / Login credintials seems to be invalid";
             }
 
         }

@@ -14,8 +14,8 @@ namespace AzureSQLApp.ViewModels
     {
 
         private ObservableCollection<Databases> databaselist;
+        private ObservableCollection<string> sysinfoobject = new ObservableCollection<string>();
         public RelayCommand GetDatabases { get; private set; }
-        string[] sysinfocollection = new string[3];
         public string servername;
         public string userid;
         public string version;
@@ -117,16 +117,44 @@ namespace AzureSQLApp.ViewModels
 
         public async Task getSysInfo()
         {
-            var sysinfoobject = await App.Servicehandle.getSystemInfoAsync();
-            Servername = sysinfoobject[0].ToString();
-            Userid = sysinfoobject[1].ToString();
-            Version = sysinfoobject[2].ToString();
-            string[] tmpversion = Version.Split('\n');
-            Version = tmpversion[0];
-            Datetext = sysinfoobject[3].ToString();
-            string[] tempdatetimetext = Datetext.Split(' ');
-            Datetext = tempdatetimetext[0];
-            Timetext = tempdatetimetext[1];
+            sysinfoobject = await App.Servicehandle.getSystemInfoAsync();
+            if (sysinfoobject[0] != null)
+            {
+                Servername = sysinfoobject[0].ToString();
+            }   
+            else
+            {
+                Servername = "null";
+            }
+            if (sysinfoobject[1] != null)
+            {
+                Userid = sysinfoobject[1].ToString();
+            }
+            else
+            {
+                Userid = "null";
+            }
+            if (sysinfoobject[2] != null)
+            {
+                Version = sysinfoobject[2].ToString();
+                string[] tmpversion = Version.Split('\n');
+                Version = tmpversion[0];
+            }
+            else
+            {
+                Version = "null";
+            }
+            if (sysinfoobject[3] != null)
+            {
+                Datetext = sysinfoobject[3].ToString();
+                string[] tempdatetimetext = Datetext.Split(' ');
+                Datetext = tempdatetimetext[0];
+                Timetext = tempdatetimetext[1];
+            }
+            else
+            {
+                Datetext = Timetext = "null";
+            }
         }
 
 

@@ -85,10 +85,6 @@ namespace AzureSQLApp.Views
 
         #endregion
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            App.AppFrame.Navigate(typeof(DatabaseDetailsView));
-        }
-
+        
     }
 }

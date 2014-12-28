@@ -56,6 +56,8 @@
         </Grid.ColumnDefinitions>
         <ProgressRing x:Name="ProgressBar" Grid.Row="2" Height="66" Width="99" Foreground="#FFFCFDFF" />
         <Grid Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left">
+            
+
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*"></RowDefinition>
@@ -86,7 +88,9 @@
                     <TextBlock Name="version" Text="{Binding Version}" FontSize="20"></TextBlock>
                 </Grid>
             </Grid>
-        </Grid>        
+            
+        </Grid>
+        
         <Grid Grid.Row="1" HorizontalAlignment="Right">
             <Grid>
                 <Grid.RowDefinitions>

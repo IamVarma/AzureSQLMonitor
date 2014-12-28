@@ -18,11 +18,13 @@ namespace AzureSQLApp.ViewModels
         private string servername;
         private string username;
         private string password;
-        private Visibility popupvisibility;
+       /* private Visibility popupvisibility;
         private bool shouldShowPopUp;
+        */
         public RelayCommand GetLogin { get; private set; }
+        public bool isopenproperty;
+        public bool isringenabled;
         
-
         public string ServerName
         {
             get
@@ -86,7 +88,7 @@ namespace AzureSQLApp.ViewModels
 
 
        
-        public Visibility PopUpVisibility
+      /*  public Visibility PopUpVisibility
         {
             get { return shouldShowPopUp ? Visibility.Visible : Visibility.Collapsed; }
 
@@ -95,20 +97,42 @@ namespace AzureSQLApp.ViewModels
                 popupvisibility = shouldShowPopUp ? Visibility.Visible : Visibility.Collapsed;
                 RaisePropertyChanged("PopUpVisibility");
             }
+        }*/
+
+        public bool Isopenproperty
+        {
+            get { return isopenproperty; }
+
+            set
+            {
+                isopenproperty = value;
+                RaisePropertyChanged("Isopenproperty");
+            }
         }
-        
-        public  LoginViewModel()
+
+        public bool IsRingEnabled
+        {
+            get { return isringenabled; }
+
+            set
+            {
+                isringenabled = value;
+                RaisePropertyChanged("IsRingEnabled");
+            }
+        }
+
+                public  LoginViewModel()
         {
 
-          GetLogin = new RelayCommand(() => Login());
-          shouldShowPopUp = false;
+            GetLogin = new RelayCommand(() => Login());
+          //shouldShowPopUp = false;
         }
         
         public async Task Login()
         {
-            
+            IsRingEnabled = true;
             Result = await App.Servicehandle.ConnectSQLAzureAsync(ServerName,UserName,Password);
-
+            IsRingEnabled = false;
             if (Result == "Success")
             {
                App.AppFrame.Navigate(typeof(ListDatabasesView));
@@ -116,9 +140,9 @@ namespace AzureSQLApp.ViewModels
             }
             else
             {
-                shouldShowPopUp = true;
-                PopUpVisibility =  shouldShowPopUp ? Visibility.Visible : Visibility.Collapsed;
-
+               // shouldShowPopUp = true;
+               // PopUpVisibility =  shouldShowPopUp ? Visibility.Visible : Visibility.Collapsed;
+                Isopenproperty = true;
             }
 
             

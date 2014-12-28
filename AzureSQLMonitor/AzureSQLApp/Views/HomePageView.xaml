@@ -8,7 +8,7 @@
     mc:Ignorable="d"
     DataContext="{Binding LoginModel, RelativeSource={RelativeSource Self}}">
 
-   
+
 
     <Grid >
         <Grid.Background>
@@ -16,14 +16,15 @@
         </Grid.Background>
 
         <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*"></ColumnDefinition>
-                <ColumnDefinition Width="1*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
 
-            <!-- <local:LoginView Width="Auto" Height="Auto" Grid.Column="1" x:Name="LoginControl" /> -->
+        <!-- <local:LoginView Width="Auto" Height="Auto" Grid.Column="1" x:Name="LoginControl" /> -->
 
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
+                <RowDefinition Height="80"/>
                 <RowDefinition Height="80"/>
                 <RowDefinition Height="80"/>
                 <RowDefinition Height="80"/>
@@ -34,13 +35,14 @@
                 <ColumnDefinition Width="150"/>
                 <ColumnDefinition Width="200"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Text="Server Instance:" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="26.667" FontWeight="Bold" Grid.ColumnSpan="2" Margin="0,26,137,30"/>
+            <TextBlock Text="Server Instance" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="26.667" FontWeight="Bold" Grid.ColumnSpan="2" Margin="0,26,137,30"/>
             <TextBox x:Name="ServerName" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" Margin="81,20,-131,28" Text="{Binding ServerName, Mode=TwoWay}"/>
-            <TextBlock Text="User Name:" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="26.667" FontWeight="Bold" Grid.ColumnSpan="2" Margin="0,0,179,-41"/>
+            <TextBlock Text="User Name" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="26.667" FontWeight="Bold" Grid.ColumnSpan="2" Margin="0,0,179,-41"/>
             <TextBox x:Name="UserName" Grid.Row="4" VerticalAlignment="Center"  Grid.Column="1" Margin="81,97,-131,-49" Text="{Binding UserName, Mode=TwoWay}" />
-            <TextBlock Text="Password:" Grid.Row="4" VerticalAlignment="Center"  Grid.Column="0" HorizontalAlignment="Right" FontSize="26.667" FontWeight="Bold" Margin="0,181,190,-125" Grid.ColumnSpan="2"/>
-            <PasswordBox x:Name="Password" Grid.Row="4" VerticalAlignment="Center" Grid.Column="1" Margin="81,181,-131,-133" Password="{Binding Password, Mode=TwoWay}"/>
-            <Button Grid.Row="4" Grid.Column="1" Height="63" Margin="160,260,-39,-243" HorizontalAlignment="Stretch"  Command="{Binding GetLogin}">
+            <TextBlock Text="Password" Grid.Row="4" VerticalAlignment="Center"  Grid.Column="0" HorizontalAlignment="Right" FontSize="26.667" FontWeight="Bold" Margin="0,181,190,-125" Grid.ColumnSpan="2"/>
+            <PasswordBox x:Name="Password" Grid.Row="4" VerticalAlignment="Center" Grid.Column="1" Margin="81,181,-131,-133" Password="{Binding Password, Mode=TwoWay}" IsPasswordRevealButtonEnabled="True"/>
+            <ProgressRing x:Name="ProgressBar" Grid.Row="5" Grid.Column="1" Height="66" Width="99" Foreground="#FFFCFDFF" Margin="32,183,69,-169" IsActive="{Binding IsRingEnabled, Mode=TwoWay}"/>
+            <Button x:Name="loginbutton" Grid.Row="4" Grid.Column="1" Height="63" Margin="160,260,-39,-243" HorizontalAlignment="Stretch"  Command="{Binding GetLogin}">
                 <Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
                     <Grid>
                         <Grid Name="backgroundGridbutton" Width="256" Height="256" Visibility="Visible">
@@ -60,14 +62,24 @@
                 </Viewbox>
             </Button>
         </Grid>
-        <Popup x:Name="ExceptionPop" HorizontalAlignment="Stretch" IsOpen="True" Visibility="{Binding PopUpVisibility}" Height="100" Width="100">
-            <Grid Background="#FF22476C" Height="600" Width="1069">
-                <TextBlock HorizontalAlignment="Center"  Text="{Binding Result}" Width="1077" FontSize="18" Grid.Column="0" Grid.Row="0" TextWrapping="Wrap"  />
-            </Grid>
-        </Popup>
-
+        <ContentControl  x:Name="container"  Height="150" Margin="-101,139,101,379">
+            <Popup x:Name="ExceptionPop" HorizontalAlignment="Stretch" IsOpen="{Binding Isopenproperty, Mode=TwoWay}">
+                <Grid Background="#FF22476C" x:Name="gdChild" HorizontalAlignment="Stretch" Width="1700" Height="300">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock HorizontalAlignment="Center" Grid.Row="0" Text="{Binding Result}" TextWrapping="Wrap" FontSize="25" />
+                    <Button Margin="715,129,691,-144" Grid.Row="1" x:Name="Tryagain" Click="Tryagain_Click"  Foreground="White"  Width="180" HorizontalAlignment="Center" Height="55">
+                        <Viewbox Height="30" Width="200">
+                            <TextBlock Text="Try again"/>
+                        </Viewbox>
+                    </Button>
+                </Grid>
+            </Popup>
+        </ContentControl>
     </Grid>
 
 
-   
+
 </Page>

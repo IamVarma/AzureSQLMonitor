@@ -40,13 +40,15 @@ namespace AzureSQLApp.Views
         public HomePageView()
         {
             this.InitializeComponent();
+     
            
         }
-
-       
-
-       
-
+        
+       private void Tryagain_Click(object sender, RoutedEventArgs e)
+       {
+           ExceptionPop.IsOpen = false;
+          
+       }
             
         }
 
