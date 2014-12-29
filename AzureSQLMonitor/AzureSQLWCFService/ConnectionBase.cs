@@ -10,7 +10,7 @@ namespace AzureSQLWCFService
 {
     public class ConnectionBase
     {
-        public static SqlConnection connection;
+        public static SqlConnection connection = new SqlConnection();
         public static string connectionString;
 
         public static string ServerName { get; set; }
@@ -25,7 +25,7 @@ namespace AzureSQLWCFService
             LoginName = Loginname;
             Password = password;
 
-            connectionString = "Server=tcp:" + ServerName + ",1433;Database=" + DatabaseName + ";User ID=" + LoginName + ";Password=" + Password + ";Trusted_Connection=False;Encrypt=True;Connection Timeout=30;";
+            connectionString = "Server=tcp:" + ServerName + ",1433;Database=" + DatabaseName + ";User ID=" + LoginName + ";Password=" + Password + ";Trusted_Connection=False;Encrypt=True;Connection Timeout=30;Application Name=AzureSQLMonitor;";
 
 
             return getConnection(connectionString);
@@ -35,12 +35,12 @@ namespace AzureSQLWCFService
 
         public string ChangeDatabasecontext(string databasename)
         {
+         
+                DatabaseName = databasename;
+                connectionString = "Server=tcp:" + ServerName + ",1433;Database=" + DatabaseName + ";User ID=" + LoginName + ";Password=" + Password + ";Trusted_Connection=False;Encrypt=True;Connection Timeout=30;Application Name=AzureSQLMonitor;";
 
-            DatabaseName = databasename;
-
-            connectionString = "Server=tcp:" + ServerName + ",1433;Database=" + DatabaseName + ";User ID=" + LoginName + ";Password=" + Password + ";Trusted_Connection=False;Encrypt=True;Connection Timeout=30;";
-
-            return getConnection(connectionString);
+                return getConnection(connectionString);
+            
 
 
         }
@@ -53,8 +53,7 @@ namespace AzureSQLWCFService
 
             try
             {
-
-                connection = new SqlConnection(connstring);
+                connection.ConnectionString = connstring;
                 connection.Open();
                 // connection.OpenWithRetry(retry);
                 if (connection.State == System.Data.ConnectionState.Open)
