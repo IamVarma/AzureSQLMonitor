@@ -8,5 +8,8 @@ namespace AzureSQLApp.ViewModels
 {
     class HomeViewModel
     {
+
+
+
     }
 }

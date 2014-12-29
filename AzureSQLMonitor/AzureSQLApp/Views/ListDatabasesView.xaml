@@ -54,6 +54,26 @@
         <Grid.ColumnDefinitions>
           
         </Grid.ColumnDefinitions>
+        <Button x:Name="Logout" BorderThickness="0" Grid.Row="0" HorizontalAlignment="Right" Command="{Binding LogOut}">
+        <Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+            <Grid>
+                <Grid Name="backgroundGrid" Width="128" Height="128" Visibility="Visible">
+                    <Ellipse Fill="#FF4F86C5" Name="Fill" Visibility="Visible" />
+                </Grid>
+                <Path Data="M14.800615,5.6499605L14.800615,14.800346C10.630442,17.910477 7.8903284,22.840685 7.8903284,28.44092 7.9003286,37.871319 15.530646,45.511639 24.961039,45.521641 34.391431,45.511639 42.011749,37.871319 42.04175,28.44092 42.03175,22.840685 39.291636,17.910477 35.121462,14.800346L35.121462,5.6599612C43.841825,9.5601254,49.912077,18.280493,49.912077,28.44092L49.922077,28.44092C49.912077,42.231503 38.741611,53.391972 24.961039,53.391972 11.170465,53.391972 0,42.231503 0,28.44092 0,18.270493 6.0902529,9.5501251 14.800615,5.6499605z M19.570043,0L30.237043,0 30.237043,33.917 19.570043,33.917z" Stretch="Uniform" Fill="#FFFFFFFF" Width="96" Height="96" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <TransformGroup.Children>
+                                <RotateTransform Angle="0" />
+                                <ScaleTransform ScaleX="1" ScaleY="1" />
+                            </TransformGroup.Children>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+            </Grid>
+        </Viewbox>
+        </Button>
+
         <ProgressRing x:Name="ProgressBar" Grid.Row="2" Height="66" Width="99" Foreground="#FFFCFDFF" />
         <Grid Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left">
             
@@ -122,7 +142,7 @@
         </Grid>
         
         <Grid Grid.Row="2" Grid.Column="0">
-            <GridView x:Name="DatabaseGridView" HorizontalAlignment="Stretch" VerticalAlignment="Top" ItemTemplate="{StaticResource DatabaseListTemplate}" ItemsSource="{Binding DatabaseList}">
+            <GridView x:Name="DatabaseGridView" HorizontalAlignment="Stretch" VerticalAlignment="Top" ItemTemplate="{StaticResource DatabaseListTemplate}" ItemsSource="{Binding DatabaseList}" >
                 <ContentPresenter Height="100" Width="100"/>
             </GridView>
 

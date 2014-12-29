@@ -13,7 +13,7 @@ namespace AzureSQLApp.ViewModels
    public class DatabaseDetailsViewModel:ViewModelBase
     {
         private ObservableCollection<TableDetails> tablelist;
-        public RelayCommand GetTables { get; private set; }
+      //  public RelayCommand GetTables { get; private set; }
 
         
 

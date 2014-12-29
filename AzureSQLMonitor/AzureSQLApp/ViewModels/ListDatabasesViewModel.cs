@@ -7,6 +7,7 @@ using AzureSQLApp.Models;
 using AzureSQLApp.Common;
 using Newtonsoft.Json;
 using System.Collections.ObjectModel;
+using AzureSQLApp.Views;
 
 namespace AzureSQLApp.ViewModels
 {
@@ -16,6 +17,7 @@ namespace AzureSQLApp.ViewModels
         private ObservableCollection<Databases> databaselist;
         private ObservableCollection<string> sysinfoobject = new ObservableCollection<string>();
         public RelayCommand GetDatabases { get; private set; }
+        public RelayCommand LogOut { get; private set; }
         public string servername;
         public string userid;
         public string version;
@@ -101,6 +103,7 @@ namespace AzureSQLApp.ViewModels
         public ListDatabasesViewModel()
         {
             //GetDatabases = new RelayCommand(()=>GetDatabasesCommand());
+            LogOut = new RelayCommand(() => LogoutNow());
         }
 
         public async Task GetDatabasesCommand()
@@ -157,6 +160,11 @@ namespace AzureSQLApp.ViewModels
             }
         }
 
+
+        public void LogoutNow()
+        {
+            App.AppFrame.Navigate(typeof(HomePageView));
+        }
 
     }
 }
