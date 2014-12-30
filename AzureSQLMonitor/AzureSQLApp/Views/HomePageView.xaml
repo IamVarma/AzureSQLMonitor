@@ -64,7 +64,7 @@
         </Grid>
         <ContentControl  x:Name="container"  Height="150" Margin="-101,139,101,379">
             <Popup x:Name="ExceptionPop" HorizontalAlignment="Stretch" IsOpen="{Binding Isopenproperty, Mode=TwoWay}">
-                <Grid Background="#FF22476C" x:Name="gdChild" HorizontalAlignment="Stretch" Width="1700" Height="300">
+                <Grid Background="#FF22476C" x:Name="gdChild" HorizontalAlignment="Stretch" Width="2100" Height="300" RenderTransformOrigin="0.444,0.5">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>

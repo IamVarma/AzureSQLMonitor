@@ -37,7 +37,7 @@ namespace AzureSQLWCFService
         
         }
 
-        public string[] getSystemInfo()
+        public string getSystemInfo()
         {
             Utilities UtilitiesInstance = new Utilities();
             return UtilitiesInstance.getSystemInfo();

@@ -93,19 +93,19 @@
                     <TextBlock Name="snametext" Text="Server Name:  " FontSize="20"></TextBlock>
                 </Grid>
                 <Grid Grid.Row="0" Grid.Column="1">
-                <TextBlock Name="sname" Text="{Binding Servername}" FontSize="20"></TextBlock>
+                    <TextBlock Name="sname" Text="{Binding Servername}" FontSize="20" Foreground="YellowGreen"></TextBlock>
                 </Grid>
                 <Grid Grid.Row="1" Grid.Column="0">
                     <TextBlock Name="useridtext" Text="Login Name:  " FontSize="20"></TextBlock>
                 </Grid>
                 <Grid Grid.Row="1" Grid.Column="1">
-                    <TextBlock Name="uid" Text="{Binding Userid}" FontSize="20"></TextBlock>
+                    <TextBlock Name="uid" Text="{Binding Userid}" FontSize="20" Foreground="YellowGreen"></TextBlock>
                 </Grid>
                 <Grid Grid.Row="2" Grid.Column="0">
                     <TextBlock Name="versiontext" Text="Version:  " FontSize="20"></TextBlock>
                 </Grid>
                 <Grid Grid.Row="2" Grid.Column="1">
-                    <TextBlock Name="version" Text="{Binding Version}" FontSize="20"></TextBlock>
+                    <TextBlock Name="version" Text="{Binding Version}" FontSize="20" Foreground="YellowGreen"></TextBlock>
                 </Grid>
             </Grid>
             
@@ -127,13 +127,13 @@
                     <TextBlock Name="datetext" Text="Date:  " FontSize="20"></TextBlock>
                 </Grid>
                 <Grid Grid.Row="0" Grid.Column="1">
-                    <TextBlock Name="date" Text="{Binding Datetext}" FontSize="20"></TextBlock>
+                    <TextBlock Name="date" Text="{Binding Datetext}" FontSize="20" Foreground="YellowGreen"></TextBlock>
                 </Grid>
                 <Grid Grid.Row="1" Grid.Column="0">
                     <TextBlock Name="timetext" Text="Time (GMT):  " FontSize="20"></TextBlock>
                 </Grid>
                 <Grid Grid.Row="1" Grid.Column="1">
-                    <TextBlock Name="time" Text="{Binding Timetext}" FontSize="20"></TextBlock>
+                    <TextBlock Name="time" Text="{Binding Timetext}" FontSize="20" Foreground="YellowGreen"></TextBlock>
                 </Grid>
                 
             </Grid>

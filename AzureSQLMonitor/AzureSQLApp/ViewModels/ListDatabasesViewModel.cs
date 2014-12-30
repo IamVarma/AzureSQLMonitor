@@ -15,7 +15,7 @@ namespace AzureSQLApp.ViewModels
     {
 
         private ObservableCollection<Databases> databaselist;
-        private ObservableCollection<string> sysinfoobject = new ObservableCollection<string>();
+       // private ObservableCollection<Sysinfo> sysinfoobject = new ObservableCollection<Sysinfo>();
         public RelayCommand GetDatabases { get; private set; }
         public RelayCommand LogOut { get; private set; }
         public string servername;
@@ -120,26 +120,28 @@ namespace AzureSQLApp.ViewModels
 
         public async Task getSysInfo()
         {
-            sysinfoobject = await App.Servicehandle.getSystemInfoAsync();
-            if (sysinfoobject[0] != null)
+            var sysinfoobject = await App.Servicehandle.getSystemInfoAsync();
+            Sysinfo templist = JsonConvert.DeserializeObject<Sysinfo>(sysinfoobject);
+
+            if (templist.ServerName != null)
             {
-                Servername = sysinfoobject[0].ToString();
+                Servername = templist.ServerName.ToString();
             }   
             else
             {
                 Servername = "null";
             }
-            if (sysinfoobject[1] != null)
+            if (templist.LoginName != null)
             {
-                Userid = sysinfoobject[1].ToString();
+                Userid = templist.LoginName.ToString();
             }
             else
             {
                 Userid = "null";
             }
-            if (sysinfoobject[2] != null)
+            if (templist.VersionInfo != null)
             {
-                Version = sysinfoobject[2].ToString();
+                Version = templist.VersionInfo.ToString();
                 string[] tmpversion = Version.Split('\n');
                 Version = tmpversion[0];
             }
@@ -147,9 +149,9 @@ namespace AzureSQLApp.ViewModels
             {
                 Version = "null";
             }
-            if (sysinfoobject[3] != null)
+            if (templist.DatetimeInfo != null)
             {
-                Datetext = sysinfoobject[3].ToString();
+                Datetext = templist.DatetimeInfo.ToString();
                 string[] tempdatetimetext = Datetext.Split(' ');
                 Datetext = tempdatetimetext[0];
                 Timetext = tempdatetimetext[1];

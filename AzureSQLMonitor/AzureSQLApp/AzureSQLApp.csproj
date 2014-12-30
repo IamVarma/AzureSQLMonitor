@@ -121,6 +121,7 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\Databases.cs" />
+    <Compile Include="Models\Sysinfo.cs" />
     <Compile Include="Models\TableDetails.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service References\AzureSQLService\Reference.cs">
@@ -160,9 +161,6 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\AzureSQLService\SqlMonitorService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\AzureSQLService\SqlMonitorService2.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>

@@ -22,7 +22,7 @@ namespace AzureSQLWCFService
         string GetDatabaseList();
 
         [OperationContract]
-        string[] getSystemInfo();
+        string getSystemInfo();
 
         [OperationContract]
         string GetTableSizeDetails(string dbname);
@@ -90,6 +90,55 @@ namespace AzureSQLWCFService
 
         }
 
+
+    }
+
+    [DataContract]
+    public class Sysinfoclass
+    {
+        string server_name;
+        string login_name;
+        string version_info;
+        string datetime_info;
+
+        [DataMember]
+        public string ServerName
+        {
+            get { return server_name; }
+            set { server_name = value; }
+
+        }
+
+        [DataMember]
+        public string LoginName
+        {
+            get { return login_name; }
+            set
+            {
+                login_name = value;
+            }
+
+        }
+        [DataMember]
+        public string VersionInfo
+        {
+            get { return version_info; }
+            set
+            {
+                version_info = value;
+            }
+
+        }
+        [DataMember]
+        public string DatetimeInfo
+        {
+            get { return datetime_info; }
+            set
+            {
+                datetime_info = value;
+            }
+
+        }
 
     }
 

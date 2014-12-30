@@ -13,39 +13,39 @@ namespace AzureSQLWCFService
 {
     public class Utilities:ConnectionBase
     {
-        public string[] getSystemInfo()
+        public string getSystemInfo()
         {
-            string [] querytext = new string[4];
-            string[] resultstext = new string[4];
+            ObservableCollection<Sysinfoclass> Syslist = new ObservableCollection<Sysinfoclass>();
+            string querytext = "select @@servername as servername,system_user as loginuser,@@version as versioninfo,getdate() as datetimeinfo";
+            
             //   string QueryText = "select DB_NAME(sd.database_id) dbname,sd.state_desc statedesc, inr1.size SizeMB from sys.databases sd join (select database_id,sum((size*8)/1024) size from sys.master_files group by database_id) inr1 on inr1.database_id=sd.database_id";
-            querytext[0] = "select @@servername as servername";
-            querytext[1] = "select system_user as loginuser";
-            querytext[2] = "select @@version as versioninfo";
-            querytext[3] = "select getdate() as datetimeinfo";
-
-           
+                     
             try
             {
                 if (connection.State == System.Data.ConnectionState.Open)
                 {
-                    for (int i = 0; i < 4; i++)
-                    {
-                        SqlCommand sqlcmd = new SqlCommand(querytext[i], connection);
+                   
+                        SqlCommand sqlcmd = new SqlCommand(querytext, connection);
                         SqlDataReader dr = sqlcmd.ExecuteReader();
                         while (dr.Read())
                         {
-
-                            resultstext[i] = dr.GetValue(0).ToString();
+                            Sysinfoclass sysinfoobject = new Sysinfoclass();
+                            sysinfoobject.ServerName = dr.GetValue(0).ToString();
+                            sysinfoobject.LoginName = dr.GetValue(1).ToString();
+                            sysinfoobject.VersionInfo = dr.GetValue(2).ToString();
+                            sysinfoobject.DatetimeInfo = dr.GetValue(3).ToString();
+                            Syslist.Add(sysinfoobject);
                         }
                         dr.Close();
-                    }
+                    
                 }
 
-                return resultstext;
+                //return JsonConvert.SerializeObject(Syslist);
+                return "hello";
             }
             catch (Exception ex)
             {
-                return new string [] {"Something is wrong!!"};
+                return "Something is wrong!!";
             }
         }
     }
