@@ -40,7 +40,7 @@ namespace AzureSQLWCFService
                     
                 }
 
-                //return JsonConvert.SerializeObject(Syslist);
+               // return JsonConvert.SerializeObject(Syslist);
                 return "hello";
             }
             catch (Exception ex)
