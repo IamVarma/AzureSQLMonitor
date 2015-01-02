@@ -134,8 +134,6 @@
     <Compile Include="ViewModels\ListDatabasesViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
-    <Compile Include="ViewModel\MainViewModel.cs" />
-    <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="Views\DatabaseDetailsView.xaml.cs">
       <DependentUpon>DatabaseDetailsView.xaml</DependentUpon>
     </Compile>
