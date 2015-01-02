@@ -49,9 +49,9 @@ namespace AzureSQLApp.Views
         private async void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
             ProgressBar.IsActive = true;
-
-            await ListDatabasesViewModel.GetDatabasesCommand();
             await ListDatabasesViewModel.getSysInfo();
+            await ListDatabasesViewModel.GetDatabasesCommand();
+         
             DatabaseGridView.SelectedItem = null;
 
             ProgressBar.IsActive = false;
