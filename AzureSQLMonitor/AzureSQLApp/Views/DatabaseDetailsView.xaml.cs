@@ -44,7 +44,7 @@ namespace AzureSQLApp.Views
 
           private async void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
-            await DatabaseDetails.GetTablesCommand();
+            await DatabaseDetails.GetTablesCommand((string)e.NavigationParameter);
 
 
 

@@ -17,12 +17,14 @@ namespace AzureSQLApp.ViewModels
         private ObservableCollection<Databases> databaselist;
        // private ObservableCollection<Sysinfo> sysinfoobject = new ObservableCollection<Sysinfo>();
         public RelayCommand GetDatabases { get; private set; }
+      
         public RelayCommand LogOut { get; private set; }
-        public string servername;
-        public string userid;
-        public string version;
-        public string datetext;
-        public string timetext;
+        public RelayCommand SelectedDatabase { get; private set; }
+         string servername;
+         string userid;
+         string version;
+         string datetext;
+         string timetext;
 
         public ObservableCollection<Databases> DatabaseList
         {
@@ -102,8 +104,9 @@ namespace AzureSQLApp.ViewModels
 
         public ListDatabasesViewModel()
         {
+            
             //GetDatabases = new RelayCommand(()=>GetDatabasesCommand());
-            LogOut = new RelayCommand(() => LogoutNow());
+            LogOut = new RelayCommand(()=> LogoutNow(App.SelectedDatabase));
         }
 
         public async Task GetDatabasesCommand()
@@ -163,10 +166,12 @@ namespace AzureSQLApp.ViewModels
         }
 
 
-        public void LogoutNow()
+        public void LogoutNow(string dbname)
         {
-            App.AppFrame.Navigate(typeof(HomePageView));
+            App.AppFrame.Navigate(typeof(DatabaseDetailsView),dbname);
         }
+
+
 
     }
 }

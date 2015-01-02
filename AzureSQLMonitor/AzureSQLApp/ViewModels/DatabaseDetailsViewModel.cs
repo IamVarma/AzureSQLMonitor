@@ -38,9 +38,9 @@ namespace AzureSQLApp.ViewModels
         }
 
 
-        public async Task GetTablesCommand()
+        public async Task GetTablesCommand(string selecteddatabase)
         {
-            var tblist = await App.Servicehandle.GetTableSizeDetailsAsync("AdventureWorks2012");
+            var tblist = await App.Servicehandle.GetTableSizeDetailsAsync(selecteddatabase);
             ObservableCollection<TableDetails> templist = JsonConvert.DeserializeObject<ObservableCollection<TableDetails>>(tblist);
             TableList = templist;
 

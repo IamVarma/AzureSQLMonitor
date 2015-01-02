@@ -60,7 +60,7 @@ namespace AzureSQLWCFService
             finally
             {
 
-                connection.Dispose();
+                connection.Close();
             }
            
 

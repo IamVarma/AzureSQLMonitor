@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using AzureSQLApp.Views;
 using AzureSQLApp.Common;
+using AzureSQLApp.ViewModels;
 // The Blank Application template is documented at http://go.microsoft.com/fwlink/?LinkId=234227
 
 namespace AzureSQLApp
@@ -33,7 +34,7 @@ namespace AzureSQLApp
 
         public static Frame AppFrame { get; set; }
         public static AzureSQLService.SqlMonitorServiceClient Servicehandle = new AzureSQLService.SqlMonitorServiceClient();
-
+        
 
         public App()
         {

@@ -25,7 +25,7 @@ namespace AzureSQLWCFService
             LoginName = Loginname;
             Password = password;
 
-            connectionString = "Server=tcp:" + ServerName + ",1433;Database=" + DatabaseName + ";User ID=" + LoginName + ";Password=" + Password + ";Trusted_Connection=False;Encrypt=True;Connection Timeout=30;";
+            connectionString = "Server=tcp:" + ServerName + ",1433;Database=" + DatabaseName + ";User ID=" + LoginName + ";Password=" + Password + ";Trusted_Connection=False;Encrypt=True;Connection Timeout=30;Application Name=AzureMonitor;";
 
 
             return getConnection(connectionString);
@@ -38,7 +38,7 @@ namespace AzureSQLWCFService
 
             DatabaseName = databasename;
 
-            connectionString = "Server=tcp:" + ServerName + ",1433;Database=" + DatabaseName + ";User ID=" + LoginName + ";Password=" + Password + ";Trusted_Connection=False;Encrypt=True;Connection Timeout=30;";
+            connectionString = "Server=tcp:" + ServerName + ",1433;Database=" + DatabaseName + ";User ID=" + LoginName + ";Password=" + Password + ";Trusted_Connection=False;Encrypt=True;Connection Timeout=30;Application Name=AzureMonitor;";
 
             return getConnection(connectionString);
 
@@ -53,6 +53,9 @@ namespace AzureSQLWCFService
 
             try
             {
+              //  connection.ConnectionString = connstring;
+                
+
                 connection = new SqlConnection(connstring);
                 connection.Open();
                 // connection.OpenWithRetry(retry);
