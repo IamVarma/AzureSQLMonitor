@@ -32,5 +32,17 @@ namespace AzureSQLApp.Models
             set;
         }
 
+        public string Greenvisibility
+        {
+            get;
+            set;
+        }
+
+        public string Redvisibility
+        {
+            get;
+            set;
+        }
+
     }
 }

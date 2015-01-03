@@ -62,14 +62,14 @@
                 </Viewbox>
             </Button>
         </Grid>
-        <ContentControl  x:Name="container"  Height="150" Margin="-101,139,101,379">
-            <Popup x:Name="ExceptionPop" HorizontalAlignment="Stretch" IsOpen="{Binding Isopenproperty, Mode=TwoWay}">
-                <Grid Background="#FF22476C" x:Name="gdChild" HorizontalAlignment="Stretch" Width="2100" Height="300" RenderTransformOrigin="0.444,0.5">
+        <ContentControl  x:Name="container"  Height="150" HorizontalAlignment="Stretch" Width="auto">
+            <Popup x:Name="ExceptionPop" HorizontalAlignment="Stretch" IsOpen="{Binding Isopenproperty, Mode=TwoWay}" Width="auto">
+                <Grid Background="#FF22476C" x:Name="gdChild" HorizontalAlignment="Stretch" Height="300" Width="auto">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
-                    <TextBlock HorizontalAlignment="Center" Grid.Row="0" Text="{Binding Result}" TextWrapping="Wrap" FontSize="25" />
+                    <TextBlock HorizontalAlignment="Center" Grid.Row="0" Text="{Binding Result}" TextWrapping="Wrap" FontSize="25" Width="auto"/>
                     <Button Margin="715,129,691,-144" Grid.Row="1" x:Name="Tryagain" Click="Tryagain_Click"  Foreground="White"  Width="180" HorizontalAlignment="Center" Height="55">
                         <Viewbox Height="30" Width="200">
                             <TextBlock Text="Try again"/>

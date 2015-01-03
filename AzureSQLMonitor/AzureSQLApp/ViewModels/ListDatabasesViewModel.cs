@@ -25,7 +25,8 @@ namespace AzureSQLApp.ViewModels
          string version;
          string datetext;
          string timetext;
-
+         int whileindex = 0;
+         
         public ObservableCollection<Databases> DatabaseList
         {
             get
@@ -102,11 +103,14 @@ namespace AzureSQLApp.ViewModels
             }
         }
 
+        
+
         public ListDatabasesViewModel()
         {
             
             //GetDatabases = new RelayCommand(()=>GetDatabasesCommand());
-            LogOut = new RelayCommand(()=> LogoutNow(App.SelectedDatabase));
+       //     LogOut = new RelayCommand(()=> LogoutNow(App.SelectedDatabase));
+            LogOut = new RelayCommand(() => LogoutNow());
         }
 
         public async Task GetDatabasesCommand()
@@ -114,10 +118,29 @@ namespace AzureSQLApp.ViewModels
            
 
             var dblist = await App.Servicehandle.GetDatabaseListAsync();
+            
             ObservableCollection<Databases> templist = JsonConvert.DeserializeObject<ObservableCollection<Databases>>(dblist);
             
+            DatabaseList = templist;
 
-          DatabaseList = templist;
+           //just for testin - need to remove this line later
+            DatabaseList[3].DatabaseState = "OFFLINE";
+
+            while (whileindex < DatabaseList.Count)
+            {
+                if (DatabaseList[whileindex].DatabaseState == "ONLINE")
+                {
+                    DatabaseList[whileindex].Greenvisibility = "Visible";
+                    DatabaseList[whileindex].Redvisibility = "Collapsed";
+                }
+                else
+                {
+                    DatabaseList[whileindex].Redvisibility = "Visible";
+                    DatabaseList[whileindex].Greenvisibility = "Collapsed";
+                }
+                whileindex += 1;
+            }
+            
 
         }
 
@@ -166,9 +189,9 @@ namespace AzureSQLApp.ViewModels
         }
 
 
-        public void LogoutNow(string dbname)
+        public void LogoutNow()
         {
-            App.AppFrame.Navigate(typeof(DatabaseDetailsView),dbname);
+            App.AppFrame.Navigate(typeof(HomePageView));
         }
 
 
