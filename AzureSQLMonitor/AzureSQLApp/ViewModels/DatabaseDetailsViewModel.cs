@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using AzureSQLApp.Models;
 using AzureSQLApp.Common;
 using Newtonsoft.Json;
+using AzureSQLApp.Views;
 
 namespace AzureSQLApp.ViewModels
 {
@@ -15,7 +16,8 @@ namespace AzureSQLApp.ViewModels
         private ObservableCollection<TableDetails> tablelist;
       //  public RelayCommand GetTables { get; private set; }
 
-        
+        public RelayCommand LogOut { get; private set; }
+        public RelayCommand GoBack { get; private set; }
 
         public ObservableCollection<TableDetails> TableList
         {
@@ -34,7 +36,8 @@ namespace AzureSQLApp.ViewModels
 
         public DatabaseDetailsViewModel()
         {
-
+            GoBack = new RelayCommand(() => goBack());
+            LogOut = new RelayCommand(() => LogoutNow());
         }
 
 
@@ -46,7 +49,15 @@ namespace AzureSQLApp.ViewModels
 
         }
 
+        private void LogoutNow()
+        {
+            App.AppFrame.Navigate(typeof(HomePageView));
+        }
 
+       private void goBack()
+        {
+            App.AppFrame.Navigate(typeof(ListDatabasesView));
+        }
 
     }
 }

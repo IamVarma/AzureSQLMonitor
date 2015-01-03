@@ -17,16 +17,16 @@ namespace AzureSQLApp.ViewModels
         private ObservableCollection<Databases> databaselist;
        // private ObservableCollection<Sysinfo> sysinfoobject = new ObservableCollection<Sysinfo>();
         public RelayCommand GetDatabases { get; private set; }
-      
+        public Helpers.RelayCommand<Databases> SelectDatabase { get; private set; }      
         public RelayCommand LogOut { get; private set; }
-        public RelayCommand SelectedDatabase { get; private set; }
+      //  public RelayCommand SelectedDatabase { get; private set; }
          string servername;
          string userid;
          string version;
          string datetext;
          string timetext;
          int whileindex = 0;
-         
+
         public ObservableCollection<Databases> DatabaseList
         {
             get
@@ -107,10 +107,9 @@ namespace AzureSQLApp.ViewModels
 
         public ListDatabasesViewModel()
         {
-            
+            SelectDatabase = new Helpers.RelayCommand<Databases>(GoDatabaseDetails); 
             //GetDatabases = new RelayCommand(()=>GetDatabasesCommand());
-       //     LogOut = new RelayCommand(()=> LogoutNow(App.SelectedDatabase));
-            LogOut = new RelayCommand(() => LogoutNow());
+            LogOut = new RelayCommand(()=> LogoutNow());
         }
 
         public async Task GetDatabasesCommand()
@@ -186,6 +185,14 @@ namespace AzureSQLApp.ViewModels
             {
                 Datetext = Timetext = "null";
             }
+        }
+
+        //After database is selected, we navigate to the next page with the database ID.
+
+        public void GoDatabaseDetails(Databases _selectedDB)
+        {
+
+            App.AppFrame.Navigate(typeof(DatabaseDetailsView),_selectedDB);
         }
 
 

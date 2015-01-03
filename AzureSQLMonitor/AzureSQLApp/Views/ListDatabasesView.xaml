@@ -5,8 +5,8 @@
     xmlns:local="using:AzureSQLApp.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-xmlns:helpers="using:AzureSQLApp.Helpers"
     mc:Ignorable="d"
+    xmlns:helpers="using:AzureSQLApp.Helpers"
     DataContext="{Binding ListDatabasesViewModel, RelativeSource={RelativeSource Self}}">
 
     <Page.Resources>
@@ -168,8 +168,7 @@ xmlns:helpers="using:AzureSQLApp.Helpers"
         <Grid Grid.Row="2" Grid.Column="0">
             <GridView x:Name="DatabaseGridView" HorizontalAlignment="Stretch" VerticalAlignment="Top" ItemTemplate="{StaticResource DatabaseListTemplate}" ItemsSource="{Binding DatabaseList}"
                       IsItemClickEnabled="True"
-                      helpers:GridViewItemClickCommand.Command="{Binding SelectDatabase}"
-                      >
+                      helpers:GridViewItemClickCommand.Command="{Binding Path=SelectDatabase}">
                 <ContentPresenter Height="100" Width="100"/>
                 <GridView.ItemsPanel>
                     <ItemsPanelTemplate>

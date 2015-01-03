@@ -14,7 +14,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using AzureSQLApp.Common;
 using AzureSQLApp.ViewModels;
-
+using AzureSQLApp.Models;
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace AzureSQLApp.Views
@@ -44,7 +44,9 @@ namespace AzureSQLApp.Views
 
           private async void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
-            await DatabaseDetails.GetTablesCommand((string)e.NavigationParameter);
+
+            Databases database = (Databases)e.NavigationParameter; 
+            await DatabaseDetails.GetTablesCommand(database.DatabaseName);
 
 
 
