@@ -8,6 +8,8 @@ using AzureSQLApp.AzureSQLService;
 using AzureSQLApp.Common;
 using AzureSQLApp.Views;
 using Windows.UI.Xaml;
+using System.ComponentModel;
+using AzureSQLApp.Models;
 
 namespace AzureSQLApp.ViewModels
 {
@@ -18,12 +20,12 @@ namespace AzureSQLApp.ViewModels
         private string servername;
         private string username;
         private string password;
-       /* private Visibility popupvisibility;
-        private bool shouldShowPopUp;
-        */
+        LoginDetails logindetails;
         public RelayCommand GetLogin { get; private set; }
         public bool isopenproperty;
         public bool isringenabled;
+        public event PropertyChangedEventHandler PropertyChanged;
+
         
         public string ServerName
         {
@@ -36,6 +38,7 @@ namespace AzureSQLApp.ViewModels
             {
 
                 servername = value;
+                logindetails.ServerName = servername;
                 RaisePropertyChanged("ServerName");
             }
 
@@ -52,6 +55,7 @@ namespace AzureSQLApp.ViewModels
             {
 
                 username = value;
+                logindetails.LoginId = username;
                 RaisePropertyChanged("UserName");
             }
 
@@ -68,6 +72,7 @@ namespace AzureSQLApp.ViewModels
             {
 
                 password = value;
+                logindetails.Password = password;
                 RaisePropertyChanged("Password");
             }
 
@@ -86,8 +91,18 @@ namespace AzureSQLApp.ViewModels
             }
         }
 
+        public bool OnCanLogin()
+        {
 
-       
+            return !string.IsNullOrEmpty(ServerName)
+
+                && !string.IsNullOrEmpty(UserName)
+
+                && !string.IsNullOrEmpty(Password);
+
+        }
+
+     
       /*  public Visibility PopUpVisibility
         {
             get { return shouldShowPopUp ? Visibility.Visible : Visibility.Collapsed; }
@@ -121,13 +136,22 @@ namespace AzureSQLApp.ViewModels
             }
         }
 
-                public  LoginViewModel()
+        public  LoginViewModel()
         {
 
-            GetLogin = new RelayCommand(() => Login());
-          //shouldShowPopUp = false;
+            GetLogin = new RelayCommand(() => Login(),OnCanLogin);
+            logindetails = new LoginDetails();
+            logindetails.PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(logindetails_PropertyChanged);
+            
         }
-        
+
+        void logindetails_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+
+            GetLogin.RaiseCanExecuteChanged();
+
+        }
+
         public async Task Login()
         {
             IsRingEnabled = true;
