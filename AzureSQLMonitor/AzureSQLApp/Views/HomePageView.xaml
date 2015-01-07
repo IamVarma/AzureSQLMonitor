@@ -42,7 +42,7 @@
             <TextBlock Text="Password" Grid.Row="4" VerticalAlignment="Center"  Grid.Column="0" HorizontalAlignment="Right" FontSize="26.667" FontWeight="Bold" Margin="0,181,190,-125" Grid.ColumnSpan="2"/>
             <PasswordBox x:Name="Password" Grid.Row="4" VerticalAlignment="Center" Grid.Column="1" Margin="81,181,-131,-133" Password="{Binding Password, Mode=TwoWay}" IsPasswordRevealButtonEnabled="True"/>
             <ProgressRing x:Name="ProgressBar" Grid.Row="5" Grid.Column="1" Height="66" Width="99" Foreground="#FFFCFDFF" Margin="32,183,69,-169" IsActive="{Binding IsRingEnabled, Mode=TwoWay}"/>
-            <Button x:Name="loginbutton" Grid.Row="4" Grid.Column="1" Height="63" Margin="160,260,-39,-243" HorizontalAlignment="Stretch"  Command="{Binding GetLogin}">
+            <Button x:Name="loginbutton" Grid.Row="4" Grid.Column="1" Height="63" Margin="160,260,-39,-243" HorizontalAlignment="Stretch"  Command="{Binding GetLogin}" Visibility="{Binding Loginbuttonvisibility, Mode=TwoWay, FallbackValue=Visible}">
                 <Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
                     <Grid>
                         <Grid Name="backgroundGridbutton" Width="256" Height="256" Visibility="Visible">
@@ -61,16 +61,36 @@
                     </Grid>
                 </Viewbox>
             </Button>
+            <Button x:Name="cancelbutton" Grid.Row="4" Grid.Column="1" Height="63" Margin="160,260,-39,-243" HorizontalAlignment="Stretch"  Command="{Binding CancelLogin}" Visibility="{Binding Cancelbuttonvisibility, Mode=TwoWay}">
+                <Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+                    <Grid>
+                        <Grid Name="backgroundGrid" Visibility="Visible">
+                            <Rectangle Fill="#FF22476C" Name="Rect" Visibility="Visible" />
+                        </Grid>
+                        <Path Data="M19.85228,12.08996L12.093,19.849201 24.242323,31.997846 12.094,44.145998 19.852051,51.904958 32.001186,39.756277 44.150543,51.904958 51.909,44.145994 39.760246,31.997501 51.909,19.849201 44.15049,12.08996 32.001431,24.238849z M32,0C49.671021,3.1599484E-07 64,14.329407 64,31.998501 64,49.677606 49.671021,63.997003 32,63.997003 14.328003,63.997003 0,49.677606 0,31.998501 0,14.329407 14.328003,3.1599484E-07 32,0z" Stretch="Uniform" Fill="#FFFFFFFF" Width="26" Height="26" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
+                            <Path.RenderTransform>
+                                <TransformGroup>
+                                    <TransformGroup.Children>
+                                        <RotateTransform Angle="0" />
+                                        <ScaleTransform ScaleX="1" ScaleY="1" />
+                                    </TransformGroup.Children>
+                                </TransformGroup>
+                            </Path.RenderTransform>
+                        </Path>
+                    </Grid>
+                </Viewbox>
+
+            </Button>
         </Grid>
         <ContentControl  x:Name="container"  Height="150" HorizontalAlignment="Stretch" Width="auto">
-            <Popup x:Name="ExceptionPop" HorizontalAlignment="Stretch" IsOpen="{Binding Isopenproperty, Mode=TwoWay}" Width="auto">
+            <Popup x:Name="ExceptionPop" HorizontalAlignment="Stretch" IsOpen="{Binding Isexceptionopenproperty, Mode=TwoWay}" Width="auto">
                 <Grid Background="#FF22476C" x:Name="gdChild" HorizontalAlignment="Stretch" Height="300" Width="auto">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
                     <TextBlock HorizontalAlignment="Center" Grid.Row="0" Text="{Binding Result}" TextWrapping="Wrap" FontSize="25" Width="auto"/>
-                    <Button Margin="715,129,691,-144" Grid.Row="1" x:Name="Tryagain" Click="Tryagain_Click"  Foreground="White"  Width="180" HorizontalAlignment="Center" Height="55">
+                    <Button Margin="715,129,691,-144" Grid.Row="1" x:Name="Tryagain" Command="{Binding Exceptionpopupcommand}"  Foreground="White"  Width="180" HorizontalAlignment="Center" Height="55">
                         <Viewbox Height="30" Width="200">
                             <TextBlock Text="Try again"/>
                         </Viewbox>

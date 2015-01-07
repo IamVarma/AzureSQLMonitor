@@ -6,17 +6,13 @@ using System.Threading.Tasks;
 using AzureSQLApp.Common;
 using System.ComponentModel;
 
+
 public class LoginDetails : INotifyPropertyChanged
 {
 
     private string _servername;
-
     private string _loginid;
-
     private string _password;
-
-
-
     public event PropertyChangedEventHandler PropertyChanged;
 
 
@@ -43,6 +39,7 @@ public class LoginDetails : INotifyPropertyChanged
                 {
 
                     PropertyChanged(this, new PropertyChangedEventArgs("ServerName"));
+                    
 
                 }
 
@@ -75,8 +72,8 @@ public class LoginDetails : INotifyPropertyChanged
                 if (PropertyChanged != null)
                 {
 
-                    PropertyChanged(this, new PropertyChangedEventArgs("loginId"));
-
+                    PropertyChanged(this, new PropertyChangedEventArgs("LoginId"));
+                    
                 }
 
             }
@@ -109,6 +106,7 @@ public class LoginDetails : INotifyPropertyChanged
                 {
 
                     PropertyChanged(this, new PropertyChangedEventArgs("Password"));
+                    
 
                 }
 

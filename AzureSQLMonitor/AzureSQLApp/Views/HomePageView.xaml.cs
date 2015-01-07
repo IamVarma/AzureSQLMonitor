@@ -43,11 +43,7 @@ namespace AzureSQLApp.Views
             
         }
         
-       private void Tryagain_Click(object sender, RoutedEventArgs e)
-       {
-           ExceptionPop.IsOpen = false;
-          
-       }
+      
             
         }
 
