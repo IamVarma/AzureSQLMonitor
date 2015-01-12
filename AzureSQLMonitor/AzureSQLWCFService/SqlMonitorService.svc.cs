@@ -50,6 +50,12 @@ namespace AzureSQLWCFService
 
         }
 
+        public string GetConnectionCount(string database)
+        {
+            ActiveConnections connections = new ActiveConnections();
+            return connections.GetActiveConnections(database);
+        }
+
 
 
         

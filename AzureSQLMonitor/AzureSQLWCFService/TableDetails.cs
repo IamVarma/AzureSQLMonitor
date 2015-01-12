@@ -18,9 +18,7 @@ namespace AzureSQLWCFService
             ObservableCollection<TableSizeDetails> DatabaseTableDetails = new ObservableCollection<TableSizeDetails>();
             TableSizeDetails _tabledetails;
 
-            if (dbname != null)
-             //   connection.ChangeDatabase(dbname);
-           ChangeDatabasecontext(dbname);
+          
 
             string querytext = "SELECT TOP 15 sys.objects.name as TableName, SUM(reserved_page_count) * 8.0 / 1024 as Size FROM sys.dm_db_partition_stats, sys.objects WHERE sys.dm_db_partition_stats.object_id = sys.objects.object_id GROUP BY sys.objects.name ORDER BY Size Desc";
 

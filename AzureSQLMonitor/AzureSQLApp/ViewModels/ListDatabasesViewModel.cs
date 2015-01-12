@@ -123,7 +123,7 @@ namespace AzureSQLApp.ViewModels
             DatabaseList = templist;
 
            //just for testin - need to remove this line later
-            DatabaseList[3].DatabaseState = "OFFLINE";
+        //    DatabaseList[3].DatabaseState = "OFFLINE";
 
             while (whileindex < DatabaseList.Count)
             {

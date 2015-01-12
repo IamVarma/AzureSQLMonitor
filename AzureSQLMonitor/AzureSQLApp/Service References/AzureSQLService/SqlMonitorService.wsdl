@@ -30,6 +30,12 @@
   <wsdl:message name="ISqlMonitorService_GetTableSizeDetails_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetTableSizeDetailsResponse" />
   </wsdl:message>
+  <wsdl:message name="ISqlMonitorService_GetConnectionCount_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetConnectionCount" />
+  </wsdl:message>
+  <wsdl:message name="ISqlMonitorService_GetConnectionCount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetConnectionCountResponse" />
+  </wsdl:message>
   <wsdl:portType name="ISqlMonitorService">
     <wsdl:operation name="ConnectSQLAzure">
       <wsdl:input wsaw:Action="http://tempuri.org/ISqlMonitorService/ConnectSQLAzure" message="tns:ISqlMonitorService_ConnectSQLAzure_InputMessage" />
@@ -46,6 +52,10 @@
     <wsdl:operation name="GetTableSizeDetails">
       <wsdl:input wsaw:Action="http://tempuri.org/ISqlMonitorService/GetTableSizeDetails" message="tns:ISqlMonitorService_GetTableSizeDetails_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ISqlMonitorService/GetTableSizeDetailsResponse" message="tns:ISqlMonitorService_GetTableSizeDetails_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetConnectionCount">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISqlMonitorService/GetConnectionCount" message="tns:ISqlMonitorService_GetConnectionCount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISqlMonitorService/GetConnectionCountResponse" message="tns:ISqlMonitorService_GetConnectionCount_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_ISqlMonitorService" type="tns:ISqlMonitorService">
@@ -79,6 +89,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetTableSizeDetails">
       <soap:operation soapAction="http://tempuri.org/ISqlMonitorService/GetTableSizeDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetConnectionCount">
+      <soap:operation soapAction="http://tempuri.org/ISqlMonitorService/GetConnectionCount" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

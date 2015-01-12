@@ -27,6 +27,9 @@ namespace AzureSQLWCFService
         [OperationContract]
         string GetTableSizeDetails(string dbname);
 
+        [OperationContract]
+        string GetConnectionCount(string dbname);
+
         // TODO: Add your service operations here
     }
 
@@ -138,6 +141,35 @@ namespace AzureSQLWCFService
                 datetime_info = value;
             }
 
+        }
+
+    }
+
+    [DataContract]
+    class ConnectionsCount
+    {
+        string connection_count;
+        string time;
+
+        [DataMember]
+        public string Connections
+        {
+            get { return connection_count; ; }
+            set
+            {
+                connection_count = value;
+            }
+
+        }
+
+        [DataMember]
+        public string Time
+        {
+            get { return time; }
+            set
+            {
+                time = value;
+            }
         }
 
     }

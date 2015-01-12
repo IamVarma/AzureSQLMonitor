@@ -14,6 +14,7 @@ namespace AzureSQLApp.ViewModels
    public class DatabaseDetailsViewModel:ViewModelBase
     {
         private ObservableCollection<TableDetails> tablelist;
+        private ObservableCollection<ConnectionsCount> connectionCount;
       //  public RelayCommand GetTables { get; private set; }
 
         public RelayCommand LogOut { get; private set; }
@@ -34,8 +35,24 @@ namespace AzureSQLApp.ViewModels
         }
 
 
+        public ObservableCollection<ConnectionsCount> ConnectionCount
+        {
+            get
+            {
+                return connectionCount;
+            }
+
+            set
+            {
+                connectionCount = value;
+                RaisePropertyChanged("ConnectionCount");
+
+            }
+        }
+
         public DatabaseDetailsViewModel()
         {
+            ConnectionCount = new ObservableCollection<ConnectionsCount>();
             GoBack = new RelayCommand(() => goBack());
             LogOut = new RelayCommand(() => LogoutNow());
         }
@@ -47,6 +64,17 @@ namespace AzureSQLApp.ViewModels
             ObservableCollection<TableDetails> templist = JsonConvert.DeserializeObject<ObservableCollection<TableDetails>>(tblist);
             TableList = templist;
 
+        }
+
+       public async Task GetConnectionCount(string selecteddatabaase)
+        {
+
+            var connections = await App.Servicehandle.GetConnectionCountAsync(selecteddatabaase);
+            //ConnectionsCount templist = JsonConvert.DeserializeObject<ConnectionsCount>(connections);
+            //ConnectionCount.Add(templist);
+
+           ConnectionsCount templist = JsonConvert.DeserializeObject<ConnectionsCount>(connections);
+           ConnectionCount.Add(templist);
         }
 
         private void LogoutNow()

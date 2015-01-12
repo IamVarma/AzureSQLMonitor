@@ -47,7 +47,7 @@ namespace AzureSQLApp.Views
 
             Databases database = (Databases)e.NavigationParameter; 
             await DatabaseDetails.GetTablesCommand(database.DatabaseName);
-
+          await DatabaseDetails.GetConnectionCount(database.DatabaseName); 
 
 
         }
