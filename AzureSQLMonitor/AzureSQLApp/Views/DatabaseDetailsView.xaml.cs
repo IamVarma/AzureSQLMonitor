@@ -24,15 +24,36 @@ namespace AzureSQLApp.Views
     /// </summary>
     public sealed partial class DatabaseDetailsView : Page
     {
-        private NavigationHelper navigationHelper;
+        Databases selectedDatabase = new Databases();
 
+        private NavigationHelper navigationHelper;
         DatabaseDetailsViewModel _databasedetails = new DatabaseDetailsViewModel();
+
+
+
+        DispatcherTimer DispatchTimer;
+
+
+        public void DispactcherTimeSetup()
+        {
+            DispatchTimer = new DispatcherTimer();
+            DispatchTimer.Tick += DispatchTimer_Tick;
+            DispatchTimer.Interval = new TimeSpan(0, 0, 5);
+            DispatchTimer.Start();
+
+        }
+
+
+        async void DispatchTimer_Tick(object sender, object e)
+        {
+            await DatabaseDetails.GetConnectionCount(selectedDatabase.DatabaseName); 
+        }
+
 
             public DatabaseDetailsViewModel DatabaseDetails
             {
                 get { return _databasedetails; }
             }
-
 
         public DatabaseDetailsView()
         {
@@ -45,10 +66,11 @@ namespace AzureSQLApp.Views
           private async void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
 
-            Databases database = (Databases)e.NavigationParameter; 
-            await DatabaseDetails.GetTablesCommand(database.DatabaseName);
-          await DatabaseDetails.GetConnectionCount(database.DatabaseName); 
-
+            selectedDatabase = (Databases)e.NavigationParameter;
+            
+            await DatabaseDetails.GetTablesCommand(selectedDatabase.DatabaseName);
+            await DatabaseDetails.GetConnectionCount(selectedDatabase.DatabaseName);
+            DispactcherTimeSetup();
 
         }
 
@@ -79,5 +101,7 @@ namespace AzureSQLApp.Views
         }
 
         #endregion
+
+        
     }
 }

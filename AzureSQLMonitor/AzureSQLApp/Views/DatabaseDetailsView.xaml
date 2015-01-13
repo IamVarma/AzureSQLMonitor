@@ -55,10 +55,15 @@
             </Viewbox>
         </Button>
 
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
 
-        <!--<charting:Chart
+            <charting:Chart
                 x:Name="PieChart"
-                Title="Table Sizes" Background="Black" LegendTitle="Table Names" Grid.Row="2" HorizontalAlignment="Left">
+                Title="Table Sizes" Background="Black" LegendTitle="Table Names" Grid.Column="0" >
             <charting:Chart.Series>
                 <charting:PieSeries
                         Title="TableSizes"
@@ -66,27 +71,31 @@
                         IndependentValueBinding="{Binding TableName}"
                         DependentValueBinding="{Binding TableSize}"
                         IsSelectionEnabled="True"/>
-            </charting:Chart.Series>--><!--
+            </charting:Chart.Series>
+         </charting:Chart>
 
 
 
-        </charting:Chart>-->
-
-        <charting:Chart
+            <charting:Chart
                 x:Name="ConnectionsChart"
-                Title="ConnectionCount" Background="Black" LegendTitle="Table Names" Grid.Row="2" >
-            <charting:Chart.Series>
-                <charting:LineSeries
+                Title="ConnectionCount" Background="Black" LegendTitle="Connections Count" Grid.Column="1" >
+                <charting:Chart.Series>
+                    <charting:LineSeries
                         Title="ConnectionCount"
                         ItemsSource="{Binding ConnectionCount}"
                         IndependentValueBinding="{Binding Time}"
                         DependentValueBinding="{Binding Connections}"
                         IsSelectionEnabled="True"/>
-            </charting:Chart.Series>
+                </charting:Chart.Series>
 
 
 
-        </charting:Chart>
+            </charting:Chart>
+
+
+        </Grid>
+        
+       
 
 
 
