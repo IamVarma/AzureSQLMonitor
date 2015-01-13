@@ -18,11 +18,11 @@ namespace AzureSQLWCFService
     {
 
 
-        public string ConnectSQLAzure(string servername, string login, string password)
+        public string ConnectSQLAzure(string servername, string loginName, string password)
         {
             ConnectionBase connect = new ConnectionBase();
 
-            var result=connect.initialConnection(servername, login, password);
+            var result=connect.initialConnection(servername, loginName, password);
 
             return result;
         }
@@ -40,7 +40,7 @@ namespace AzureSQLWCFService
         public string getSystemInfo()
         {
             Utilities UtilitiesInstance = new Utilities();
-            return UtilitiesInstance.getSystemInfo();
+            return UtilitiesInstance.GetSystemInfo();
         }
 
         public string GetTableSizeDetails(string database)
@@ -56,7 +56,11 @@ namespace AzureSQLWCFService
             return connections.GetActiveConnections(database);
         }
 
-
+        public string GetDBResourceUsage(string dbname)
+        {
+           ResourceUsageDetails resouceUsage = new ResourceUsageDetails();
+            return resouceUsage.getResourceUsage(dbname);
+        }
 
         
     }

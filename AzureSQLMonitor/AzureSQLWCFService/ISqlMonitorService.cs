@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿
 using System.Runtime.Serialization;
 using System.ServiceModel;
-using System.ServiceModel.Web;
-using System.Text;
-using System.Collections.ObjectModel;
 
 namespace AzureSQLWCFService
 {
@@ -16,7 +11,7 @@ namespace AzureSQLWCFService
 
        
         [OperationContract]
-        string ConnectSQLAzure(string Servername, string LoginName, string Password);
+        string ConnectSQLAzure(string servername, string loginName, string password);
 
         [OperationContract]
         string GetDatabaseList();
@@ -29,6 +24,9 @@ namespace AzureSQLWCFService
 
         [OperationContract]
         string GetConnectionCount(string dbname);
+
+        [OperationContract]
+        string GetDBResourceUsage(string dbname);
 
         // TODO: Add your service operations here
     }
@@ -172,6 +170,30 @@ namespace AzureSQLWCFService
             }
         }
 
+    }
+
+    [DataContract]
+    class DatabaseResources
+    {
+        private string endTime;
+        private string averageCPU;
+        
+        private string averageMemoryUsage;
+        private string averageDataIO;
+        private string averageLogWrite;
+
+        [DataMember]
+        public string EndTime { get; set; }
+
+        [DataMember]
+        public string AverageCPU { get; set; }
+        [DataMember]
+        public string AverageMemoryUsage { get; set; }
+        [DataMember]
+        public string AverageDataIO { get; set; }
+
+        [DataMember]
+        public string AverageLogWrite { get; set; }
     }
 
 

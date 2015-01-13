@@ -1,19 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Collections.ObjectModel;
-using System.Data.Sql;
+﻿
 using System.Data.SqlClient;
-using System.Runtime.Serialization.Json;
-using System.IO;
 using Newtonsoft.Json;
 
 namespace AzureSQLWCFService
 {
     public class Utilities:ConnectionBase
     {
-        public string getSystemInfo()
+        public string GetSystemInfo()
         {
            // ObservableCollection<Sysinfoclass> Syslist = new ObservableCollection<Sysinfoclass>();
             string querytext = "select @@servername as servername,system_user as loginuser,@@version as versioninfo,getdate() as datetimeinfo";
@@ -24,7 +17,7 @@ namespace AzureSQLWCFService
                 ChangeDatabasecontext("master");
             }
 
-            string QueryText = "select DB_NAME(sd.database_id) dbname,sd.state_desc statedesc, inr1.size SizeMB from sys.databases sd join (select database_id,sum((size*8)/1024) size from sys.master_files group by database_id) inr1 on inr1.database_id=sd.database_id";
+          //  string QueryText = "select DB_NAME(sd.database_id) dbname,sd.state_desc statedesc, inr1.size SizeMB from sys.databases sd join (select database_id,sum((size*8)/1024) size from sys.master_files group by database_id) inr1 on inr1.database_id=sd.database_id";
                      
             try
             {
@@ -50,7 +43,7 @@ namespace AzureSQLWCFService
                 //sysinfoobject.ServerName = "varma";
                 //return "hello " + sysinfoobject.ServerName;
             }
-            catch (Exception ex)
+            catch 
             {
                 return "Something is wrong!!";
             }

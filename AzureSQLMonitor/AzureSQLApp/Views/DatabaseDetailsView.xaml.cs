@@ -46,7 +46,8 @@ namespace AzureSQLApp.Views
 
         async void DispatchTimer_Tick(object sender, object e)
         {
-            await DatabaseDetails.GetConnectionCount(selectedDatabase.DatabaseName); 
+            await DatabaseDetails.GetConnectionCount(selectedDatabase.DatabaseName);
+            await DatabaseDetails.GetResourceUsage(selectedDatabase.DatabaseName);
         }
 
 
@@ -70,7 +71,9 @@ namespace AzureSQLApp.Views
             
             await DatabaseDetails.GetTablesCommand(selectedDatabase.DatabaseName);
             await DatabaseDetails.GetConnectionCount(selectedDatabase.DatabaseName);
-            DispactcherTimeSetup();
+             
+              
+              DispactcherTimeSetup();
 
         }
 
@@ -101,6 +104,20 @@ namespace AzureSQLApp.Views
         }
 
         #endregion
+
+        private async void ResourceDetails_Click(object sender, RoutedEventArgs e)
+        {
+            BasicDetailsGrid.Visibility = Visibility.Collapsed;
+            ResourceUsageGrid.Visibility = Visibility.Visible;
+            await DatabaseDetails.GetResourceUsage(selectedDatabase.DatabaseName);
+            DispactcherTimeSetup();
+        }
+
+        private void BasicDetails_Click(object sender, RoutedEventArgs e)
+        {
+            ResourceUsageGrid.Visibility = Visibility.Collapsed;
+            BasicDetailsGrid.Visibility = Visibility.Visible;
+        }
 
         
     }

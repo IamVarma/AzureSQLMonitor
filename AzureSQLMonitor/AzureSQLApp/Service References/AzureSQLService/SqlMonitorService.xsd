@@ -3,9 +3,9 @@
   <xs:element name="ConnectSQLAzure">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="Servername" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="LoginName" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="servername" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="loginName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -65,6 +65,20 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="GetConnectionCountResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDBResourceUsage">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dbname" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDBResourceUsageResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetDBResourceUsageResult" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

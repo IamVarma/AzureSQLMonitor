@@ -15,6 +15,7 @@ namespace AzureSQLApp.ViewModels
     {
         private ObservableCollection<TableDetails> tablelist;
         private ObservableCollection<ConnectionsCount> connectionCount;
+       private ObservableCollection<DatabaseResources> _databaseResouceUsage; 
       //  public RelayCommand GetTables { get; private set; }
 
         public RelayCommand LogOut { get; private set; }
@@ -50,6 +51,22 @@ namespace AzureSQLApp.ViewModels
             }
         }
 
+       public ObservableCollection<DatabaseResources> DatabaseResourceUsage
+       {
+           get
+           {
+               return _databaseResouceUsage;
+           }
+
+           set
+           {
+               _databaseResouceUsage = value;
+               RaisePropertyChanged("DatabaseResourceUsage");
+           }
+       }
+
+
+
         public DatabaseDetailsViewModel()
         {
             ConnectionCount = new ObservableCollection<ConnectionsCount>();
@@ -76,6 +93,14 @@ namespace AzureSQLApp.ViewModels
            ConnectionsCount templist = JsonConvert.DeserializeObject<ConnectionsCount>(connections);
            ConnectionCount.Add(templist);
         }
+
+       public async Task GetResourceUsage(string selecteddatabase)
+       {
+           var usagedetails = await App.Servicehandle.GetDBResourceUsageAsync(selecteddatabase);
+           DatabaseResourceUsage = JsonConvert.DeserializeObject<ObservableCollection<DatabaseResources>>(usagedetails);
+
+       }
+
 
         private void LogoutNow()
         {
