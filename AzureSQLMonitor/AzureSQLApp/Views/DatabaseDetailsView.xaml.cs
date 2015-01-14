@@ -46,8 +46,15 @@ namespace AzureSQLApp.Views
 
         async void DispatchTimer_Tick(object sender, object e)
         {
-            await DatabaseDetails.GetConnectionCount(selectedDatabase.DatabaseName);
+            if(BasicDetailsGrid.Visibility==Visibility.Visible)
+                await DatabaseDetails.GetConnectionCount(selectedDatabase.DatabaseName);
+           
+            if(ResourceUsageGrid.Visibility==Visibility.Visible)
             await DatabaseDetails.GetResourceUsage(selectedDatabase.DatabaseName);
+
+            if (ConnectionsGrid.Visibility == Visibility.Visible)
+                await DatabaseDetails.GetDBConnectionDetails(selectedDatabase.DatabaseName);
+
         }
 
 
@@ -68,7 +75,8 @@ namespace AzureSQLApp.Views
         {
 
             selectedDatabase = (Databases)e.NavigationParameter;
-            
+
+            await DatabaseDetails.GetDatabaseSize(selectedDatabase.DatabaseName);
             await DatabaseDetails.GetTablesCommand(selectedDatabase.DatabaseName);
             await DatabaseDetails.GetConnectionCount(selectedDatabase.DatabaseName);
              
@@ -105,18 +113,28 @@ namespace AzureSQLApp.Views
 
         #endregion
 
-        private async void ResourceDetails_Click(object sender, RoutedEventArgs e)
+        private void ResourceDetails_Click(object sender, RoutedEventArgs e)
         {
             BasicDetailsGrid.Visibility = Visibility.Collapsed;
+            ConnectionsGrid.Visibility = Visibility.Collapsed;
             ResourceUsageGrid.Visibility = Visibility.Visible;
-            await DatabaseDetails.GetResourceUsage(selectedDatabase.DatabaseName);
-            DispactcherTimeSetup();
+            DispatchTimer_Tick(DispatchTimer, (object)e);
         }
 
         private void BasicDetails_Click(object sender, RoutedEventArgs e)
         {
             ResourceUsageGrid.Visibility = Visibility.Collapsed;
+            ConnectionsGrid.Visibility = Visibility.Collapsed;
             BasicDetailsGrid.Visibility = Visibility.Visible;
+            DispatchTimer_Tick(DispatchTimer, (object)e);
+        }
+
+        private void ConnectionDetails_Click(object sender, RoutedEventArgs e)
+        {
+            ResourceUsageGrid.Visibility = Visibility.Collapsed;
+            BasicDetailsGrid.Visibility = Visibility.Collapsed;
+            ConnectionsGrid.Visibility = Visibility.Visible;
+            DispatchTimer_Tick(DispatchTimer, (object)e);
         }
 
         

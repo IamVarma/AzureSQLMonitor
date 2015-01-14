@@ -18,8 +18,8 @@ namespace AzureSQLWCFService
         public string GetActiveConnections(string dbname)
         {
 
-            if (dbname != null)
-                ChangeDatabasecontext(dbname);
+            if (connection.Database != dbname || connection.State == System.Data.ConnectionState.Closed)
+                 ChangeDatabasecontext(dbname);
 
             string querytext = "select count(*) as ConnectionCount,getdate() as Time from sys.dm_exec_connections";
             try
@@ -34,11 +34,11 @@ namespace AzureSQLWCFService
 
                         while (dr.Read())
                         {
-                            _connectionCount = new ConnectionsCount { Connections = dr["ConnectionCount"].ToString(), Time = dr["Time"].ToString() };
+                            _connectionCount = new ConnectionsCount { Connections = int.Parse(dr["ConnectionCount"].ToString()), Time = DateTime.Parse(dr["Time"].ToString()) };
 
                         }
 
-                        connectionCount.Add(_connectionCount);
+                     //   connectionCount.Add(_connectionCount);
                         
                     }
                 }

@@ -40,17 +40,17 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetTableSizeDetails">
+  <xs:element name="GetDatabaseSize">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="dbname" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetTableSizeDetailsResponse">
+  <xs:element name="GetDatabaseSizeResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="GetTableSizeDetailsResult" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="GetDatabaseSizeResult" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -68,6 +68,20 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetTableSizeDetails">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dbname" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTableSizeDetailsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetTableSizeDetailsResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GetDBResourceUsage">
     <xs:complexType>
       <xs:sequence>
@@ -79,6 +93,20 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="GetDBResourceUsageResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDBConnectionDetails">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dbname" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDBConnectionDetailsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetDBConnectionDetailsResult" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

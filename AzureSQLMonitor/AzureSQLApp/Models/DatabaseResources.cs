@@ -9,7 +9,7 @@ namespace AzureSQLApp.Models
    public  class DatabaseResources
     {
 
-       public string EndTime { get; set; }
+       public DateTime EndTime { get; set; }
 
       
         public string AverageCPU { get; set; }

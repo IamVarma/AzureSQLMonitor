@@ -14,12 +14,37 @@ namespace AzureSQLApp.ViewModels
    public class DatabaseDetailsViewModel:ViewModelBase
     {
         private ObservableCollection<TableDetails> tablelist;
-        private ObservableCollection<ConnectionsCount> connectionCount;
-       private ObservableCollection<DatabaseResources> _databaseResouceUsage; 
+        ObservableCollection<ConnectionsCount> _connectioncount = new ObservableCollection<ConnectionsCount>();
+        ObservableCollection<ConnectionsCount> _connectionsList = new ObservableCollection<ConnectionsCount>();
+       private ObservableCollection<DatabaseResources> _databaseResouceUsage;
+       private ObservableCollection<DatabaseSizeClass> _databaseSize;
+
+       private ObservableCollection<DBConnectionClass> _dbConnectionDetails;
+
+
       //  public RelayCommand GetTables { get; private set; }
 
         public RelayCommand LogOut { get; private set; }
         public RelayCommand GoBack { get; private set; }
+
+
+       public ObservableCollection<DatabaseSizeClass> DatabaseSize
+        {
+
+            get
+            {
+                return _databaseSize;
+            }
+
+            set
+            {
+                _databaseSize = value;
+                RaisePropertyChanged("DatabaseSize");
+            }
+        }
+
+
+
 
         public ObservableCollection<TableDetails> TableList
         {
@@ -36,19 +61,14 @@ namespace AzureSQLApp.ViewModels
         }
 
 
-        public ObservableCollection<ConnectionsCount> ConnectionCount
+        public ObservableCollection<ConnectionsCount> ConnectionsList
         {
-            get
-            {
-                return connectionCount;
+            get { return _connectioncount; }
+            set {
+                value = _connectioncount;
+                RaisePropertyChanged("ConnectionsList");
             }
 
-            set
-            {
-                connectionCount = value;
-                RaisePropertyChanged("ConnectionCount");
-
-            }
         }
 
        public ObservableCollection<DatabaseResources> DatabaseResourceUsage
@@ -66,10 +86,28 @@ namespace AzureSQLApp.ViewModels
        }
 
 
+       public ObservableCollection<DBConnectionClass> DBConnectionDetails
+       {
+           get
+           {
+               return _dbConnectionDetails;
+           }
+
+           set
+           {
+               _dbConnectionDetails = value;
+               RaisePropertyChanged("DBConnectionDetails");
+           }
+       }
+
+
+
 
         public DatabaseDetailsViewModel()
         {
-            ConnectionCount = new ObservableCollection<ConnectionsCount>();
+          ConnectionsList = new ObservableCollection<ConnectionsCount>();
+          DatabaseSize = new ObservableCollection<DatabaseSizeClass>();
+          DBConnectionDetails = new ObservableCollection<DBConnectionClass>();
             GoBack = new RelayCommand(() => goBack());
             LogOut = new RelayCommand(() => LogoutNow());
         }
@@ -83,21 +121,47 @@ namespace AzureSQLApp.ViewModels
 
         }
 
+       public async Task GetDatabaseSize(string selecteddatabase)
+        {
+            var databasesize = await App.Servicehandle.GetDatabaseSizeAsync(selecteddatabase);
+            DatabaseSize = JsonConvert.DeserializeObject<ObservableCollection<DatabaseSizeClass>>(databasesize);
+            
+        }
+
+
        public async Task GetConnectionCount(string selecteddatabaase)
         {
 
             var connections = await App.Servicehandle.GetConnectionCountAsync(selecteddatabaase);
-            //ConnectionsCount templist = JsonConvert.DeserializeObject<ConnectionsCount>(connections);
-            //ConnectionCount.Add(templist);
-
            ConnectionsCount templist = JsonConvert.DeserializeObject<ConnectionsCount>(connections);
-           ConnectionCount.Add(templist);
+
+           if (ConnectionsList.Count >= 5)
+           {
+               ConnectionsList.RemoveAt(0);
+               ConnectionsList.Add(templist);
+           }
+           else
+           {
+               ConnectionsList.Add(templist);
+           }
+          
+
+         //  ConnectionsList = _connectionsList;
+
+
         }
 
        public async Task GetResourceUsage(string selecteddatabase)
        {
            var usagedetails = await App.Servicehandle.GetDBResourceUsageAsync(selecteddatabase);
            DatabaseResourceUsage = JsonConvert.DeserializeObject<ObservableCollection<DatabaseResources>>(usagedetails);
+
+       }
+
+       public async Task GetDBConnectionDetails(string selecteddatabase)
+       {
+           var connectionDetails = await App.Servicehandle.GetDBConnectionDetailsAsync(selecteddatabase);
+           DBConnectionDetails = JsonConvert.DeserializeObject<ObservableCollection<DBConnectionClass>>(connectionDetails);
 
        }
 

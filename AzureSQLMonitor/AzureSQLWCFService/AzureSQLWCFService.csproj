@@ -75,6 +75,8 @@
   <ItemGroup>
     <Compile Include="ActiveConnections.cs" />
     <Compile Include="ConnectionBase.cs" />
+    <Compile Include="DatabaseSizeDetails.cs" />
+    <Compile Include="DBConnectionDetails.cs" />
     <Compile Include="ListDatabases.cs" />
     <Compile Include="ResourceUsageDetails.cs" />
     <Compile Include="SqlMonitorService.svc.cs">

@@ -1,6 +1,7 @@
 ﻿
 using System.Runtime.Serialization;
 using System.ServiceModel;
+using System;
 
 namespace AzureSQLWCFService
 {
@@ -20,13 +21,19 @@ namespace AzureSQLWCFService
         string getSystemInfo();
 
         [OperationContract]
-        string GetTableSizeDetails(string dbname);
+        string GetDatabaseSize(string dbname);
 
         [OperationContract]
         string GetConnectionCount(string dbname);
 
         [OperationContract]
+        string GetTableSizeDetails(string dbname);
+        
+        [OperationContract]
         string GetDBResourceUsage(string dbname);
+
+        [OperationContract]
+        string GetDBConnectionDetails(string dbname);
 
         // TODO: Add your service operations here
     }
@@ -146,11 +153,11 @@ namespace AzureSQLWCFService
     [DataContract]
     class ConnectionsCount
     {
-        string connection_count;
-        string time;
+        int connection_count;
+        DateTime time;
 
         [DataMember]
-        public string Connections
+        public int Connections
         {
             get { return connection_count; ; }
             set
@@ -161,7 +168,7 @@ namespace AzureSQLWCFService
         }
 
         [DataMember]
-        public string Time
+        public DateTime Time
         {
             get { return time; }
             set
@@ -175,15 +182,8 @@ namespace AzureSQLWCFService
     [DataContract]
     class DatabaseResources
     {
-        private string endTime;
-        private string averageCPU;
-        
-        private string averageMemoryUsage;
-        private string averageDataIO;
-        private string averageLogWrite;
-
         [DataMember]
-        public string EndTime { get; set; }
+        public DateTime EndTime { get; set; }
 
         [DataMember]
         public string AverageCPU { get; set; }
@@ -194,6 +194,45 @@ namespace AzureSQLWCFService
 
         [DataMember]
         public string AverageLogWrite { get; set; }
+    }
+
+    [DataContract]
+    class DatabaseSizeClass
+    {
+        [DataMember]
+        public string Name { get; set; }
+
+        
+
+        [DataMember]
+        public float Size { get; set; }
+
+    }
+
+
+    [DataContract]
+    class DBConnectionClass
+    {
+
+        [DataMember]
+        public DateTime Time { get; set; }
+
+        [DataMember]
+
+        public int Success { get; set; }
+
+        
+        [DataMember]
+
+        public int LoginFailures { get; set; }
+
+        [DataMember]
+
+        public int Terminated { get; set; }
+
+        [DataMember]
+        public int Throttled { get; set; }
+
     }
 
 

@@ -8,9 +8,9 @@ namespace AzureSQLApp.Models
 {
    public class ConnectionsCount
     {
-        string connection_count;
-        string time;
-        public string Connections
+        int connection_count;
+        DateTime time;
+        public int Connections
         {
             get { return connection_count; ; }
             set
@@ -20,7 +20,7 @@ namespace AzureSQLApp.Models
 
         }
 
-        public string Time
+        public DateTime Time
         {
             get { return time; }
             set

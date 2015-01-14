@@ -125,6 +125,8 @@
     <Compile Include="Models\ConnectionsCount.cs" />
     <Compile Include="Models\DatabaseResources.cs" />
     <Compile Include="Models\Databases.cs" />
+    <Compile Include="Models\DatabaseSizeClass.cs" />
+    <Compile Include="Models\DBConnectionClass.cs" />
     <Compile Include="Models\LoginDetails.cs" />
     <Compile Include="Models\Sysinfo.cs" />
     <Compile Include="Models\TableDetails.cs" />

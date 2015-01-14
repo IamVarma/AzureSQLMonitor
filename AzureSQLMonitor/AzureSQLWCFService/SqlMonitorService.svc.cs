@@ -50,6 +50,13 @@ namespace AzureSQLWCFService
 
         }
 
+
+        public string GetDatabaseSize(string dbname)
+        {
+            DatabaseSizeDetails databasesize = new DatabaseSizeDetails();
+            return databasesize.GetDatabaseSize(dbname);
+        }
+
         public string GetConnectionCount(string database)
         {
             ActiveConnections connections = new ActiveConnections();
@@ -62,6 +69,12 @@ namespace AzureSQLWCFService
             return resouceUsage.getResourceUsage(dbname);
         }
 
+        public string GetDBConnectionDetails(string dbname)
+        {
+            DBConnectionDetails connections = new DBConnectionDetails();
+            return connections.getDBConnectionDetails(dbname);
+            
+        }
         
     }
 }

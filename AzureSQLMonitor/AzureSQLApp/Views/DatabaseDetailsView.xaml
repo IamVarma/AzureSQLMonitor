@@ -14,7 +14,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="0.5*"/>
             <RowDefinition Height="0.5*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="3*"/>
         </Grid.RowDefinitions>
         <Button x:Name="loginbutton" Grid.Row="0" BorderThickness="0"  HorizontalAlignment="Left"  Command="{Binding GoBack}">
             <Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
@@ -58,6 +58,7 @@
         
         <StackPanel Grid.Row="1" Orientation="Horizontal">
             <Button x:Name="BasicDetails" Content="Basic Details" Click="BasicDetails_Click"></Button>
+            <Button x:Name="ConnectionDetails" Content="Connections Overview" Click="ConnectionDetails_Click"></Button>
             <Button x:Name="ResourceDetails" Content="Resource Usage" Click="ResourceDetails_Click"></Button>
         </StackPanel>
         
@@ -68,7 +69,7 @@
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
 
-            <charting:Chart
+            <!--<charting:Chart
                 x:Name="PieChart"
                 Title="Table Sizes" Background="Black" LegendTitle="Table Names" Grid.Column="0" >
             <charting:Chart.Series>
@@ -79,6 +80,20 @@
                         DependentValueBinding="{Binding TableSize}"
                         IsSelectionEnabled="True"/>
             </charting:Chart.Series>
+         </charting:Chart>-->
+
+            <charting:Chart
+                x:Name="DBSizeChart"
+                Title="Max vs Used" Background="Black" LegendTitle="Table Names" Grid.Column="0" >
+            <charting:Chart.Series>
+                <charting:PieSeries
+                        Title="Max vs Used"
+                        ItemsSource="{Binding DatabaseSize}"
+                        IndependentValueBinding="{Binding Name}"
+                        DependentValueBinding="{Binding Size}"
+                        IsSelectionEnabled="True"/>
+                    
+                </charting:Chart.Series>
          </charting:Chart>
 
 
@@ -89,7 +104,7 @@
                 <charting:Chart.Series>
                     <charting:LineSeries
                         Title="ConnectionCount"
-                        ItemsSource="{Binding ConnectionCount}"
+                        ItemsSource="{Binding ConnectionsList}"
                         IndependentValueBinding="{Binding Time}"
                         DependentValueBinding="{Binding Connections}"
                         IsSelectionEnabled="True"/>
@@ -101,6 +116,52 @@
 
 
         </Grid>
+
+
+        <Grid Grid.Row="2" x:Name="ConnectionsGrid" Visibility="Collapsed">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+          <charting:Chart
+                x:Name="ConnectionDetailsChart"
+                Title="Connections Overview" Background="Black" LegendTitle="Table Names" Grid.Column="0" Height="400" Width="400" >
+                <charting:Chart.Series>
+                    <charting:LineSeries
+                        Title="Success"
+                        ItemsSource="{Binding DBConnectionDetails}"
+                        IndependentValueBinding="{Binding Time}"
+                        DependentValueBinding="{Binding Success}"
+                        IsSelectionEnabled="True"/>
+                    <charting:LineSeries
+                        Title="Login Failures"
+                        ItemsSource="{Binding DBConnectionDetails}"
+                        IndependentValueBinding="{Binding Time}"
+                        DependentValueBinding="{Binding LoginFailures}"
+                        IsSelectionEnabled="True"/>
+                    <charting:LineSeries
+                        Title="Terminated"
+                        ItemsSource="{Binding DBConnectionDetails}"
+                        IndependentValueBinding="{Binding Time}"
+                        DependentValueBinding="{Binding Terminated}"
+                        IsSelectionEnabled="True"/>
+                    <charting:LineSeries
+                        Title="Throttled"
+                        ItemsSource="{Binding DBConnectionDetails}"
+                        IndependentValueBinding="{Binding Time}"
+                        DependentValueBinding="{Binding Throttled}"
+                        IsSelectionEnabled="True"/>
+
+                </charting:Chart.Series>
+            </charting:Chart>
+
+
+
+        </Grid>
+
+
+
 
         <Grid Grid.Row="2" x:Name="ResourceUsageGrid" Visibility="Collapsed">
 <Grid.RowDefinitions>
@@ -123,6 +184,8 @@
                         IndependentValueBinding="{Binding EndTime}"
                         DependentValueBinding="{Binding AverageCPU}"
                         IsSelectionEnabled="True"/>
+                    
+
                 </charting:Chart.Series>
             </charting:Chart>
 
