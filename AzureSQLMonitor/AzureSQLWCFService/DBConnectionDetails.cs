@@ -15,9 +15,14 @@ namespace AzureSQLWCFService
         ObservableCollection<DBConnectionClass> ConnectionDetails = new ObservableCollection<DBConnectionClass>();
         DBConnectionClass _connectionDetails;
 
+        ObservableCollection<DBConnectionEventsClass> ConnectionEvents = new ObservableCollection<DBConnectionEventsClass>();
+        DBConnectionEventsClass _connectionEvents;
+
 
         public string getDBConnectionDetails(string dbname)
         {
+            string[] FinalOutPut = new string[2];
+
             if (connection.Database != "master" || connection.State == System.Data.ConnectionState.Closed)
                 ChangeDatabasecontext("master");
 
@@ -52,9 +57,17 @@ namespace AzureSQLWCFService
                     }
                 }
 
-                return JsonConvert.SerializeObject(ConnectionDetails);
+                FinalOutPut[0]= JsonConvert.SerializeObject(ConnectionDetails);
+
+                FinalOutPut[1]= getConnectionEvents(dbname);
+
+
+                return JsonConvert.SerializeObject(FinalOutPut);
 
             }
+
+
+
 
             catch (Exception ex)
             {
@@ -70,6 +83,43 @@ namespace AzureSQLWCFService
            
 
         }
+
+        string getConnectionEvents(string dbname)
+        {
+
+            string querytext = "select top (10) event_type,  event_subtype_desc, count(1) as occurences from sys.event_log where database_name = '"+dbname+"' and event_subtype_desc <> 'connection_successful' and end_time > (getdate() -7) group by database_name , event_type, event_subtype , event_subtype_desc order by occurences desc";           
+
+            if (connection.State == System.Data.ConnectionState.Open)
+            {
+
+                sqlcmd = new SqlCommand(querytext, connection);
+
+                using (SqlDataReader dr = sqlcmd.ExecuteReader())
+                {
+
+                    while (dr.Read())
+                    {
+                        _connectionEvents = new DBConnectionEventsClass
+                        {
+                            EventType = dr["event_type"].ToString(),
+                            EventDesc = dr["event_subtype_desc"].ToString(),
+                            EventCount = int.Parse(dr["occurences"].ToString())
+                        };
+
+                        ConnectionEvents.Add(_connectionEvents);
+                        _connectionEvents = null;
+                    }
+
+                }
+
+
+            }
+
+            return JsonConvert.SerializeObject(ConnectionEvents);
+
+        }
+
+
 
     }
 }

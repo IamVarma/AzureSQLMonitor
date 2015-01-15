@@ -235,5 +235,19 @@ namespace AzureSQLWCFService
 
     }
 
+    [DataContract]
+    class DBConnectionEventsClass
+    {
+        [DataMember]
+        public string EventType { get; set; }
+        
+        [DataMember]
+        public string EventDesc { get; set; }
+
+        [DataMember]
+        public int EventCount { get; set; }
+
+    }
+
 
 }

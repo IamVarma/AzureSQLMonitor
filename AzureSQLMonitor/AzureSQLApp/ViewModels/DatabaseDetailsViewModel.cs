@@ -20,6 +20,7 @@ namespace AzureSQLApp.ViewModels
        private ObservableCollection<DatabaseSizeClass> _databaseSize;
 
        private ObservableCollection<DBConnectionClass> _dbConnectionDetails;
+       private ObservableCollection<DBConnectionEventsClass> _dbConnectionEvents;
 
 
       //  public RelayCommand GetTables { get; private set; }
@@ -100,6 +101,19 @@ namespace AzureSQLApp.ViewModels
            }
        }
 
+       public ObservableCollection<DBConnectionEventsClass> DBConnectionEvents
+       {
+           get
+           {
+               return _dbConnectionEvents;
+           }
+
+           set
+           {
+               _dbConnectionEvents = value;
+               RaisePropertyChanged("DBConnectionEvents");
+           }
+       }
 
 
 
@@ -160,9 +174,12 @@ namespace AzureSQLApp.ViewModels
 
        public async Task GetDBConnectionDetails(string selecteddatabase)
        {
+           string[] info= new string[2];
            var connectionDetails = await App.Servicehandle.GetDBConnectionDetailsAsync(selecteddatabase);
-           DBConnectionDetails = JsonConvert.DeserializeObject<ObservableCollection<DBConnectionClass>>(connectionDetails);
+          info  = JsonConvert.DeserializeObject<string[]>(connectionDetails);
 
+          DBConnectionDetails = JsonConvert.DeserializeObject<ObservableCollection<DBConnectionClass>>(info[0]);
+          DBConnectionEvents = JsonConvert.DeserializeObject<ObservableCollection<DBConnectionEventsClass>>(info[1]);
        }
 
 

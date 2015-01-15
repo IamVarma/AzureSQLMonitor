@@ -10,7 +10,19 @@
     xmlns:Series="using:WinRTXamlToolkit.Controls.DataVisualization.Charting"
     DataContext="{Binding DatabaseDetails, RelativeSource={RelativeSource Self}}">
 
-    <Grid Background="#FF4F86C5">
+    <Page.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="ConnectionsTemplate">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding EventType}"></TextBlock>
+                    <TextBlock Text="{Binding EventDesc}"></TextBlock>
+                    <TextBlock Text="{Binding EventCount}"></TextBlock>
+                </StackPanel>
+                
+            </DataTemplate>
+        </ResourceDictionary>
+    </Page.Resources>
+    <Grid Background="#FF071C3E">
         <Grid.RowDefinitions>
             <RowDefinition Height="0.5*"/>
             <RowDefinition Height="0.5*"/>
@@ -55,23 +67,43 @@
             </Viewbox>
         </Button>
 
-        
-        <StackPanel Grid.Row="1" Orientation="Horizontal">
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
             <Button x:Name="BasicDetails" Content="Basic Details" Click="BasicDetails_Click"></Button>
             <Button x:Name="ConnectionDetails" Content="Connections Overview" Click="ConnectionDetails_Click"></Button>
             <Button x:Name="ResourceDetails" Content="Resource Usage" Click="ResourceDetails_Click"></Button>
         </StackPanel>
-        
-        
+
+
         <Grid Grid.Row="2" x:Name="BasicDetailsGrid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
 
-            <!--<charting:Chart
+          
+
+            <charting:Chart
+                x:Name="DBSizeChart"
+                Title="Max vs Used"  LegendTitle="Table Names" Grid.Column="0" Grid.Row="1" >
+                <charting:Chart.Series>
+                    <charting:PieSeries
+                        Title="Max vs Used"
+                        ItemsSource="{Binding DatabaseSize}"
+                        IndependentValueBinding="{Binding Name}"
+                        DependentValueBinding="{Binding Size}"
+                        IsSelectionEnabled="True"/>
+
+                </charting:Chart.Series>
+            </charting:Chart>
+
+            <charting:Chart
                 x:Name="PieChart"
-                Title="Table Sizes" Background="Black" LegendTitle="Table Names" Grid.Column="0" >
+                Title="Table Sizes" LegendTitle="Table Names" Grid.Column="1" Grid.Row="1" >
             <charting:Chart.Series>
                 <charting:PieSeries
                         Title="TableSizes"
@@ -80,27 +112,11 @@
                         DependentValueBinding="{Binding TableSize}"
                         IsSelectionEnabled="True"/>
             </charting:Chart.Series>
-         </charting:Chart>-->
-
-            <charting:Chart
-                x:Name="DBSizeChart"
-                Title="Max vs Used" Background="Black" LegendTitle="Table Names" Grid.Column="0" >
-            <charting:Chart.Series>
-                <charting:PieSeries
-                        Title="Max vs Used"
-                        ItemsSource="{Binding DatabaseSize}"
-                        IndependentValueBinding="{Binding Name}"
-                        DependentValueBinding="{Binding Size}"
-                        IsSelectionEnabled="True"/>
-                    
-                </charting:Chart.Series>
          </charting:Chart>
-
-
 
             <charting:Chart
                 x:Name="ConnectionsChart"
-                Title="ConnectionCount" Background="Black" LegendTitle="Connections Count" Grid.Column="1" >
+                Title="ConnectionCount" LegendTitle="Connections Count" Grid.Column="1" Grid.Row="0">
                 <charting:Chart.Series>
                     <charting:LineSeries
                         Title="ConnectionCount"
@@ -124,9 +140,9 @@
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
 
-          <charting:Chart
+            <charting:Chart
                 x:Name="ConnectionDetailsChart"
-                Title="Connections Overview" Background="Black" LegendTitle="Table Names" Grid.Column="0" Height="400" Width="400" >
+                Title="Connections Overview" LegendTitle="Table Names" Grid.Column="0" Height="400" Width="400" >
                 <charting:Chart.Series>
                     <charting:LineSeries
                         Title="Success"
@@ -156,7 +172,11 @@
                 </charting:Chart.Series>
             </charting:Chart>
 
-
+            <GridView x:Name="ConnectionEvents" Grid.Column="1" ItemTemplate="{StaticResource ConnectionsTemplate}" ItemsSource="{Binding DBConnectionEvents}"
+                           >
+                <ContentPresenter Height="100" Width="100"/>
+               
+            </GridView>
 
         </Grid>
 
@@ -164,19 +184,19 @@
 
 
         <Grid Grid.Row="2" x:Name="ResourceUsageGrid" Visibility="Collapsed">
-<Grid.RowDefinitions>
+            <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
-            
+
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
 
-           <charting:Chart
+            <charting:Chart
                 x:Name="AverageCpuChart"
-                Title="Average CPU Usage(%)" Background="Black" LegendTitle="Average CPU Usage(%)" Grid.Column="0"  Grid.Row="0">
+                Title="Average CPU Usage(%)" LegendTitle="Average CPU Usage(%)" Grid.Column="0"  Grid.Row="0">
                 <charting:Chart.Series>
                     <charting:LineSeries
                         Title="Average CPU Usage(%)"
@@ -184,14 +204,14 @@
                         IndependentValueBinding="{Binding EndTime}"
                         DependentValueBinding="{Binding AverageCPU}"
                         IsSelectionEnabled="True"/>
-                    
+
 
                 </charting:Chart.Series>
             </charting:Chart>
 
             <charting:Chart
                 x:Name="AverageMemoryChart"
-                Title="Average Memory Usage(%)" Background="Black" LegendTitle="Average Memory Usage(%)" Grid.Column="1"  Grid.Row="0" >
+                Title="Average Memory Usage(%)" LegendTitle="Average Memory Usage(%)" Grid.Column="1"  Grid.Row="0" >
                 <charting:Chart.Series>
                     <charting:LineSeries
                         Title="Average Memory Usage(%)"
@@ -205,7 +225,7 @@
 
             <charting:Chart
                 x:Name="AverageDataIOChart"
-                Title="Average Data IO Usage(%)" Background="Black" LegendTitle="Average Data IO Usage(%)" Grid.Column="0"  Grid.Row="1" >
+                Title="Average Data IO Usage(%)"  LegendTitle="Average Data IO Usage(%)" Grid.Column="0"  Grid.Row="1" >
                 <charting:Chart.Series>
                     <charting:LineSeries
                         Title="Average Data IO Usage(%)"
@@ -219,7 +239,7 @@
 
             <charting:Chart
                 x:Name="AverageLogWriteChart"
-                Title="Average Write Log Usage(%)" Background="Black" LegendTitle="Average Write Log Usage(%)" Grid.Column="1"  Grid.Row="1" >
+                Title="Average Write Log Usage(%)" LegendTitle="Average Write Log Usage(%)" Grid.Column="1"  Grid.Row="1" >
                 <charting:Chart.Series>
                     <charting:LineSeries
                         Title="Average Write Log Usage(%)"
