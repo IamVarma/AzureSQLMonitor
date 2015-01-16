@@ -54,6 +54,12 @@
   <wsdl:message name="ISqlMonitorService_GetDBConnectionDetails_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetDBConnectionDetailsResponse" />
   </wsdl:message>
+  <wsdl:message name="ISqlMonitorService_GetTopCpuConsumers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTopCpuConsumers" />
+  </wsdl:message>
+  <wsdl:message name="ISqlMonitorService_GetTopCpuConsumers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTopCpuConsumersResponse" />
+  </wsdl:message>
   <wsdl:portType name="ISqlMonitorService">
     <wsdl:operation name="ConnectSQLAzure">
       <wsdl:input wsaw:Action="http://tempuri.org/ISqlMonitorService/ConnectSQLAzure" message="tns:ISqlMonitorService_ConnectSQLAzure_InputMessage" />
@@ -86,6 +92,10 @@
     <wsdl:operation name="GetDBConnectionDetails">
       <wsdl:input wsaw:Action="http://tempuri.org/ISqlMonitorService/GetDBConnectionDetails" message="tns:ISqlMonitorService_GetDBConnectionDetails_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ISqlMonitorService/GetDBConnectionDetailsResponse" message="tns:ISqlMonitorService_GetDBConnectionDetails_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTopCpuConsumers">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISqlMonitorService/GetTopCpuConsumers" message="tns:ISqlMonitorService_GetTopCpuConsumers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISqlMonitorService/GetTopCpuConsumersResponse" message="tns:ISqlMonitorService_GetTopCpuConsumers_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_ISqlMonitorService" type="tns:ISqlMonitorService">
@@ -155,6 +165,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetDBConnectionDetails">
       <soap:operation soapAction="http://tempuri.org/ISqlMonitorService/GetDBConnectionDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTopCpuConsumers">
+      <soap:operation soapAction="http://tempuri.org/ISqlMonitorService/GetTopCpuConsumers" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

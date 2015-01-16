@@ -131,6 +131,7 @@
     <Compile Include="Models\LoginDetails.cs" />
     <Compile Include="Models\Sysinfo.cs" />
     <Compile Include="Models\TableDetails.cs" />
+    <Compile Include="Models\TopCPUConsumersClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service References\AzureSQLService\Reference.cs">
       <AutoGen>True</AutoGen>

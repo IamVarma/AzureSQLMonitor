@@ -20,6 +20,19 @@
                 </StackPanel>
                 
             </DataTemplate>
+
+            <DataTemplate x:Key="CpuConsumersTemplate">
+                <StackPanel Orientation="Horizontal" Height="200">
+                    <TextBlock Text="{Binding SQLText}" TextWrapping="Wrap" IsTextSelectionEnabled="True" Padding="2"></TextBlock>
+                    <TextBlock Text="{Binding ExecutionCount}" Padding="2"></TextBlock>
+                    <TextBlock Text="{Binding TotalCPUMs}" Padding="2"></TextBlock>
+                    <TextBlock Text="{Binding TotalElapsedMs}" Padding="2"></TextBlock>
+                    <TextBlock Text="{Binding CPUPercentage}" Padding="2"></TextBlock>
+                    <TextBlock Text="{Binding AverageCPUMs}" Padding="2"></TextBlock>
+                </StackPanel>
+
+            </DataTemplate>
+
         </ResourceDictionary>
     </Page.Resources>
     <Grid Background="#FF071C3E">
@@ -72,6 +85,7 @@
             <Button x:Name="BasicDetails" Content="Basic Details" Click="BasicDetails_Click"></Button>
             <Button x:Name="ConnectionDetails" Content="Connections Overview" Click="ConnectionDetails_Click"></Button>
             <Button x:Name="ResourceDetails" Content="Resource Usage" Click="ResourceDetails_Click"></Button>
+            <Button x:Name="TopCPUConsumers" Content="Top CPU Consumers" Click="TopCPUConsumers_OnClick"></Button>
         </StackPanel>
 
 
@@ -254,6 +268,19 @@
 
         </Grid>
 
+        <Grid Grid.Row="2" x:Name="CPUConsumersGrid" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+
+            <GridView x:Name="CpuConsumersGridView" Grid.Row="0" ItemTemplate="{StaticResource CpuConsumersTemplate}" ItemsSource="{Binding TopCpuConsumers}"
+                           >
+                <ContentPresenter/>
+
+            </GridView>
+
+        </Grid>
 
 
 

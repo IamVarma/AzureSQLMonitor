@@ -35,6 +35,10 @@ namespace AzureSQLWCFService
         [OperationContract]
         string GetDBConnectionDetails(string dbname);
 
+
+        [OperationContract]
+        string GetTopCpuConsumers(string dbname);
+
         // TODO: Add your service operations here
     }
 
@@ -248,6 +252,38 @@ namespace AzureSQLWCFService
         public int EventCount { get; set; }
 
     }
+
+
+    [DataContract]
+    class TopCPUConsumersClass
+    {
+        [DataMember]
+        public string SQLText { get; set; }
+
+        [DataMember]
+        public int ExecutionCount { get; set; }
+
+        [DataMember]
+
+        public int TotalCPUMs { get; set; }
+
+        [DataMember]
+        public int TotalElapsedMs{get; set;}
+
+        [DataMember]
+
+        public float CPUPercentage { get; set; }
+
+        [DataMember]
+        public int AverageCPUMs { get; set; }
+    }
+
+
+    
+
+
+
+    
 
 
 }

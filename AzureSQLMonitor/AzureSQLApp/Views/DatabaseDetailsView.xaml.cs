@@ -55,6 +55,11 @@ namespace AzureSQLApp.Views
             if (ConnectionsGrid.Visibility == Visibility.Visible)
                 await DatabaseDetails.GetDBConnectionDetails(selectedDatabase.DatabaseName);
 
+            if (CPUConsumersGrid.Visibility == Visibility.Visible)
+            {
+                await DatabaseDetails.GetTopCpuConsumers(selectedDatabase.DatabaseName);
+            }
+
         }
 
 
@@ -117,6 +122,7 @@ namespace AzureSQLApp.Views
         {
             BasicDetailsGrid.Visibility = Visibility.Collapsed;
             ConnectionsGrid.Visibility = Visibility.Collapsed;
+            CPUConsumersGrid.Visibility = Visibility.Collapsed;
             ResourceUsageGrid.Visibility = Visibility.Visible;
             DispatchTimer_Tick(DispatchTimer, (object)e);
         }
@@ -125,6 +131,7 @@ namespace AzureSQLApp.Views
         {
             ResourceUsageGrid.Visibility = Visibility.Collapsed;
             ConnectionsGrid.Visibility = Visibility.Collapsed;
+            CPUConsumersGrid.Visibility = Visibility.Collapsed;
             BasicDetailsGrid.Visibility = Visibility.Visible;
             DispatchTimer_Tick(DispatchTimer, (object)e);
         }
@@ -133,10 +140,22 @@ namespace AzureSQLApp.Views
         {
             ResourceUsageGrid.Visibility = Visibility.Collapsed;
             BasicDetailsGrid.Visibility = Visibility.Collapsed;
+            CPUConsumersGrid.Visibility = Visibility.Collapsed;
             ConnectionsGrid.Visibility = Visibility.Visible;
             DispatchTimer_Tick(DispatchTimer, (object)e);
         }
 
-        
+
+        private void TopCPUConsumers_OnClick(object sender, RoutedEventArgs e)
+        {
+
+            ResourceUsageGrid.Visibility = Visibility.Collapsed;
+            BasicDetailsGrid.Visibility = Visibility.Collapsed;
+            ConnectionsGrid.Visibility = Visibility.Collapsed;
+            CPUConsumersGrid.Visibility = Visibility.Visible;
+            DispatchTimer_Tick(DispatchTimer, (object)e);
+
+
+        }
     }
 }

@@ -75,6 +75,12 @@ namespace AzureSQLWCFService
             return connections.getDBConnectionDetails(dbname);
             
         }
+
+        public string GetTopCpuConsumers(string dbname)
+        {
+            TopCPUConsumers consumers = new TopCPUConsumers();
+            return consumers.getCpuConsumers(dbname);
+        }
         
     }
 }

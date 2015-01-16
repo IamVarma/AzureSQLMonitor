@@ -18,9 +18,9 @@ namespace AzureSQLApp.ViewModels
         ObservableCollection<ConnectionsCount> _connectionsList = new ObservableCollection<ConnectionsCount>();
        private ObservableCollection<DatabaseResources> _databaseResouceUsage;
        private ObservableCollection<DatabaseSizeClass> _databaseSize;
-
        private ObservableCollection<DBConnectionClass> _dbConnectionDetails;
        private ObservableCollection<DBConnectionEventsClass> _dbConnectionEvents;
+       private ObservableCollection<TopCPUConsumersClass> _topCpuConsumers; 
 
 
       //  public RelayCommand GetTables { get; private set; }
@@ -115,6 +115,20 @@ namespace AzureSQLApp.ViewModels
            }
        }
 
+       public ObservableCollection<TopCPUConsumersClass> TopCpuConsumers
+       {
+           get
+           {
+               return _topCpuConsumers;
+           }
+
+           set
+           {
+               _topCpuConsumers = value;
+               RaisePropertyChanged("TopCpuConsumers");
+           }
+       }
+
 
 
         public DatabaseDetailsViewModel()
@@ -122,6 +136,7 @@ namespace AzureSQLApp.ViewModels
           ConnectionsList = new ObservableCollection<ConnectionsCount>();
           DatabaseSize = new ObservableCollection<DatabaseSizeClass>();
           DBConnectionDetails = new ObservableCollection<DBConnectionClass>();
+            TopCpuConsumers = new ObservableCollection<TopCPUConsumersClass>();
             GoBack = new RelayCommand(() => goBack());
             LogOut = new RelayCommand(() => LogoutNow());
         }
@@ -180,6 +195,14 @@ namespace AzureSQLApp.ViewModels
 
           DBConnectionDetails = JsonConvert.DeserializeObject<ObservableCollection<DBConnectionClass>>(info[0]);
           DBConnectionEvents = JsonConvert.DeserializeObject<ObservableCollection<DBConnectionEventsClass>>(info[1]);
+       }
+
+
+       public async Task GetTopCpuConsumers(string selecteddatabase)
+       {
+           var topconsumers = await App.Servicehandle.GetTopCpuConsumersAsync(selecteddatabase);
+           TopCpuConsumers = JsonConvert.DeserializeObject<ObservableCollection<TopCPUConsumersClass>>(topconsumers);
+
        }
 
 
