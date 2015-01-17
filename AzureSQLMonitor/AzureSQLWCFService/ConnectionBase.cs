@@ -25,10 +25,16 @@ namespace AzureSQLWCFService
             LoginName = Loginname;
             Password = password;
 
-            connectionString = "Server=tcp:" + ServerName + ",1433;Database=" + DatabaseName + ";User ID=" + LoginName + ";Password=" + Password + ";Trusted_Connection=False;Encrypt=True;Connection Timeout=30;Application Name=AzureMonitor;";
+            if (ServerName != null && DatabaseName != null && LoginName != null && Password != null)
+            {
+                connectionString = "Server=tcp:" + ServerName + ",1433;Database=" + DatabaseName + ";User ID=" + LoginName + ";Password=" + Password + ";Trusted_Connection=False;Encrypt=True;Connection Timeout=10;Application Name=AzureMonitor;";
+                return getConnection(connectionString);
+            }
 
-
-            return getConnection(connectionString);
+            else
+            {
+                return "Connection is Closed, please login again";
+            }
            
 
         }
@@ -38,10 +44,16 @@ namespace AzureSQLWCFService
 
             DatabaseName = databasename;
 
-            connectionString = "Server=tcp:" + ServerName + ",1433;Database=" + DatabaseName + ";User ID=" + LoginName + ";Password=" + Password + ";Trusted_Connection=False;Encrypt=True;Connection Timeout=30;Application Name=AzureMonitor;";
+            if (ServerName != null && DatabaseName != null && LoginName != null && Password != null)
+            {
+                connectionString = "Server=tcp:" + ServerName + ",1433;Database=" + DatabaseName + ";User ID=" + LoginName + ";Password=" + Password + ";Trusted_Connection=False;Encrypt=True;Connection Timeout=10;Application Name=AzureMonitor;";
+                return getConnection(connectionString);
+            }
 
-            return getConnection(connectionString);
-
+            else
+            {
+                return "Connection is Closed, please login again";
+            }
 
         }
 
@@ -53,24 +65,16 @@ namespace AzureSQLWCFService
 
             try
             {
-              //  connection.ConnectionString = connstring;
-                
-
+             
                 connection = new SqlConnection(connstring);
                 connection.Open();
-                // connection.OpenWithRetry(retry);
-                if (connection.State == System.Data.ConnectionState.Open)
+              
 
-                    return "Success";
-
-                else
-
-                    return "Invalid Server Name / Login Name";
-
+                return "Success";
             }
-            catch
+            catch(Exception e)
             {
-                return "Oops! Server name / Login credintials seems to be invalid";
+                return "Problem opening a connection::"+e.Message;
             }
 
         }

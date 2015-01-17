@@ -1,6 +1,7 @@
 ﻿
 using System.Data.SqlClient;
 using Newtonsoft.Json;
+using System;
 
 namespace AzureSQLWCFService
 {
@@ -8,7 +9,6 @@ namespace AzureSQLWCFService
     {
         public string GetSystemInfo()
         {
-           // ObservableCollection<Sysinfoclass> Syslist = new ObservableCollection<Sysinfoclass>();
             string querytext = "select @@servername as servername,system_user as loginuser,@@version as versioninfo,getdate() as datetimeinfo";
             Sysinfoclass sysinfoobject = new Sysinfoclass();
 
@@ -17,7 +17,6 @@ namespace AzureSQLWCFService
                 ChangeDatabasecontext("master");
             }
 
-          //  string QueryText = "select DB_NAME(sd.database_id) dbname,sd.state_desc statedesc, inr1.size SizeMB from sys.databases sd join (select database_id,sum((size*8)/1024) size from sys.master_files group by database_id) inr1 on inr1.database_id=sd.database_id";
                      
             try
             {
@@ -40,12 +39,11 @@ namespace AzureSQLWCFService
                 }
 
                 return JsonConvert.SerializeObject(sysinfoobject);
-                //sysinfoobject.ServerName = "varma";
-                //return "hello " + sysinfoobject.ServerName;
+            
             }
-            catch 
+            catch (Exception e)
             {
-                return "Something is wrong!!";
+                return "Problem fetching SystemInfo::"+e.Message;
             }
             finally
             {

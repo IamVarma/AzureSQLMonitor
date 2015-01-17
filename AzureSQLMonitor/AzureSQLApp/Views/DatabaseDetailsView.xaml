@@ -14,11 +14,11 @@
         <ResourceDictionary>
             <DataTemplate x:Key="ConnectionsTemplate">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="{Binding EventType}"></TextBlock>
-                    <TextBlock Text="{Binding EventDesc}"></TextBlock>
-                    <TextBlock Text="{Binding EventCount}"></TextBlock>
+                    <TextBlock Text="{Binding EventType}" Padding="4"></TextBlock>
+                    <TextBlock Text="{Binding EventDesc}" Padding="4"></TextBlock>
+                    <TextBlock Text="{Binding EventCount}" Padding="4"></TextBlock>
                 </StackPanel>
-                
+
             </DataTemplate>
 
             <DataTemplate x:Key="CpuConsumersTemplate">
@@ -33,59 +33,97 @@
 
             </DataTemplate>
 
+            <Style x:Key="RoundCorner" TargetType="Button">
+                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                <Setter Property="Padding" Value="1"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Grid x:Name="grid">
+                                <Border x:Name="border" CornerRadius="8" BorderBrush="Black" BorderThickness="2">
+
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"></ContentPresenter>
+                                </Border>
+
+                            </Grid>
+
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+
+
         </ResourceDictionary>
     </Page.Resources>
     <Grid Background="#FF071C3E">
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="1*"/>
             <RowDefinition Height="0.5*"/>
             <RowDefinition Height="3*"/>
         </Grid.RowDefinitions>
-        <Button x:Name="loginbutton" Grid.Row="0" BorderThickness="0"  HorizontalAlignment="Left"  Command="{Binding GoBack}">
-            <Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-                <Grid Height="263" Width="304">
-                    <Grid Name="backgroundGridbutton" Width="128" Height="128" Visibility="Visible">
-                        <Ellipse Fill="#FF22476C" Visibility="Visible" />
-                    </Grid>
-                    <Path Data="M44.436129,25.256006L54.222273,25.256006 75.259996,46.29286 70.368799,51.187792 54.094614,67.462006 44.561911,67.462006 44.436129,67.337162 62.016504,49.752106 15.633995,49.752106 15.633995,42.837337 62.016504,42.837337z M45,5.6100006C23.245507,5.6100006 5.6100006,23.245506 5.6100006,45 5.6100006,66.754498 23.245507,84.389999 45,84.389999 66.754499,84.389999 84.389997,66.754498 84.389997,45 84.389997,23.245506 66.754499,5.6100006 45,5.6100006z M45,0C69.852816,0 89.999998,20.147187 89.999998,45 89.999998,69.852814 69.852816,90.000004 45,90.000004 20.147188,90.000004 9.5367432E-07,69.852814 0,45 9.5367432E-07,20.147187 20.147188,0 45,0z" Stretch="Uniform" Fill="#FFFFFFFF" Width="234" Height="234" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
-                        <Path.RenderTransform>
-                            <TransformGroup>
-                                <TransformGroup.Children>
-                                    <RotateTransform Angle="0" />
-                                    <ScaleTransform ScaleX="1" ScaleY="1" />
-                                </TransformGroup.Children>
-                            </TransformGroup>
-                        </Path.RenderTransform>
-                    </Path>
-                </Grid>
-            </Viewbox>
-        </Button>
-        <Button x:Name="Logout" BorderThickness="0" Grid.Row="0" HorizontalAlignment="Right" Command="{Binding LogOut}">
-            <Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-                <Grid>
-                    <Grid Name="backgroundGrid" Width="128" Height="128" Visibility="Visible">
-                        <Ellipse Fill="#FF4F86C5"  Visibility="Visible" />
-                    </Grid>
-                    <Path Data="M14.800615,5.6499605L14.800615,14.800346C10.630442,17.910477 7.8903284,22.840685 7.8903284,28.44092 7.9003286,37.871319 15.530646,45.511639 24.961039,45.521641 34.391431,45.511639 42.011749,37.871319 42.04175,28.44092 42.03175,22.840685 39.291636,17.910477 35.121462,14.800346L35.121462,5.6599612C43.841825,9.5601254,49.912077,18.280493,49.912077,28.44092L49.922077,28.44092C49.912077,42.231503 38.741611,53.391972 24.961039,53.391972 11.170465,53.391972 0,42.231503 0,28.44092 0,18.270493 6.0902529,9.5501251 14.800615,5.6499605z M19.570043,0L30.237043,0 30.237043,33.917 19.570043,33.917z" Stretch="Uniform" Fill="#FFFFFFFF" Width="96" Height="96" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
-                        <Path.RenderTransform>
-                            <TransformGroup>
-                                <TransformGroup.Children>
-                                    <RotateTransform Angle="0" />
-                                    <ScaleTransform ScaleX="1" ScaleY="1" />
-                                </TransformGroup.Children>
-                            </TransformGroup>
-                        </Path.RenderTransform>
-                    </Path>
-                </Grid>
-            </Viewbox>
-        </Button>
 
+        <Grid Grid.Row="0" Height="100" VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.3*"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="0.3*"/>
+
+
+            </Grid.ColumnDefinitions>
+
+            <Button x:Name="BackButton" Grid.Column="0" BorderThickness="0"  HorizontalAlignment="Left"  Command="{Binding GoBack}">
+                <Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+                    <Grid>
+                        <Grid Name="backgroundGridBack" Width="128" Height="128" Visibility="Visible">
+                            <Path Data="M50.5,4.7500001C25.232973,4.75 4.75,25.232973 4.7500001,50.5 4.75,75.767029 25.232973,96.25 50.5,96.25 75.767029,96.25 96.25,75.767029 96.25,50.5 96.25,25.232973 75.767029,4.75 50.5,4.7500001z M50.5,0C78.390381,0 101,22.609621 101,50.5 101,78.390381 78.390381,101 50.5,101 22.609621,101 0,78.390381 0,50.5 0,22.609621 22.609621,0 50.5,0z" Stretch="Fill" Fill="#FF262626" Name="Stroke" Visibility="Visible" />
+                        </Grid>
+                        <Path Data="M44.436129,25.256006L54.222273,25.256006 75.259996,46.29286 70.368799,51.187792 54.094614,67.462006 44.561911,67.462006 44.436129,67.337162 62.016504,49.752106 15.633995,49.752106 15.633995,42.837337 62.016504,42.837337z M45,5.6100006C23.245507,5.6100006 5.6100006,23.245506 5.6100006,45 5.6100006,66.754498 23.245507,84.389999 45,84.389999 66.754499,84.389999 84.389997,66.754498 84.389997,45 84.389997,23.245506 66.754499,5.6100006 45,5.6100006z M45,0C69.852816,0 89.999998,20.147187 89.999998,45 89.999998,69.852814 69.852816,90.000004 45,90.000004 20.147188,90.000004 9.5367432E-07,69.852814 0,45 9.5367432E-07,20.147187 20.147188,0 45,0z" Stretch="Uniform" Fill="#FFF1EDED" Width="128" Height="128" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
+                            <Path.RenderTransform>
+                                <TransformGroup>
+                                    <TransformGroup.Children>
+                                        <RotateTransform Angle="0" />
+                                        <ScaleTransform ScaleX="-1" ScaleY="-1" />
+                                    </TransformGroup.Children>
+                                </TransformGroup>
+                            </Path.RenderTransform>
+                        </Path>
+                    </Grid>
+                </Viewbox>
+
+            </Button>
+
+            <TextBlock x:Name="DBName" FontSize="50" Grid.Column="1" Text="AdventureWorks2012" VerticalAlignment="Center"></TextBlock>
+
+
+            <Button x:Name="Logout" BorderThickness="0" Grid.Column="2" HorizontalAlignment="Right" Command="{Binding LogOut}">
+                <Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+                    <Grid>
+                        <Grid Name="backgroundGrid" Width="128" Height="128" Visibility="Collapsed" />
+                        <Path Data="M14.800615,5.6499605L14.800615,14.800346C10.630442,17.910477 7.8903284,22.840685 7.8903284,28.44092 7.9003286,37.871319 15.530646,45.511639 24.961039,45.521641 34.391431,45.511639 42.011749,37.871319 42.04175,28.44092 42.03175,22.840685 39.291636,17.910477 35.121462,14.800346L35.121462,5.6599612C43.841825,9.5601254,49.912077,18.280493,49.912077,28.44092L49.922077,28.44092C49.912077,42.231503 38.741611,53.391972 24.961039,53.391972 11.170465,53.391972 0,42.231503 0,28.44092 0,18.270493 6.0902529,9.5501251 14.800615,5.6499605z M19.570043,0L30.237043,0 30.237043,33.917 19.570043,33.917z" Stretch="Uniform" Fill="#FFF1EDED" Width="68" Height="68" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
+                            <Path.RenderTransform>
+                                <TransformGroup>
+                                    <TransformGroup.Children>
+                                        <RotateTransform Angle="0" />
+                                        <ScaleTransform ScaleX="1" ScaleY="1" />
+                                    </TransformGroup.Children>
+                                </TransformGroup>
+                            </Path.RenderTransform>
+                        </Path>
+                    </Grid>
+                </Viewbox>
+
+            </Button>
+        </Grid>
 
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button x:Name="BasicDetails" Content="Basic Details" Click="BasicDetails_Click"></Button>
-            <Button x:Name="ConnectionDetails" Content="Connections Overview" Click="ConnectionDetails_Click"></Button>
-            <Button x:Name="ResourceDetails" Content="Resource Usage" Click="ResourceDetails_Click"></Button>
-            <Button x:Name="TopCPUConsumers" Content="Top CPU Consumers" Click="TopCPUConsumers_OnClick"></Button>
+            <Button x:Name="BasicDetails"  Click="BasicDetails_Click" Content="Basic Details" FontSize="30" FontWeight="Bold" Padding="10" BorderThickness="1" UseLayoutRounding="True">
+
+            </Button>
+            <Button x:Name="ResourceDetails" Content="Resource Usage" Click="ResourceDetails_Click" FontSize="30" FontWeight="Bold" Padding="10" BorderThickness="1" UseLayoutRounding="True"></Button>
+            <Button x:Name="ConnectionDetails" Content="Connections Overview" Click="ConnectionDetails_Click" FontSize="30" FontWeight="Bold" Padding="10" BorderThickness="1" UseLayoutRounding="True"></Button>
+            <Button x:Name="TopCPUConsumers" Content="Top CPU Consumers" Click="TopCPUConsumers_OnClick" FontSize="30" FontWeight="Bold" Padding="10" BorderThickness="1" UseLayoutRounding="True"></Button>
         </StackPanel>
 
 
@@ -99,7 +137,7 @@
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
 
-          
+
 
             <charting:Chart
                 x:Name="DBSizeChart"
@@ -118,15 +156,15 @@
             <charting:Chart
                 x:Name="PieChart"
                 Title="Table Sizes" LegendTitle="Table Names" Grid.Column="1" Grid.Row="1" >
-            <charting:Chart.Series>
-                <charting:PieSeries
+                <charting:Chart.Series>
+                    <charting:PieSeries
                         Title="TableSizes"
                         ItemsSource="{Binding TableList}"
                         IndependentValueBinding="{Binding TableName}"
                         DependentValueBinding="{Binding TableSize}"
                         IsSelectionEnabled="True"/>
-            </charting:Chart.Series>
-         </charting:Chart>
+                </charting:Chart.Series>
+            </charting:Chart>
 
             <charting:Chart
                 x:Name="ConnectionsChart"
@@ -156,7 +194,7 @@
 
             <charting:Chart
                 x:Name="ConnectionDetailsChart"
-                Title="Connections Overview" LegendTitle="Table Names" Grid.Column="0" Height="400" Width="400" >
+                Title="Connections Overview" LegendTitle="Table Names" Grid.Column="0">
                 <charting:Chart.Series>
                     <charting:LineSeries
                         Title="Success"
@@ -189,7 +227,7 @@
             <GridView x:Name="ConnectionEvents" Grid.Column="1" ItemTemplate="{StaticResource ConnectionsTemplate}" ItemsSource="{Binding DBConnectionEvents}"
                            >
                 <ContentPresenter Height="100" Width="100"/>
-               
+
             </GridView>
 
         </Grid>

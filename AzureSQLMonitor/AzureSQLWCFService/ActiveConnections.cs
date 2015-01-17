@@ -50,7 +50,7 @@ namespace AzureSQLWCFService
             catch (Exception ex)
             {
 
-                return "There is some problem listing the Connection count";
+                return "Problem listing DatabaseConnections::"+ex.Message;
             }
 
             finally

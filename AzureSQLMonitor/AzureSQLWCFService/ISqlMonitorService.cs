@@ -67,6 +67,27 @@ namespace AzureSQLWCFService
         }
 
         [DataMember]
+        public string DatabaseSlo
+        { get; set; }
+
+
+        [DataMember]
+
+        public string AccessDesc
+        { get; set; }
+
+
+        [DataMember]
+
+        public string IsEncrypt
+        { get; set; }
+
+        [DataMember]
+
+        public string IsReadOnly
+        { get; set; }
+
+        [DataMember]
         public string DatabaseSize
         {
             get { return database_size; }

@@ -53,7 +53,7 @@ namespace AzureSQLWCFService
             catch (Exception ex)
             {
 
-                return "There is a problem listing the Table details";
+                return "Problem listing TableSizes::"+ex.Message;
             }
 
             finally

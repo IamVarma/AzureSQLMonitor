@@ -18,7 +18,16 @@ namespace AzureSQLWCFService
         public string getCpuConsumers(string dbname)
         {
             if (connection.Database != dbname || connection.State == System.Data.ConnectionState.Closed)
-                ChangeDatabasecontext(dbname);
+            {
+                string ConnectionResult = ChangeDatabasecontext(dbname);
+
+                if (ConnectionResult != "Success")
+                {
+                    return ConnectionResult;
+                }
+
+
+            }
 
             string querytext = "SELECT TOP 10 sample_statement_text AS SQLText," +
                                "execution_count As ExecutionCount,total_cpu_time_ms As TotalCPU_ms,total_elapsed_time_ms As TotalElapsed_ms,cast(round((cast(total_cpu_time_ms as decimal(20,2))/ ( cast ((CASE total_elapsed_time_ms when 0 then 1 else total_elapsed_time_ms end) as decimal(20,2))))*100, 2,0) as decimal(20,2)) As PercentageCPU,total_elapsed_time_ms/execution_count As AverageCPUTimePerStatement_ms FROM" +
@@ -63,7 +72,7 @@ namespace AzureSQLWCFService
             catch (Exception ex)
             {
 
-                return "There is some problem listing the Connection count";
+                return "Problem listing CPUQueries::"+ex.Message;
             }
 
             finally

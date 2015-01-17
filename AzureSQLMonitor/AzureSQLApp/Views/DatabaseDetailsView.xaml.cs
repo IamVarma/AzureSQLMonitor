@@ -80,7 +80,7 @@ namespace AzureSQLApp.Views
         {
 
             selectedDatabase = (Databases)e.NavigationParameter;
-
+            DBName.Text = selectedDatabase.DatabaseName;
             await DatabaseDetails.GetDatabaseSize(selectedDatabase.DatabaseName);
             await DatabaseDetails.GetTablesCommand(selectedDatabase.DatabaseName);
             await DatabaseDetails.GetConnectionCount(selectedDatabase.DatabaseName);

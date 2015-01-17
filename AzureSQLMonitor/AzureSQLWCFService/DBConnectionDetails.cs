@@ -72,7 +72,7 @@ namespace AzureSQLWCFService
             catch (Exception ex)
             {
 
-                return "There is some problem listing the Connection count";
+                return "Problem listing ConnectionCount::"+ex.Message;
             }
 
             finally
@@ -87,35 +87,47 @@ namespace AzureSQLWCFService
         string getConnectionEvents(string dbname)
         {
 
-            string querytext = "select top (10) event_type,  event_subtype_desc, count(1) as occurences from sys.event_log where database_name = '"+dbname+"' and event_subtype_desc <> 'connection_successful' and end_time > (getdate() -7) group by database_name , event_type, event_subtype , event_subtype_desc order by occurences desc";           
+            string querytext = "select top (10) event_type,  event_subtype_desc, count(1) as occurences from sys.event_log where database_name = '"+dbname+"' and event_subtype_desc <> 'connection_successful' and end_time > (getdate() -7) group by database_name , event_type, event_subtype , event_subtype_desc order by occurences desc";
 
-            if (connection.State == System.Data.ConnectionState.Open)
+            try
             {
 
-                sqlcmd = new SqlCommand(querytext, connection);
-
-                using (SqlDataReader dr = sqlcmd.ExecuteReader())
+                if (connection.State == System.Data.ConnectionState.Open)
                 {
 
-                    while (dr.Read())
-                    {
-                        _connectionEvents = new DBConnectionEventsClass
-                        {
-                            EventType = dr["event_type"].ToString(),
-                            EventDesc = dr["event_subtype_desc"].ToString(),
-                            EventCount = int.Parse(dr["occurences"].ToString())
-                        };
+                    sqlcmd = new SqlCommand(querytext, connection);
 
-                        ConnectionEvents.Add(_connectionEvents);
-                        _connectionEvents = null;
+                    using (SqlDataReader dr = sqlcmd.ExecuteReader())
+                    {
+
+                        while (dr.Read())
+                        {
+                            _connectionEvents = new DBConnectionEventsClass
+                            {
+                                EventType = dr["event_type"].ToString(),
+                                EventDesc = dr["event_subtype_desc"].ToString(),
+                                EventCount = int.Parse(dr["occurences"].ToString())
+                            };
+
+                            ConnectionEvents.Add(_connectionEvents);
+                            _connectionEvents = null;
+                        }
+
                     }
 
+
                 }
-
-
+                return JsonConvert.SerializeObject(ConnectionEvents);
             }
 
-            return JsonConvert.SerializeObject(ConnectionEvents);
+                       
+
+            catch(Exception e)
+            {
+                return "Problem listing ConnectionEvents::"+ e.Message;
+            }
+
+           
 
         }
 
