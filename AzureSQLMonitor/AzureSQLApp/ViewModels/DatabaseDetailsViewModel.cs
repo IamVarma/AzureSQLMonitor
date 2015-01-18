@@ -23,6 +23,11 @@ namespace AzureSQLApp.ViewModels
        private ObservableCollection<TopCPUConsumersClass> _topCpuConsumers; 
 
 
+       //Exception handling
+       public RelayCommand Exceptionpopupcommand { get; private set; }
+       public bool isopenproperty;
+       private string _exceptionResult;
+
       //  public RelayCommand GetTables { get; private set; }
 
         public RelayCommand LogOut { get; private set; }
@@ -129,6 +134,29 @@ namespace AzureSQLApp.ViewModels
            }
        }
 
+       public bool ExceptionOpen
+       {
+           get { return isopenproperty; }
+
+           set
+           {
+               isopenproperty = value;
+               RaisePropertyChanged("ExceptionOpen");
+           }
+       }
+
+       public string ExceptionResult
+       {
+           get
+           {
+               return _exceptionResult;
+           }
+           set
+           {
+               _exceptionResult = value;
+               RaisePropertyChanged("ExceptionResult");
+           }
+       }
 
 
         public DatabaseDetailsViewModel()
@@ -139,40 +167,74 @@ namespace AzureSQLApp.ViewModels
             TopCpuConsumers = new ObservableCollection<TopCPUConsumersClass>();
             GoBack = new RelayCommand(() => goBack());
             LogOut = new RelayCommand(() => LogoutNow());
+            Exceptionpopupcommand = new RelayCommand(() => HandleException());
         }
 
 
         public async Task GetTablesCommand(string selecteddatabase)
         {
-            var tblist = await App.Servicehandle.GetTableSizeDetailsAsync(selecteddatabase);
-            ObservableCollection<TableDetails> templist = JsonConvert.DeserializeObject<ObservableCollection<TableDetails>>(tblist);
-            TableList = templist;
+            string tblist = null;
+            try
+            {
+
+                tblist = await App.Servicehandle.GetTableSizeDetailsAsync(selecteddatabase);
+                ObservableCollection<TableDetails> templist = JsonConvert.DeserializeObject<ObservableCollection<TableDetails>>(tblist);
+                TableList = templist;
+
+            }
+
+            catch (Exception e)
+            {
+                ExceptionResult = "Error:" + tblist;
+                ExceptionOpen = true;
+            }
+
 
         }
 
        public async Task GetDatabaseSize(string selecteddatabase)
         {
-            var databasesize = await App.Servicehandle.GetDatabaseSizeAsync(selecteddatabase);
-            DatabaseSize = JsonConvert.DeserializeObject<ObservableCollection<DatabaseSizeClass>>(databasesize);
-            
+            string databasesize = null;
+            try
+            {
+                databasesize = await App.Servicehandle.GetDatabaseSizeAsync(selecteddatabase);
+                DatabaseSize = JsonConvert.DeserializeObject<ObservableCollection<DatabaseSizeClass>>(databasesize);
+            }
+
+           catch(Exception e)
+            {
+                ExceptionResult = "Error:" + databasesize;
+                ExceptionOpen = true;
+
+            }
         }
 
 
        public async Task GetConnectionCount(string selecteddatabaase)
         {
+            string connections = null;
 
-            var connections = await App.Servicehandle.GetConnectionCountAsync(selecteddatabaase);
-           ConnectionsCount templist = JsonConvert.DeserializeObject<ConnectionsCount>(connections);
+            try
+            {
+                connections = await App.Servicehandle.GetConnectionCountAsync(selecteddatabaase);
+                ConnectionsCount templist = JsonConvert.DeserializeObject<ConnectionsCount>(connections);
+                 if (ConnectionsList.Count >= 5)
+                   {
+                       ConnectionsList.RemoveAt(0);
+                       ConnectionsList.Add(templist);
+                   }
+                   else
+                   {
+                       ConnectionsList.Add(templist);
+                   }
+                    }
 
-           if (ConnectionsList.Count >= 5)
-           {
-               ConnectionsList.RemoveAt(0);
-               ConnectionsList.Add(templist);
-           }
-           else
-           {
-               ConnectionsList.Add(templist);
-           }
+            catch(Exception e)
+            {
+                ExceptionResult = "Error:" + connections;
+                ExceptionOpen = true;
+            }
+          
           
 
          //  ConnectionsList = _connectionsList;
@@ -182,27 +244,66 @@ namespace AzureSQLApp.ViewModels
 
        public async Task GetResourceUsage(string selecteddatabase)
        {
-           var usagedetails = await App.Servicehandle.GetDBResourceUsageAsync(selecteddatabase);
-           DatabaseResourceUsage = JsonConvert.DeserializeObject<ObservableCollection<DatabaseResources>>(usagedetails);
+           string usagedetails=null;
 
+           try { 
+           usagedetails = await App.Servicehandle.GetDBResourceUsageAsync(selecteddatabase);
+           DatabaseResourceUsage = JsonConvert.DeserializeObject<ObservableCollection<DatabaseResources>>(usagedetails);
+               }
+
+           catch (Exception e)
+           {
+               ExceptionResult = "Error:" + usagedetails;
+               ExceptionOpen = true;
+           }
        }
 
        public async Task GetDBConnectionDetails(string selecteddatabase)
        {
            string[] info= new string[2];
-           var connectionDetails = await App.Servicehandle.GetDBConnectionDetailsAsync(selecteddatabase);
-          info  = JsonConvert.DeserializeObject<string[]>(connectionDetails);
+           string connectionDetails = null;
+           try
+           {
+               connectionDetails = await App.Servicehandle.GetDBConnectionDetailsAsync(selecteddatabase);
+               info = JsonConvert.DeserializeObject<string[]>(connectionDetails);
 
-          DBConnectionDetails = JsonConvert.DeserializeObject<ObservableCollection<DBConnectionClass>>(info[0]);
-          DBConnectionEvents = JsonConvert.DeserializeObject<ObservableCollection<DBConnectionEventsClass>>(info[1]);
+               DBConnectionDetails = JsonConvert.DeserializeObject<ObservableCollection<DBConnectionClass>>(info[0]);
+               DBConnectionEvents = JsonConvert.DeserializeObject<ObservableCollection<DBConnectionEventsClass>>(info[1]);
+           }
+
+           catch(Exception e)
+           {
+               ExceptionResult = "Error:" + connectionDetails;
+               ExceptionOpen = true;
+           }
+
+
        }
 
 
        public async Task GetTopCpuConsumers(string selecteddatabase)
        {
-           var topconsumers = await App.Servicehandle.GetTopCpuConsumersAsync(selecteddatabase);
-           TopCpuConsumers = JsonConvert.DeserializeObject<ObservableCollection<TopCPUConsumersClass>>(topconsumers);
+           string topconsumers = null;
+           try
+           {
+               topconsumers = await App.Servicehandle.GetTopCpuConsumersAsync(selecteddatabase);
+               TopCpuConsumers = JsonConvert.DeserializeObject<ObservableCollection<TopCPUConsumersClass>>(topconsumers);
+           }
 
+           catch (Exception e)
+           {
+               ExceptionResult = "Error:" + topconsumers;
+               ExceptionOpen = true;
+           }
+
+
+
+       }
+
+       public void HandleException()
+       {
+           ExceptionOpen = false;
+           App.AppFrame.Navigate(typeof(HomePageView));
        }
 
 

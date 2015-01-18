@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Navigation;
 using AzureSQLApp.Common;
 using AzureSQLApp.ViewModels;
 using AzureSQLApp.Models;
+using System.Threading.Tasks;
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace AzureSQLApp.Views
@@ -28,38 +29,78 @@ namespace AzureSQLApp.Views
 
         private NavigationHelper navigationHelper;
         DatabaseDetailsViewModel _databasedetails = new DatabaseDetailsViewModel();
+        DispatcherTimer DispatchTimerTab1;
+        DispatcherTimer DispatchTimerTab2;
+        DispatcherTimer DispatchTimerTab3;
+        DispatcherTimer DispatchTimerTab4;
 
-
-
-        DispatcherTimer DispatchTimer;
-
-
-        public void DispactcherTimeSetup()
+        public void DispactcherTimeSetupTab1()
         {
-            DispatchTimer = new DispatcherTimer();
-            DispatchTimer.Tick += DispatchTimer_Tick;
-            DispatchTimer.Interval = new TimeSpan(0, 0, 5);
-            DispatchTimer.Start();
+            DispatchTimerTab1 = new DispatcherTimer();
+            DispatchTimerTab1.Tick += DispatchTimer_Tick_Tab1;
+            DispatchTimerTab1.Interval = new TimeSpan(0, 0, 5);
+            DispatchTimerTab1.Start();
+
+        }
+
+        
+
+        public void DispactcherTimeSetupTab2()
+        {
+            DispatchTimerTab2 = new DispatcherTimer();
+            DispatchTimerTab2.Tick += DispatchTimer_Tick_Tab2;
+            DispatchTimerTab2.Interval = new TimeSpan(0, 0, 5);
+           
+
+        }
+
+        public void DispactcherTimeSetupTab3()
+        {
+            DispatchTimerTab3 = new DispatcherTimer();
+            DispatchTimerTab3.Tick += DispatchTimer_Tick_Tab3;
+            DispatchTimerTab3.Interval = new TimeSpan(0, 0, 5);
+            
+
+        }
+
+        public void DispactcherTimeSetupTab4()
+        {
+            DispatchTimerTab4 = new DispatcherTimer();
+            DispatchTimerTab4.Tick += DispatchTimer_Tick_Tab4;
+            DispatchTimerTab4.Interval = new TimeSpan(0, 0, 5);
+           
 
         }
 
 
-        async void DispatchTimer_Tick(object sender, object e)
+        async void DispatchTimer_Tick_Tab1(object sender, object e)
         {
             if(BasicDetailsGrid.Visibility==Visibility.Visible)
                 await DatabaseDetails.GetConnectionCount(selectedDatabase.DatabaseName);
-           
-            if(ResourceUsageGrid.Visibility==Visibility.Visible)
-            await DatabaseDetails.GetResourceUsage(selectedDatabase.DatabaseName);
+    
+        }
 
+
+        async void DispatchTimer_Tick_Tab2(object sender, object e)
+        {
+            if (ResourceUsageGrid.Visibility == Visibility.Visible)
+                await DatabaseDetails.GetResourceUsage(selectedDatabase.DatabaseName);
+
+
+        }
+        async void DispatchTimer_Tick_Tab3(object sender, object e)
+        {
             if (ConnectionsGrid.Visibility == Visibility.Visible)
                 await DatabaseDetails.GetDBConnectionDetails(selectedDatabase.DatabaseName);
 
+        }
+
+        async void DispatchTimer_Tick_Tab4(object sender, object e)
+        {
             if (CPUConsumersGrid.Visibility == Visibility.Visible)
             {
                 await DatabaseDetails.GetTopCpuConsumers(selectedDatabase.DatabaseName);
             }
-
         }
 
 
@@ -84,10 +125,12 @@ namespace AzureSQLApp.Views
             await DatabaseDetails.GetDatabaseSize(selectedDatabase.DatabaseName);
             await DatabaseDetails.GetTablesCommand(selectedDatabase.DatabaseName);
             await DatabaseDetails.GetConnectionCount(selectedDatabase.DatabaseName);
-             
-              
-              DispactcherTimeSetup();
-
+            DispactcherTimeSetupTab1();
+            DispatchTimerTab1.Start();
+            BasicDetails.IsEnabled = false;
+            DispactcherTimeSetupTab2();
+            DispactcherTimeSetupTab3();
+            DispactcherTimeSetupTab4();
         }
 
 
@@ -118,42 +161,76 @@ namespace AzureSQLApp.Views
 
         #endregion
 
-        private void ResourceDetails_Click(object sender, RoutedEventArgs e)
+        private async void BasicDetails_Click(object sender, RoutedEventArgs e)
         {
+            DispatchTimerTab2.Stop();
+            DispatchTimerTab3.Stop();
+            DispatchTimerTab4.Stop();
+            ResourceUsageGrid.Visibility = Visibility.Collapsed;
+            ConnectionsGrid.Visibility = Visibility.Collapsed;
+            CPUConsumersGrid.Visibility = Visibility.Collapsed;
+            
+            BasicDetailsGrid.Visibility = Visibility.Visible;
+            await DatabaseDetails.GetDatabaseSize(selectedDatabase.DatabaseName);
+            await DatabaseDetails.GetTablesCommand(selectedDatabase.DatabaseName);
+            await DatabaseDetails.GetConnectionCount(selectedDatabase.DatabaseName);
+            DispatchTimerTab1.Start();
+        }
+
+
+        private async void ResourceDetails_Click(object sender, RoutedEventArgs e)
+        {
+            DispatchTimerTab1.Stop();
+            DispatchTimerTab3.Stop();
+            DispatchTimerTab4.Stop();
             BasicDetailsGrid.Visibility = Visibility.Collapsed;
             ConnectionsGrid.Visibility = Visibility.Collapsed;
             CPUConsumersGrid.Visibility = Visibility.Collapsed;
             ResourceUsageGrid.Visibility = Visibility.Visible;
-            DispatchTimer_Tick(DispatchTimer, (object)e);
+            BasicDetails.IsEnabled = true;
+            ResourceDetails.IsEnabled = false;
+            ConnectionDetails.IsEnabled = true;
+            TopCPUConsumers.IsEnabled = true;
+            await DatabaseDetails.GetResourceUsage(selectedDatabase.DatabaseName);
+            DispatchTimerTab2.Start();
+            
         }
 
-        private void BasicDetails_Click(object sender, RoutedEventArgs e)
-        {
-            ResourceUsageGrid.Visibility = Visibility.Collapsed;
-            ConnectionsGrid.Visibility = Visibility.Collapsed;
-            CPUConsumersGrid.Visibility = Visibility.Collapsed;
-            BasicDetailsGrid.Visibility = Visibility.Visible;
-            DispatchTimer_Tick(DispatchTimer, (object)e);
-        }
+       
 
-        private void ConnectionDetails_Click(object sender, RoutedEventArgs e)
+        private async void ConnectionDetails_Click(object sender, RoutedEventArgs e)
         {
+            DispatchTimerTab1.Stop();
+            DispatchTimerTab2.Stop();
+            DispatchTimerTab4.Stop();
             ResourceUsageGrid.Visibility = Visibility.Collapsed;
             BasicDetailsGrid.Visibility = Visibility.Collapsed;
             CPUConsumersGrid.Visibility = Visibility.Collapsed;
             ConnectionsGrid.Visibility = Visibility.Visible;
-            DispatchTimer_Tick(DispatchTimer, (object)e);
+            BasicDetails.IsEnabled = true;
+            ResourceDetails.IsEnabled = true;
+            ConnectionDetails.IsEnabled = false;
+            TopCPUConsumers.IsEnabled = true;
+            await DatabaseDetails.GetDBConnectionDetails(selectedDatabase.DatabaseName);
+            DispatchTimerTab3.Start();
         }
 
 
-        private void TopCPUConsumers_OnClick(object sender, RoutedEventArgs e)
+        private async void TopCPUConsumers_OnClick(object sender, RoutedEventArgs e)
         {
-
+            DispatchTimerTab1.Stop();
+            DispatchTimerTab2.Stop();
+            DispatchTimerTab3.Stop();
             ResourceUsageGrid.Visibility = Visibility.Collapsed;
             BasicDetailsGrid.Visibility = Visibility.Collapsed;
             ConnectionsGrid.Visibility = Visibility.Collapsed;
             CPUConsumersGrid.Visibility = Visibility.Visible;
-            DispatchTimer_Tick(DispatchTimer, (object)e);
+            BasicDetails.IsEnabled = true;
+            ResourceDetails.IsEnabled = true;
+            ConnectionDetails.IsEnabled = true;
+            TopCPUConsumers.IsEnabled = false;
+            await DatabaseDetails.GetTopCpuConsumers(selectedDatabase.DatabaseName);
+            DispatchTimerTab4.Start();
 
 
         }

@@ -22,14 +22,35 @@
             </DataTemplate>
 
             <DataTemplate x:Key="CpuConsumersTemplate">
-                <StackPanel Orientation="Horizontal" Height="200">
+                <!--<StackPanel Orientation="Horizontal" Height="300">
                     <TextBlock Text="{Binding SQLText}" TextWrapping="Wrap" IsTextSelectionEnabled="True" Padding="2"></TextBlock>
                     <TextBlock Text="{Binding ExecutionCount}" Padding="2"></TextBlock>
                     <TextBlock Text="{Binding TotalCPUMs}" Padding="2"></TextBlock>
                     <TextBlock Text="{Binding TotalElapsedMs}" Padding="2"></TextBlock>
                     <TextBlock Text="{Binding CPUPercentage}" Padding="2"></TextBlock>
                     <TextBlock Text="{Binding AverageCPUMs}" Padding="2"></TextBlock>
-                </StackPanel>
+                </StackPanel>-->
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="100"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="300"/>
+                        <ColumnDefinition Width="105"/>
+                        <ColumnDefinition Width="143"/>
+                        <ColumnDefinition Width="168"/>
+                        <ColumnDefinition Width="154"/>
+                        <ColumnDefinition Width="168"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox Text="{Binding SQLText}" Grid.Column="0"  IsReadOnly="True" TextWrapping="Wrap"  Padding="2"></TextBox>
+                    <TextBlock Text="{Binding ExecutionCount}" HorizontalAlignment="Center" Grid.Column="1"  Padding="2"></TextBlock>
+                    <TextBlock Text="{Binding TotalCPUMs}" HorizontalAlignment="Center" Grid.Column="2" Padding="2"></TextBlock>
+                    <TextBlock Text="{Binding TotalElapsedMs}" HorizontalAlignment="Center" Grid.Column="3"  Padding="2"></TextBlock>
+                    <TextBlock Text="{Binding CPUPercentage}" HorizontalAlignment="Center" Grid.Column="4"  Padding="2"></TextBlock>
+                    <TextBlock Text="{Binding AverageCPUMs}" HorizontalAlignment="Center" Grid.Column="5"  Padding="2"></TextBlock>
+
+
+                </Grid>
 
             </DataTemplate>
 
@@ -59,12 +80,12 @@
     </Page.Resources>
     <Grid Background="#FF071C3E">
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="0.5*"/>
-            <RowDefinition Height="3*"/>
+            <RowDefinition Height="170*"/>
+            <RowDefinition Height="100*"/>
+            <RowDefinition Height="496*"/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" Height="100" VerticalAlignment="Center">
+        <Grid Grid.Row="0" Height="100" VerticalAlignment="Center" Margin="0,36,0,35">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.3*"/>
                 <ColumnDefinition Width="3*"/>
@@ -117,7 +138,8 @@
             </Button>
         </Grid>
 
-        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="128,0" Width="1110">
+
             <Button x:Name="BasicDetails"  Click="BasicDetails_Click" Content="Basic Details" FontSize="30" FontWeight="Bold" Padding="10" BorderThickness="1" UseLayoutRounding="True">
 
             </Button>
@@ -125,6 +147,7 @@
             <Button x:Name="ConnectionDetails" Content="Connections Overview" Click="ConnectionDetails_Click" FontSize="30" FontWeight="Bold" Padding="10" BorderThickness="1" UseLayoutRounding="True"></Button>
             <Button x:Name="TopCPUConsumers" Content="Top CPU Consumers" Click="TopCPUConsumers_OnClick" FontSize="30" FontWeight="Bold" Padding="10" BorderThickness="1" UseLayoutRounding="True"></Button>
         </StackPanel>
+
 
 
         <Grid Grid.Row="2" x:Name="BasicDetailsGrid">
@@ -141,7 +164,7 @@
 
             <charting:Chart
                 x:Name="DBSizeChart"
-                Title="Max vs Used"  LegendTitle="Table Names" Grid.Column="0" Grid.Row="1" >
+                Title="Max vs Used"  LegendTitle="Table Names" Grid.Column="0" Grid.Row="1" Width="500" >
                 <charting:Chart.Series>
                     <charting:PieSeries
                         Title="Max vs Used"
@@ -155,7 +178,7 @@
 
             <charting:Chart
                 x:Name="PieChart"
-                Title="Table Sizes" LegendTitle="Table Names" Grid.Column="1" Grid.Row="1" >
+                Title="Table Sizes" LegendTitle="Table Names" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" >
                 <charting:Chart.Series>
                     <charting:PieSeries
                         Title="TableSizes"
@@ -306,21 +329,54 @@
 
         </Grid>
 
-        <Grid Grid.Row="2" x:Name="CPUConsumersGrid" Visibility="Collapsed">
+        <Grid Grid.Row="2" x:Name="CPUConsumersGrid" Visibility="Collapsed" HorizontalAlignment="Center" Width="1100" Margin="133,0" >
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="1000"/>
             </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="SQL Statement" Grid.Column="0" FontSize="20" FontWeight="Bold" TextWrapping="Wrap"  Padding="2"></TextBlock>
+                <TextBlock Text="Executions" Grid.Column="1" FontSize="20" FontWeight="Bold" Padding="2"></TextBlock>
+                <TextBlock Text="Total CPU (ms)" Grid.Column="2" FontSize="20" FontWeight="Bold" Padding="2"></TextBlock>
+                <TextBlock Text="Total Elapsed(ms)" Grid.Column="3" FontSize="20" FontWeight="Bold" Padding="2"></TextBlock>
+                <TextBlock Text="Percentage CPU" Grid.Column="4" FontSize="20" FontWeight="Bold" Padding="2"></TextBlock>
+                <TextBlock Text="Average CPU(ms)" Grid.Column="5" FontSize="20" FontWeight="Bold" Padding="2"></TextBlock>
 
 
-            <GridView x:Name="CpuConsumersGridView" Grid.Row="0" ItemTemplate="{StaticResource CpuConsumersTemplate}" ItemsSource="{Binding TopCpuConsumers}"
-                           >
-                <ContentPresenter/>
+            </Grid>
+
+            <GridView x:Name="CpuConsumersGridView" Grid.Row="1" ItemTemplate="{StaticResource CpuConsumersTemplate}" ItemsSource="{Binding TopCpuConsumers}">
+
+                <ContentPresenter Height="1000"/>
 
             </GridView>
 
         </Grid>
 
-
+        <ContentControl  x:Name="container" HorizontalAlignment="Stretch" Width="auto" Margin="0,11,0,10">
+            <Popup x:Name="ExceptionPop" HorizontalAlignment="Stretch" IsOpen="{Binding ExceptionOpen, Mode=TwoWay}" Width="auto">
+                <Grid Background="#FF22476C" x:Name="gdChild" HorizontalAlignment="Stretch" Height="300" Width="auto">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock HorizontalAlignment="Center" Grid.Row="0" Text="{Binding ExceptionResult}" TextWrapping="Wrap" Width="auto"/>
+                    <Button Margin="715,129,691,-144" Grid.Row="1" x:Name="Tryagain" Command="{Binding Exceptionpopupcommand}"  Foreground="White"  Width="180" HorizontalAlignment="Center" Height="55">
+                        <Viewbox Height="30" Width="200">
+                            <TextBlock Text="Try again"/>
+                        </Viewbox>
+                    </Button>
+                </Grid>
+            </Popup>
+        </ContentControl>
 
 
 
