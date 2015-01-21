@@ -26,6 +26,10 @@ namespace AzureSQLApp.ViewModels
          string datetext;
          string timetext;
          int whileindex = 0;
+         string gridviewvisibility = null;
+         public bool isopenproperty;
+         public RelayCommand Exceptionpopupcommand { get; private set; }
+         private string _exceptionResult;
 
         public ObservableCollection<Databases> DatabaseList
         {
@@ -50,6 +54,30 @@ namespace AzureSQLApp.ViewModels
             {
                 servername = value;
                 RaisePropertyChanged("Servername");
+            }
+        }
+
+        public bool ExceptionOpen
+        {
+            get { return isopenproperty; }
+
+            set
+            {
+                isopenproperty = value;
+                RaisePropertyChanged("ExceptionOpen");
+            }
+        }
+
+        public string ExceptionResult
+        {
+            get
+            {
+                return _exceptionResult;
+            }
+            set
+            {
+                _exceptionResult = value;
+                RaisePropertyChanged("ExceptionResult");
             }
         }
 
@@ -103,88 +131,126 @@ namespace AzureSQLApp.ViewModels
             }
         }
 
+        public string Gridviewvisibility
+        {
+            get
+            {
+                return gridviewvisibility;
+            }
+            set
+            {
+                gridviewvisibility = value;
+                RaisePropertyChanged("Gridviewvisibility");
+            }
+        }
         
 
         public ListDatabasesViewModel()
         {
+           
             SelectDatabase = new Helpers.RelayCommand<Databases>(GoDatabaseDetails); 
             //GetDatabases = new RelayCommand(()=>GetDatabasesCommand());
             LogOut = new RelayCommand(()=> LogoutNow());
+            Exceptionpopupcommand = new RelayCommand(() => HandleException());
         }
+
+
 
         public async Task GetDatabasesCommand()
         {
+
+            try
+            {
+                var dblist = await App.Servicehandle.GetDatabaseListAsync();
+
+                ObservableCollection<Databases> templist = JsonConvert.DeserializeObject<ObservableCollection<Databases>>(dblist);
+
+                DatabaseList = templist;
+
+                //just for testin - need to remove this line later
+                //    DatabaseList[3].DatabaseState = "OFFLINE";
+
+                while (whileindex < DatabaseList.Count)
+                {
+                    if (DatabaseList[whileindex].DatabaseState == "ONLINE")
+                    {
+                        DatabaseList[whileindex].Greenvisibility = "Visible";
+                        DatabaseList[whileindex].Redvisibility = "Collapsed";
+                    }
+                    else
+                    {
+                        DatabaseList[whileindex].Redvisibility = "Visible";
+                        DatabaseList[whileindex].Greenvisibility = "Collapsed";
+                    }
+                    whileindex += 1;
+                }
+            }
+
+            catch(Exception e)
+            {
+                ExceptionResult = "Error:" + e.Message;
+                ExceptionOpen = true;
+            }
            
 
-            var dblist = await App.Servicehandle.GetDatabaseListAsync();
             
-            ObservableCollection<Databases> templist = JsonConvert.DeserializeObject<ObservableCollection<Databases>>(dblist);
-            
-            DatabaseList = templist;
-
-           //just for testin - need to remove this line later
-        //    DatabaseList[3].DatabaseState = "OFFLINE";
-
-            while (whileindex < DatabaseList.Count)
-            {
-                if (DatabaseList[whileindex].DatabaseState == "ONLINE")
-                {
-                    DatabaseList[whileindex].Greenvisibility = "Visible";
-                    DatabaseList[whileindex].Redvisibility = "Collapsed";
-                }
-                else
-                {
-                    DatabaseList[whileindex].Redvisibility = "Visible";
-                    DatabaseList[whileindex].Greenvisibility = "Collapsed";
-                }
-                whileindex += 1;
-            }
-            
-
         }
 
         public async Task getSysInfo()
         {
-            var sysinfoobject = await App.Servicehandle.getSystemInfoAsync();
-            Sysinfo templist = JsonConvert.DeserializeObject<Sysinfo>(sysinfoobject);
+            try
+            {
 
-            if (templist.ServerName != null)
-            {
-                Servername = templist.ServerName.ToString();
-            }   
-            else
-            {
-                Servername = "null";
+                var sysinfoobject = await App.Servicehandle.getSystemInfoAsync();
+                Sysinfo templist = JsonConvert.DeserializeObject<Sysinfo>(sysinfoobject);
+
+                if (templist.ServerName != null)
+                {
+                    Servername = templist.ServerName.ToString();
+                }
+                else
+                {
+                    Servername = "null";
+                }
+                if (templist.LoginName != null)
+                {
+                    Userid = templist.LoginName.ToString();
+                }
+                else
+                {
+                    Userid = "null";
+                }
+                if (templist.VersionInfo != null)
+                {
+                    Version = templist.VersionInfo.ToString();
+                    string[] tmpversion = Version.Split('\n');
+                    Version = tmpversion[0];
+                }
+                else
+                {
+                    Version = "null";
+                }
+                if (templist.DatetimeInfo != null)
+                {
+                    Datetext = templist.DatetimeInfo.ToString();
+                    string[] tempdatetimetext = Datetext.Split(' ');
+                    Datetext = tempdatetimetext[0];
+                    Timetext = tempdatetimetext[1];
+                }
+                else
+                {
+                    Datetext = Timetext = "null";
+                }
             }
-            if (templist.LoginName != null)
+
+            catch(Exception e)
             {
-                Userid = templist.LoginName.ToString();
+                ExceptionResult = "Error:" + e.Message;
+                ExceptionOpen = true;
+                Servername = Userid = Version = Datetext = Timetext = null;
             }
-            else
-            {
-                Userid = "null";
-            }
-            if (templist.VersionInfo != null)
-            {
-                Version = templist.VersionInfo.ToString();
-                string[] tmpversion = Version.Split('\n');
-                Version = tmpversion[0];
-            }
-            else
-            {
-                Version = "null";
-            }
-            if (templist.DatetimeInfo != null)
-            {
-                Datetext = templist.DatetimeInfo.ToString();
-                string[] tempdatetimetext = Datetext.Split(' ');
-                Datetext = tempdatetimetext[0];
-                Timetext = tempdatetimetext[1];
-            }
-            else
-            {
-                Datetext = Timetext = "null";
-            }
+           
+            
         }
 
         //After database is selected, we navigate to the next page with the database ID.
@@ -198,6 +264,12 @@ namespace AzureSQLApp.ViewModels
 
         public void LogoutNow()
         {
+            App.AppFrame.Navigate(typeof(HomePageView));
+        }
+
+        public void HandleException()
+        {
+            ExceptionOpen = false;
             App.AppFrame.Navigate(typeof(HomePageView));
         }
 

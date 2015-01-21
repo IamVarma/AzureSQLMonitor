@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using AzureSQLApp.ViewModels;
 using AzureSQLApp.Common;
+
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace AzureSQLApp.Views
@@ -49,12 +50,18 @@ namespace AzureSQLApp.Views
         private async void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
             ProgressBar.IsActive = true;
+            databasesgrid.Visibility = Visibility.Collapsed;
             await ListDatabasesViewModel.getSysInfo();
             await ListDatabasesViewModel.GetDatabasesCommand();
          
             DatabaseGridView.SelectedItem = null;
-
+            databasesgrid.Visibility = Visibility.Visible;
             ProgressBar.IsActive = false;
+            
+            /*DateTime dt = new DateTime();
+            dt = DateTime.Now.ToUniversalTime();
+            timetextdata.Text = dt.ToString("dd-MM-yyyy HH:mm:ss");*/
+         
         }
 
 
@@ -85,6 +92,7 @@ namespace AzureSQLApp.Views
 
         #endregion
 
+    
         
     }
 }

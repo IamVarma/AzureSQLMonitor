@@ -175,10 +175,13 @@
     <Content Include="Assets\Logo.scale-100.png" />
     <Content Include="Assets\SmallLogo.scale-100.png" />
     <Content Include="Assets\SplashScreen.scale-100.png" />
+    <Content Include="Assets\SplashScreen.scale-140.png" />
+    <Content Include="Assets\SplashScreen.scale-180.png" />
     <Content Include="Assets\StoreLogo.scale-100.png" />
     <Content Include="Images\arrow_button_metal_green_up.png" />
     <Content Include="Images\arrow_button_metal_red_down.png" />
     <Content Include="Images\cloud5.png" />
+    <Content Include="Images\loading-splash-screen.png" />
     <None Include="Service References\AzureSQLService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>

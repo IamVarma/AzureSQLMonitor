@@ -221,7 +221,7 @@ namespace AzureSQLApp.ViewModels
         public void cancleLogin()
         {
             cts.Cancel();
-            //App.AppFrame.Navigate(typeof(HomePageView));
+            App.AppFrame.Navigate(typeof(HomePageView));
             Loginbuttonvisibility = "Visibile";
             Cancelbuttonvisibility = "Collapsed";
         }
