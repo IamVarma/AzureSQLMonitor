@@ -13,8 +13,7 @@ namespace AzureSQLWCFService
 {
     public class ListDatabases:ConnectionBase
     {
-
-       
+              
 
         public string getDatabases()
         {
@@ -30,19 +29,25 @@ namespace AzureSQLWCFService
             string queryfordatabasesize = "SELECT SUM(reserved_page_count)*8.0/1024 as dbasesize FROM sys.dm_db_partition_stats";
             SqlCommand sqlcmd;
 
-            if (DatabaseName != "master" || connection.State != System.Data.ConnectionState.Open)
+            //if (DatabaseName != "master" || connection.State != System.Data.ConnectionState.Open)
+            //{
+            //    string ConnectionResult=ChangeDatabasecontext("master");
+
+            //    if (ConnectionResult != "Success")
+            //    {
+            //        return ConnectionResult;
+            //    }
+
+            //}
+         var connectionString = "Server=tcp:" + ServerName + ",1433;Database=master;User ID=" + LoginName + ";Password=" + Password + ";Trusted_Connection=False;Encrypt=True;Connection Timeout=10;Application Name=AzureMonitor;";
+            
+            using(SqlConnection connection= new SqlConnection(connectionString))
             {
-                string ConnectionResult=ChangeDatabasecontext("master");
+               try
+               {
 
-                if (ConnectionResult != "Success")
-                {
-                    return ConnectionResult;
-                }
+                   connection.Open();
 
-            }
-
-           try
-            {
                 if (connection.State == System.Data.ConnectionState.Open)
                 {
 
@@ -68,46 +73,72 @@ namespace AzureSQLWCFService
                                 _dbase.Add(dbaseelement);
                                 dbaseelement = null;
                             }
-                            
                         }
                         dr.Close();                   
                     }
-                    //connection.Close();
+
+                }
+              }
+                
+                        catch (Exception ex)
+                    {
+                        return "Problem listing databases::"+ex.Message;
+                    }
+
+
+            
+            
+                    finally
+                    {
+                        connection.Close();
+                    }
+            }       //connection.Close();
+                   
+            
+            
                     int whileindex=0;
                     while (whileindex < _dbase.Count)
                     {
-                        ChangeDatabasecontext(_dbase[whileindex].DatabaseName);
-                        sqlcmd = new SqlCommand(queryfordatabasesize, connection);
-                        using (SqlDataReader dr = sqlcmd.ExecuteReader())
+                        var connectionstring1 = "Server=tcp:" + ServerName + ",1433;Database="+_dbase[whileindex].DatabaseName+";User ID=" + LoginName + ";Password=" + Password + ";Trusted_Connection=False;Encrypt=True;Connection Timeout=10;Application Name=AzureMonitor;";
+                        
+                        using(SqlConnection connection1 = new SqlConnection(connectionstring1))
                         {
-                            while (dr.Read())
-                            {
-                                _dbase[whileindex].DatabaseSize = dr["dbasesize"].ToString();//+" (MB)";
-                                DBList.Add(_dbase[whileindex]);
+                            try{
+
+                                connection1.Open();
+
+                                sqlcmd = new SqlCommand(queryfordatabasesize, connection1);
+                                using (SqlDataReader dr = sqlcmd.ExecuteReader())
+                                {
+                                    while (dr.Read())
+                                    {
+                                        _dbase[whileindex].DatabaseSize = dr["dbasesize"].ToString();//+" (MB)";
+                                        DBList.Add(_dbase[whileindex]);
+                                    }
+
+                                }
+                              whileindex += 1;
                             }
+                        
+                       catch (Exception ex)
+                                {
+                                    return "Problem listing databases::"+ex.Message;
+                                }
+
+
+            
+            
+                                finally
+                                {
+                                    connection.Close();
+                                }
 
                         }
-                    whileindex += 1;
-                    
                     }
-                    
+                    return JsonConvert.SerializeObject(DBList);
                 }
 
-                return JsonConvert.SerializeObject(DBList);
+                
             }
-            catch (Exception ex)
-            {
-                return "Problem listing databases::"+ex.Message;
-            }
-
             
-            
-            
-            finally
-            {
-                connection.Close();
-            }
-
         }
-    }
-}

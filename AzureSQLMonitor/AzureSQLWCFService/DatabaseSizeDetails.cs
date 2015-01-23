@@ -16,45 +16,61 @@ namespace AzureSQLWCFService
 
         public string GetDatabaseSize(string dbname)
         {
-            if (connection.Database != dbname || connection.State == System.Data.ConnectionState.Closed)
-                ChangeDatabasecontext(dbname);
+            //if (connection.Database != dbname || connection.State == System.Data.ConnectionState.Closed)
+            //{
+            //    string ConnectionResult = ChangeDatabasecontext(dbname);
+
+            //    if (ConnectionResult != "Success")
+            //    {
+            //        return ConnectionResult;
+            //    }
+
+
+            //}
 
             string querytext = "select cast(DATABASEPROPERTYEX  ( '"+dbname+"','MaxSizeInBytes' ) as bigint)/1048576000 as MaxSize, SUM(reserved_page_count)*8.0/1048576 as UsedSize FROM sys.dm_db_partition_stats;";
-            try
+            var connectionString = "Server=tcp:" + ServerName + ",1433;Database=" + dbname + ";User ID=" + LoginName + ";Password=" + Password + ";Trusted_Connection=False;Encrypt=True;Connection Timeout=10;Application Name=AzureMonitor;";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                if (connection.State == System.Data.ConnectionState.Open)
+
+                try
                 {
+                    connection.Open();
 
-                    sqlcmd = new SqlCommand(querytext, connection);
-
-                    using (SqlDataReader dr = sqlcmd.ExecuteReader())
+                    if (connection.State == System.Data.ConnectionState.Open)
                     {
 
-                        dr.Read();
-                        _databaseSize = new DatabaseSizeClass { Name = "MaxSize", Size = float.Parse(dr["MaxSize"].ToString()) };
-                        DatabaseSize.Add(_databaseSize);
-                        _databaseSize = new DatabaseSizeClass { Name = "UsedSize", Size = float.Parse(dr["UsedSize"].ToString()) };
-                        DatabaseSize.Add(_databaseSize);
-                        
+                        sqlcmd = new SqlCommand(querytext, connection);
+
+                        using (SqlDataReader dr = sqlcmd.ExecuteReader())
+                        {
+
+                            dr.Read();
+                            _databaseSize = new DatabaseSizeClass { Name = "MaxSize", Size = float.Parse(dr["MaxSize"].ToString()) };
+                            DatabaseSize.Add(_databaseSize);
+                            _databaseSize = new DatabaseSizeClass { Name = "UsedSize", Size = float.Parse(dr["UsedSize"].ToString()) };
+                            DatabaseSize.Add(_databaseSize);
+
+                        }
                     }
+
+                    return JsonConvert.SerializeObject(DatabaseSize);
+
                 }
 
-                return JsonConvert.SerializeObject(DatabaseSize);
+                catch (Exception ex)
+                {
 
+                    return "Problem fetching DatabaseDetails::" + ex.Message;
+                }
+
+                finally
+                {
+
+                    connection.Close();
+                }
             }
-
-            catch (Exception ex)
-            {
-
-                return "Problem fetching DatabaseDetails::"+ex.Message;
-            }
-
-            finally
-            {
-
-                connection.Close();
-            }
-           
         }
 
     }

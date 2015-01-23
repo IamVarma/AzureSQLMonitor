@@ -18,12 +18,28 @@ namespace AzureSQLWCFService
         public string GetActiveConnections(string dbname)
         {
 
-            if (connection.Database != dbname || connection.State == System.Data.ConnectionState.Closed)
-                 ChangeDatabasecontext(dbname);
+            //if (connection.Database != dbname || connection.State == System.Data.ConnectionState.Closed)
+            //{
+            //    string ConnectionResult = ChangeDatabasecontext(dbname);
 
-            string querytext = "select count(*) as ConnectionCount,getdate() as Time from sys.dm_exec_connections";
+            //    if (ConnectionResult != "Success")
+            //    {
+            //        return ConnectionResult;
+            //    }
+
+
+            //}
+
+            var connectionString = "Server=tcp:" + ServerName + ",1433;Database=" + dbname + ";User ID=" + LoginName + ";Password=" + Password + ";Trusted_Connection=False;Encrypt=True;Connection Timeout=10;Application Name=AzureMonitor;";
+            
+            using(SqlConnection connection= new SqlConnection(connectionString))
+            { 
+
+                    string querytext = "select count(*) as ConnectionCount,getdate() as Time from sys.dm_exec_connections";
             try
             {
+                connection.Open();
+
                 if (connection.State == System.Data.ConnectionState.Open)
                 {  
 
@@ -46,11 +62,10 @@ namespace AzureSQLWCFService
                 return JsonConvert.SerializeObject(_connectionCount);
 
             }
-
             catch (Exception ex)
             {
 
-                return "Problem listing DatabaseConnections::"+ex.Message;
+                return "Problem listing Database Connections::" + ex.Message;
             }
 
             finally
@@ -59,6 +74,11 @@ namespace AzureSQLWCFService
                 connection.Close();
             }
            
+
+
+
+            }
+            
 
 
         
