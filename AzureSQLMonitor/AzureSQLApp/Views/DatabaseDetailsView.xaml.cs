@@ -171,6 +171,11 @@ namespace AzureSQLApp.Views
             CPUConsumersGrid.Visibility = Visibility.Collapsed;
             
             BasicDetailsGrid.Visibility = Visibility.Visible;
+            BasicDetails.IsEnabled = false;
+            ResourceDetails.IsEnabled = true;
+            ConnectionDetails.IsEnabled = true;
+            TopCPUConsumers.IsEnabled = true;
+
             await DatabaseDetails.GetDatabaseSize(selectedDatabase.DatabaseName);
             await DatabaseDetails.GetTablesCommand(selectedDatabase.DatabaseName);
             await DatabaseDetails.GetConnectionCount(selectedDatabase.DatabaseName);
