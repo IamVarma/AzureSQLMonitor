@@ -235,7 +235,7 @@ namespace AzureSQLApp.ViewModels
                     Datetext = templist.DatetimeInfo.ToString();
                     string[] tempdatetimetext = Datetext.Split(' ');
                     Datetext = tempdatetimetext[0];
-                    Timetext = tempdatetimetext[1];
+                    Timetext = tempdatetimetext[1]+"(GMT)";
                 }
                 else
                 {

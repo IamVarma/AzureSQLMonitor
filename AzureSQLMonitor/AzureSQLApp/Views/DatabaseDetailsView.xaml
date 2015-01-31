@@ -22,7 +22,7 @@
             </DataTemplate>
 
             <DataTemplate x:Key="CpuConsumersTemplate">
-              
+
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="100"/>
@@ -35,11 +35,11 @@
                         <ColumnDefinition Width="154"/>
                         <ColumnDefinition Width="168"/>
                     </Grid.ColumnDefinitions>
-                    <TextBox Text="{Binding SQLText}" Grid.Column="0"  IsReadOnly="True" TextWrapping="Wrap"  Padding="2"></TextBox>
+                    <TextBox Text="{Binding SQLText}" Grid.Column="0"  IsReadOnly="True" TextWrapping="Wrap"   Padding="2"></TextBox>
                     <TextBlock Text="{Binding ExecutionCount}" HorizontalAlignment="Center" Grid.Column="1"  Padding="2"></TextBlock>
-                    <TextBlock Text="{Binding TotalCPUMs}" HorizontalAlignment="Center" Grid.Column="2" Padding="2"></TextBlock>
-                    <TextBlock Text="{Binding TotalElapsedMs}" HorizontalAlignment="Center" Grid.Column="3"  Padding="2"></TextBlock>
-                    <TextBlock Text="{Binding CPUPercentage}" HorizontalAlignment="Center" Grid.Column="4"  Padding="2"></TextBlock>
+                    <TextBlock Text="{Binding TotalCPUMs}" HorizontalAlignment="Center" Grid.Column="2"  Padding="2"></TextBlock>
+                    <TextBlock Text="{Binding TotalElapsedMs}" HorizontalAlignment="Center" Grid.Column="3"   Padding="2"></TextBlock>
+                    <TextBlock Text="{Binding CPUPercentage}" HorizontalAlignment="Center" Grid.Column="4"   Padding="2"></TextBlock>
                     <TextBlock Text="{Binding AverageCPUMs}" HorizontalAlignment="Center" Grid.Column="5"  Padding="2"></TextBlock>
 
 
@@ -55,11 +55,11 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="3*"/>
                         <ColumnDefinition Width="1*"/>
-                        
+
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="{Binding TableName}" Grid.Column="0"  TextWrapping="Wrap"  Padding="2"></TextBlock>
                     <TextBlock Text="{Binding TableSize}" HorizontalAlignment="Center" Grid.Column="1"  Padding="2"></TextBlock>
-                  
+
 
 
                 </Grid>
@@ -68,7 +68,7 @@
 
             </DataTemplate>
 
-                <Style x:Key="RoundCorner" TargetType="Button">
+            <Style x:Key="RoundCorner" TargetType="Button">
                 <Setter Property="HorizontalContentAlignment" Value="Center"/>
                 <Setter Property="VerticalContentAlignment" Value="Center"/>
                 <Setter Property="Padding" Value="1"/>
@@ -94,12 +94,12 @@
     </Page.Resources>
     <Grid Background="#FF071C3E">
         <Grid.RowDefinitions>
-            <RowDefinition Height="170*"/>
-            <RowDefinition Height="100*"/>
-            <RowDefinition Height="496*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" Height="100" VerticalAlignment="Center" Margin="0,36,0,35">
+        <Grid Grid.Row="0" Height="110" VerticalAlignment="Center">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.3*"/>
                 <ColumnDefinition Width="3*"/>
@@ -129,7 +129,7 @@
 
             </Button>
 
-            <TextBlock x:Name="DBName" FontSize="50" Grid.Column="1" Text="AdventureWorks2012" VerticalAlignment="Center"></TextBlock>
+            <TextBlock x:Name="AppName" FontSize="50" Grid.Column="1" Text="AdventureWorks2012" VerticalAlignment="Bottom" Margin="0,0,0,20"></TextBlock>
 
 
             <Button x:Name="Logout" BorderThickness="0" Grid.Column="2" HorizontalAlignment="Right" Command="{Binding LogOut}">
@@ -152,57 +152,113 @@
             </Button>
         </Grid>
 
-        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="128,0" Width="1110">
+        <StackPanel Grid.Row="1">
+            <TextBlock x:Name="DBName" FontSize="50" Grid.Column="1" Text="AdventureWorks2012" HorizontalAlignment="Center" ></TextBlock>
 
-            <Button x:Name="BasicDetails"  Click="BasicDetails_Click" Content="Basic Details" FontSize="30" FontWeight="Bold" Padding="10" BorderThickness="1" UseLayoutRounding="True">
+            <StackPanel  Orientation="Horizontal" HorizontalAlignment="Center">
 
-            </Button>
-            <Button x:Name="ResourceDetails" Content="Resource Usage" Click="ResourceDetails_Click" FontSize="30" FontWeight="Bold" Padding="10" BorderThickness="1" UseLayoutRounding="True"></Button>
-            <Button x:Name="ConnectionDetails" Content="Connections Overview" Click="ConnectionDetails_Click" FontSize="30" FontWeight="Bold" Padding="10" BorderThickness="1" UseLayoutRounding="True"></Button>
-            <Button x:Name="TopCPUConsumers" Content="Top CPU Consumers" Click="TopCPUConsumers_OnClick" FontSize="30" FontWeight="Bold" Padding="10" BorderThickness="1" UseLayoutRounding="True"></Button>
-        </StackPanel>
+                <Grid Height="Auto">
+                    <Border Name="CornersMask" Background="SlateGray" CornerRadius="20"/>
 
+                    <Button x:Name="BasicDetails"  Click="BasicDetails_Click" Content="Basic Details" FontSize="30" FontWeight="Bold" Padding="10" BorderThickness="0"  >
+                    </Button>
+
+
+                </Grid>
+                <Grid Height="Auto">
+                    <Border  Background="SlateGray" CornerRadius="20"/>
+
+                    <Button x:Name="ResourceDetails" Content="Resource Usage" Click="ResourceDetails_Click" FontSize="30" FontWeight="Bold" Padding="10"  BorderThickness="0" Height="65" Margin="0,0,0,-3"></Button>
+                </Grid>
+
+                <Grid Height="Auto">
+                    <Border  Background="SlateGray" CornerRadius="20"/>
+
+                    <Button x:Name="ConnectionDetails" Content="Connections Overview" Click="ConnectionDetails_Click" FontSize="30" FontWeight="Bold" Padding="10" BorderThickness="0"></Button>
+                </Grid>
+                <Grid Height="Auto">
+                    <Border  Background="SlateGray" CornerRadius="20"/>
+
+                    <Button x:Name="TopCPUConsumers" Content="Top CPU Consumers" Click="TopCPUConsumers_OnClick" FontSize="30" FontWeight="Bold" Padding="10" BorderThickness="0"></Button>
+                </Grid>
+            </StackPanel>
+
+        </StackPanel >
+        
+        
 
 
         <Grid Grid.Row="2" x:Name="BasicDetailsGrid">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
-                <RowDefinition Height="1*"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
+
             </Grid.ColumnDefinitions>
 
+            <Grid Grid.Row="0" Grid.Column="0" VerticalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.5*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock  Text="Database State:" Grid.Row="0" Grid.Column="0" FontSize="25" FontWeight="SemiBold" HorizontalAlignment="Right"/>
+                <TextBlock Text="Database Tier:" Grid.Row="1" Grid.Column="0" FontSize="25" FontWeight="SemiBold" HorizontalAlignment="Right"/>
+                <TextBlock Text="Database Access:" Grid.Row="2" Grid.Column="0" FontSize="25" FontWeight="SemiBold" HorizontalAlignment="Right"/>
+                <TextBlock Text="ReadOnly?:" Grid.Row="3" Grid.Column="0" FontSize="25" FontWeight="SemiBold" HorizontalAlignment="Right"/>
+                <TextBlock Text="Encrypted?:" Grid.Row="4" Grid.Column="0" FontSize="25" FontWeight="SemiBold" HorizontalAlignment="Right"/>
 
+                <TextBlock x:Name="state" Grid.Row="0" Grid.Column="1" FontSize="25" Text="Loading" />
+                <TextBlock x:Name="slo"  Grid.Row="1" Grid.Column="1" FontSize="25" Text="Loading"/>
+                <TextBlock x:Name="access"  Grid.Row="2" Grid.Column="1" FontSize="25" Text="Loading"/>
+                <TextBlock x:Name="readstatus"  Grid.Row="3" Grid.Column="1" FontSize="25" Text="Loading"/>
+                <TextBlock x:Name="encryptonly"  Grid.Row="4" Grid.Column="1" FontSize="25" Text="Loading" />
+            </Grid>
 
-            <charting:Chart
+          
+                
+                <charting:Chart
                 x:Name="DBSizeChart"
-                Title="Max vs Used"  LegendTitle="Table Names" Grid.Column="0" Grid.Row="1" Width="500" >
-                <charting:Chart.Series>
-                    <charting:PieSeries
-                        Title="Max vs Used"
+                Title="Max vs Used(MB)"  LegendTitle="Table Names" Grid.Column="0" Grid.Row="1"   >
+                    <charting:Chart.Series>
+                        <charting:PieSeries
+                        Title="Max vs Used(MB)"
                         ItemsSource="{Binding DatabaseSize}"
                         IndependentValueBinding="{Binding Name}"
                         DependentValueBinding="{Binding Size}"
                         IsSelectionEnabled="True"/>
 
-                </charting:Chart.Series>
-            </charting:Chart>
+                    </charting:Chart.Series>
+                </charting:Chart>
 
-            <!--<charting:Chart
+                <charting:Chart
                 x:Name="PieChart"
-                Title="Table Sizes" LegendTitle="Table Names" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" >
-                <charting:Chart.Series>
-                    <charting:PieSeries
-                        Title="TableSizes"
+                Title="Table Sizes(MB)" LegendTitle="Table Names" Grid.Column="1" Grid.Row="1" >
+                    <charting:Chart.Series>
+                        <charting:PieSeries
+                        Title="TableSizes(MB)"
                         ItemsSource="{Binding TableList}"
                         IndependentValueBinding="{Binding TableName}"
                         DependentValueBinding="{Binding TableSize}"
                         IsSelectionEnabled="True"/>
-                </charting:Chart.Series>
-            </charting:Chart>-->
-            <Grid  Grid.Row="1" Grid.Column="1" x:Name="TablesizeGrid"  HorizontalAlignment="Center"  Margin="133,0" >
+                    </charting:Chart.Series>
+                </charting:Chart>
+
+            
+            
+           
+
+            
+            <!--<Grid  Grid.Row="1" Grid.Column="1" x:Name="TablesizeGrid"  HorizontalAlignment="Center"  Margin="133,0" >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50"/>
                     <RowDefinition Height="500"/>
@@ -217,18 +273,18 @@
                     <TextBlock Text="Table Size (MB)" Grid.Column="1" FontSize="20" FontWeight="Bold" Padding="2"></TextBlock>
 
 
-                </Grid>
+                </Grid>-->
 
-                <GridView Grid.Row="1" x:Name="TableSizegridView" ItemTemplate="{StaticResource TableSizeTemplate}" ItemsSource="{Binding TableList}">
+                <!--<GridView Grid.Row="1" x:Name="TableSizegridView" ItemTemplate="{StaticResource TableSizeTemplate}" ItemsSource="{Binding TableList}">
 
                     <ContentPresenter Height="500"/>
 
-                </GridView>
-            </Grid>
+                </GridView>-->
+            <!--</Grid>-->
 
             <charting:Chart
                 x:Name="ConnectionsChart"
-                Title="ConnectionCount" LegendTitle="Connections Count" Grid.Column="1" Grid.Row="0">
+                Title="ConnectionCount" LegendTitle="Connections Count" Grid.Row="0" Grid.Column="1" >
                 <charting:Chart.Series>
                     <charting:LineSeries
                         Title="ConnectionCount"
@@ -248,7 +304,7 @@
 
         <Grid Grid.Row="2" x:Name="ConnectionsGrid" Visibility="Collapsed">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
 
@@ -261,25 +317,25 @@
                         ItemsSource="{Binding DBConnectionDetails}"
                         IndependentValueBinding="{Binding Time}"
                         DependentValueBinding="{Binding Success}"
-                        IsSelectionEnabled="True"/>
+                        />
                     <charting:LineSeries
                         Title="Login Failures"
                         ItemsSource="{Binding DBConnectionDetails}"
                         IndependentValueBinding="{Binding Time}"
                         DependentValueBinding="{Binding LoginFailures}"
-                        IsSelectionEnabled="True"/>
+                        />
                     <charting:LineSeries
                         Title="Terminated"
                         ItemsSource="{Binding DBConnectionDetails}"
                         IndependentValueBinding="{Binding Time}"
                         DependentValueBinding="{Binding Terminated}"
-                        IsSelectionEnabled="True"/>
+                        />
                     <charting:LineSeries
                         Title="Throttled"
                         ItemsSource="{Binding DBConnectionDetails}"
                         IndependentValueBinding="{Binding Time}"
                         DependentValueBinding="{Binding Throttled}"
-                        IsSelectionEnabled="True"/>
+                        />
 
                 </charting:Chart.Series>
             </charting:Chart>
@@ -315,7 +371,7 @@
                         ItemsSource="{Binding DatabaseResourceUsage}"
                         IndependentValueBinding="{Binding EndTime}"
                         DependentValueBinding="{Binding AverageCPU}"
-                        IsSelectionEnabled="True"/>
+                        />
 
 
                 </charting:Chart.Series>
@@ -330,7 +386,7 @@
                         ItemsSource="{Binding DatabaseResourceUsage}"
                         IndependentValueBinding="{Binding EndTime}"
                         DependentValueBinding="{Binding AverageMemoryUsage}"
-                        IsSelectionEnabled="True"/>
+                        />
                 </charting:Chart.Series>
             </charting:Chart>
 
@@ -344,7 +400,7 @@
                         ItemsSource="{Binding DatabaseResourceUsage}"
                         IndependentValueBinding="{Binding EndTime}"
                         DependentValueBinding="{Binding AverageDataIO}"
-                        IsSelectionEnabled="True"/>
+                        />
                 </charting:Chart.Series>
             </charting:Chart>
 
@@ -358,7 +414,7 @@
                         ItemsSource="{Binding DatabaseResourceUsage}"
                         IndependentValueBinding="{Binding EndTime}"
                         DependentValueBinding="{Binding AverageLogWrite}"
-                        IsSelectionEnabled="True"/>
+                        />
                 </charting:Chart.Series>
             </charting:Chart>
 
@@ -369,7 +425,7 @@
         <Grid Grid.Row="2" x:Name="CPUConsumersGrid" Visibility="Collapsed" HorizontalAlignment="Center" Width="1100" Margin="133,0" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"/>
-                <RowDefinition Height="1000"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>

@@ -25,7 +25,27 @@ namespace AzureSQLApp.Models
 
         }
 
+        public string DatabaseSlo
+        { get; set; }
 
+
+    
+
+        public string AccessDesc
+        { get; set; }
+
+
+      
+
+        public string IsEncrypt
+        { get; set; }
+
+       
+        public string IsReadOnly
+        { get; set; }
+
+       
+       
         public string DatabaseSize
         {
             get;

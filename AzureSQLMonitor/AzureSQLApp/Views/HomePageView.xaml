@@ -10,41 +10,69 @@
 
 
 
-    <Grid >
-        <Grid.Background>
-            <ImageBrush Stretch="Fill" ImageSource="/Images/cloud5.png" AlignmentY="Top" AlignmentX="Center"/>
-        </Grid.Background>
+    <Grid Background="#FF071C3E">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"></ColumnDefinition>
-            <ColumnDefinition Width="1*"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
+        </Grid.RowDefinitions>
+
+        
 
         <!-- <local:LoginView Width="Auto" Height="Auto" Grid.Column="1" x:Name="LoginControl" /> -->
+        <Viewbox Grid.Row="0"  VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal" >
+              
+                <Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Grid.Column="1" Grid.Row="0" VerticalAlignment="Top" >
+                    <Grid >
+                        <Grid Name="backgroundGrid2"  Visibility="Visible">
+                            <Rectangle  Name="Rect" Visibility="Visible" Margin="0,10,-36,0" />
+                        </Grid>
+                        <Path Data="M23.020308,25.205002L34.661266,25.205002 44.412068,41.785803 34.931286,41.785803 43.602001,58.364004 20.040062,34.95672 28.840786,34.95672z M31.133404,0C38.214283,2.9340902E-07 44.204952,5.3724562 46.195168,12.765397 47.305279,12.4583 48.465443,12.2813 49.675541,12.2813 56.856407,12.2813 62.667,18.096159 62.667,25.273304 62.667,29.890363 60.256817,33.932035 56.6264,36.239015 55.166153,37.422006 53.315968,38.139002 51.295719,38.153001 50.765629,38.218004 50.225651,38.265001 49.675541,38.265001 49.135441,38.265001 48.605473,38.221002 48.075386,38.156L45.315064,38.156 36.153992,22.596124 18.422005,22.596124 24.242733,32.343546 13.711512,32.343546 19.562149,38.156 14.621649,38.156C14.081549,38.221002 13.541449,38.265001 12.99146,38.265001 5.8105937,38.265001 0,32.671644 0,25.7733 0,18.874954 5.8105937,13.281293 12.99146,13.281293 13.981562,13.281293 14.951642,13.398197 15.87179,13.601488 17.631878,5.7837536 23.782597,2.9340902E-07 31.133404,0z" Stretch="Uniform" Fill="#FFFFFFFF" Width="230" Height="230" Margin="13,0,0,0" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" UseLayoutRounding="False">
+                            <Path.RenderTransform>
+                                <TransformGroup>
+                                    <TransformGroup.Children>
+                                        <RotateTransform Angle="0" />
+                                        <ScaleTransform ScaleX="1" ScaleY="1" />
+                                    </TransformGroup.Children>
+                                </TransformGroup>
+                            </Path.RenderTransform>
+                        </Path>
+                    </Grid>
 
-        <Grid Grid.Column="1">
+                </Viewbox>
+                <TextBlock Grid.Column="2" HorizontalAlignment="Left"  TextWrapping="Wrap" Text="Azure SQL Database Monitor" VerticalAlignment="Center" FontSize="50"/>
+
+
+            </StackPanel>
+        </Viewbox>
+
+
+        <Grid  Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Grid.RowDefinitions>
-                <RowDefinition Height="80"/>
-                <RowDefinition Height="80"/>
-                <RowDefinition Height="80"/>
-                <RowDefinition Height="80"/>
-                <RowDefinition Height="80"/>
-                <RowDefinition Height="80"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="150"/>
-                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="28*"/>
+
             </Grid.ColumnDefinitions>
-            <TextBlock Text="Server Instance" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="26.667" FontWeight="Bold" Grid.ColumnSpan="2" Margin="0,26,137,30"/>
-            <TextBox x:Name="ServerName" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" Margin="81,20,-131,28" Text="{Binding ServerName, Mode=TwoWay}"/>
-            <TextBlock Text="User Name" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="26.667" FontWeight="Bold" Grid.ColumnSpan="2" Margin="0,0,179,-41"/>
-            <TextBox x:Name="UserName" Grid.Row="4" VerticalAlignment="Center"  Grid.Column="1" Margin="81,97,-131,-49" Text="{Binding UserName, Mode=TwoWay}" />
-            <TextBlock Text="Password" Grid.Row="4" VerticalAlignment="Center"  Grid.Column="0" HorizontalAlignment="Right" FontSize="26.667" FontWeight="Bold" Margin="0,181,190,-125" Grid.ColumnSpan="2"/>
-            <PasswordBox x:Name="Password" Grid.Row="4" VerticalAlignment="Center" Grid.Column="1" Margin="81,181,-131,-133" Password="{Binding Password, Mode=TwoWay}" IsPasswordRevealButtonEnabled="True"/>
-            <ProgressRing x:Name="ProgressBar" Grid.Row="5" Grid.Column="1" Height="66" Width="99" Foreground="#FFFCFDFF" Margin="32,183,69,-169" IsActive="{Binding IsRingEnabled, Mode=TwoWay}"/>
-            <Button x:Name="loginbutton" Grid.Row="4" Grid.Column="1" Height="63" Margin="160,260,-39,-243" HorizontalAlignment="Stretch"  Command="{Binding GetLogin}" Visibility="{Binding Loginbuttonvisibility, Mode=TwoWay, FallbackValue=Visible}">
+            <TextBlock Text="Server Instance" Grid.Row="0" Grid.Column="0"  FontSize="30" FontWeight="Bold" Margin="0,0,0,22"/>
+            <TextBox x:Name="ServerName" Grid.Row="0" Grid.Column="1" Text="{Binding ServerName, Mode=TwoWay}" Width="300" Margin="0,0,0,22"/>
+            <TextBlock Text="User Name" Grid.Row="1" Grid.Column="0"  FontSize="30" FontWeight="Bold" Margin="0,0,0,22" />
+            <TextBox x:Name="UserName" Grid.Row="1"  Grid.Column="1" Text="{Binding UserName, Mode=TwoWay}" Margin="0,0,0,22" />
+            <TextBlock Text="Password" Grid.Row="2"   Grid.Column="0"  FontSize="30" FontWeight="Bold" Margin="0,0,0,10" />
+            <PasswordBox x:Name="Password" Grid.Row="2" Grid.Column="1" Password="{Binding Password, Mode=TwoWay}" IsPasswordRevealButtonEnabled="True" Margin="0,0,0,10"/>
+            <ProgressRing x:Name="ProgressBar" Grid.Row="3" Grid.Column="0" Height="66" Width="99" Foreground="#FFFCFDFF"  IsActive="{Binding IsRingEnabled, Mode=TwoWay}" Margin="59,0"/>
+            <Button x:Name="loginbutton" Grid.Row="3" Grid.Column="1" Height="63"  HorizontalAlignment="Stretch"  Command="{Binding GetLogin}" Visibility="{Binding Loginbuttonvisibility, Mode=TwoWay, FallbackValue=Visible}" Margin="100,2,104,1">
                 <Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-                    <Grid>
+                    <Grid Height="264" Width="298">
                         <Grid Name="backgroundGridbutton" Width="256" Height="256" Visibility="Visible">
                             <Ellipse Fill="#FF22476C" Name="Fill" Visibility="Visible" />
                         </Grid>
@@ -61,11 +89,11 @@
                     </Grid>
                 </Viewbox>
             </Button>
-            <Button x:Name="cancelbutton" Grid.Row="4" Grid.Column="1" Height="63" Margin="160,260,-39,-243" HorizontalAlignment="Stretch"  Command="{Binding CancelLogin}" Visibility="{Binding Cancelbuttonvisibility, Mode=TwoWay}">
+            <Button x:Name="cancelbutton" Grid.Row="3" Grid.Column="1" Height="63" HorizontalAlignment="Right"  Command="{Binding CancelLogin}" Visibility="{Binding Cancelbuttonvisibility, Mode=TwoWay}" Margin="0,2,104,1" Width="96">
                 <Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
                     <Grid>
                         <Grid Name="backgroundGrid" Visibility="Visible">
-                            <Rectangle Fill="#FF22476C" Name="Rect" Visibility="Visible" />
+                            <Rectangle Fill="#FF22476C" Name="Rect1" Visibility="Visible" />
                         </Grid>
                         <Path Data="M19.85228,12.08996L12.093,19.849201 24.242323,31.997846 12.094,44.145998 19.852051,51.904958 32.001186,39.756277 44.150543,51.904958 51.909,44.145994 39.760246,31.997501 51.909,19.849201 44.15049,12.08996 32.001431,24.238849z M32,0C49.671021,3.1599484E-07 64,14.329407 64,31.998501 64,49.677606 49.671021,63.997003 32,63.997003 14.328003,63.997003 0,49.677606 0,31.998501 0,14.329407 14.328003,3.1599484E-07 32,0z" Stretch="Uniform" Fill="#FFFFFFFF" Width="26" Height="26" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
                             <Path.RenderTransform>
@@ -82,9 +110,9 @@
 
             </Button>
         </Grid>
-        <ContentControl  x:Name="container"  Height="150" HorizontalAlignment="Stretch" Width="auto">
+        <ContentControl  x:Name="container" HorizontalAlignment="Stretch"  Margin="0,115,0,199" Grid.Row="1">
             <Popup x:Name="ExceptionPop" HorizontalAlignment="Stretch" IsOpen="{Binding Isexceptionopenproperty, Mode=TwoWay}" Width="auto">
-                <Grid Background="#FF22476C" x:Name="gdChild" HorizontalAlignment="Stretch" Height="300" Width="auto">
+                <Grid Background="#FF22476C" x:Name="gdChild" HorizontalAlignment="Stretch" Height="300">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>

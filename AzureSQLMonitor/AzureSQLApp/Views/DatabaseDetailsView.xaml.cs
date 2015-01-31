@@ -49,7 +49,7 @@ namespace AzureSQLApp.Views
         {
             DispatchTimerTab2 = new DispatcherTimer();
             DispatchTimerTab2.Tick += DispatchTimer_Tick_Tab2;
-            DispatchTimerTab2.Interval = new TimeSpan(0, 0, 5);
+            DispatchTimerTab2.Interval = new TimeSpan(0, 0, 10);
            
 
         }
@@ -58,7 +58,7 @@ namespace AzureSQLApp.Views
         {
             DispatchTimerTab3 = new DispatcherTimer();
             DispatchTimerTab3.Tick += DispatchTimer_Tick_Tab3;
-            DispatchTimerTab3.Interval = new TimeSpan(0, 0, 5);
+            DispatchTimerTab3.Interval = new TimeSpan(0, 0, 10);
             
 
         }
@@ -67,7 +67,7 @@ namespace AzureSQLApp.Views
         {
             DispatchTimerTab4 = new DispatcherTimer();
             DispatchTimerTab4.Tick += DispatchTimer_Tick_Tab4;
-            DispatchTimerTab4.Interval = new TimeSpan(0, 0, 5);
+            DispatchTimerTab4.Interval = new TimeSpan(0, 0, 15);
            
 
         }
@@ -122,6 +122,11 @@ namespace AzureSQLApp.Views
 
             selectedDatabase = (Databases)e.NavigationParameter;
             DBName.Text = selectedDatabase.DatabaseName;
+            state.Text = selectedDatabase.DatabaseState;
+            slo.Text = selectedDatabase.DatabaseSlo;
+            access.Text = selectedDatabase.AccessDesc;
+            readstatus.Text = selectedDatabase.IsReadOnly;
+            encryptonly.Text = selectedDatabase.IsEncrypt;
             await DatabaseDetails.GetDatabaseSize(selectedDatabase.DatabaseName);
             await DatabaseDetails.GetTablesCommand(selectedDatabase.DatabaseName);
             await DatabaseDetails.GetConnectionCount(selectedDatabase.DatabaseName);
