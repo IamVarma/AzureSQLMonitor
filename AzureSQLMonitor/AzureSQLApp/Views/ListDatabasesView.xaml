@@ -122,14 +122,14 @@
                 <ColumnDefinition Width="1*"></ColumnDefinition>
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <TextBlock Name="snametext" Text="Server Name:" FontSize="25" FontWeight="SemiBold" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right"></TextBlock>
-            <TextBlock Name="sname" Text="{Binding Servername}" FontSize="25" Grid.Row="0" Grid.Column="1" ></TextBlock>
-            <TextBlock Name="useridtext" Text="Login Name:" FontSize="25" FontWeight="SemiBold" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right"></TextBlock>
-            <TextBlock Name="uid" Text="{Binding Userid}" FontSize="25" Grid.Row="1" Grid.Column="1"></TextBlock>
-            <TextBlock Name="versiontext" Text="Version:" FontSize="25" FontWeight="SemiBold"  Grid.Row="0" Grid.Column="2" HorizontalAlignment="Right"></TextBlock>
-            <TextBlock Name="version" Text="{Binding Version}" FontSize="25" Grid.Row="0" Grid.Column="3"></TextBlock>
-            <TextBlock Name="timetext" Text="Time:" FontSize="25" FontWeight="SemiBold" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right"></TextBlock>
-            <TextBlock Name="timetextdata" Text="{Binding Timetext}" FontSize="25" Grid.Row="1" Grid.Column="3"></TextBlock>
+            <TextBlock Name="snametext" Text="Server Name:" FontSize="25" FontWeight="SemiBold" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left"></TextBlock>
+            <TextBlock Name="sname" Text="{Binding Servername}" FontSize="25" Grid.Row="0" Grid.Column="1" Foreground="GreenYellow"></TextBlock>
+            <TextBlock Name="useridtext" Text="Login Name:" FontSize="25" FontWeight="SemiBold" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left"></TextBlock>
+            <TextBlock Name="uid" Text="{Binding Userid}" FontSize="25" Grid.Row="1" Grid.Column="1" Foreground="GreenYellow"></TextBlock>
+            <TextBlock Name="versiontext" Text="Version:" FontSize="25" FontWeight="SemiBold"  Grid.Row="0" Grid.Column="2" HorizontalAlignment="Left"></TextBlock>
+            <TextBlock Name="version" Text="{Binding Version}" FontSize="25" Grid.Row="0" Grid.Column="3" Foreground="GreenYellow"></TextBlock>
+            <TextBlock Name="timetext" Text="Time:" FontSize="25" FontWeight="SemiBold" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Left"></TextBlock>
+            <TextBlock Name="timetextdata" Text="{Binding Timetext}" FontSize="25" Grid.Row="1" Grid.Column="3" Foreground="GreenYellow"></TextBlock>
 
         </Grid>
 
