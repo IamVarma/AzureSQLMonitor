@@ -8,6 +8,8 @@
     mc:Ignorable="d"
     xmlns:charting="using:WinRTXamlToolkit.Controls.DataVisualization.Charting"
     xmlns:Series="using:WinRTXamlToolkit.Controls.DataVisualization.Charting"
+    xmlns:dataVisualization="using:WinRTXamlToolkit.Controls.DataVisualization"
+    xmlns:controls="using:WinRTXamlToolkit.Controls"
     DataContext="{Binding DatabaseDetails, RelativeSource={RelativeSource Self}}">
 
     <Page.Resources>
@@ -63,36 +65,13 @@
 
 
                 </Grid>
-
-
-
             </DataTemplate>
 
-            <Style x:Key="RoundCorner" TargetType="Button">
-                <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                <Setter Property="VerticalContentAlignment" Value="Center"/>
-                <Setter Property="Padding" Value="1"/>
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="Button">
-                            <Grid x:Name="grid">
-                                <Border x:Name="border" CornerRadius="8" BorderBrush="Black" BorderThickness="2">
-
-                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"></ContentPresenter>
-                                </Border>
-
-                            </Grid>
-
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-
-
+            
 
         </ResourceDictionary>
     </Page.Resources>
-    <Grid Background="#FF071C3E">
+    <Grid Background="#FF364B71">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -181,6 +160,12 @@
 
                     <Button x:Name="TopCPUConsumers" Content="Top CPU Consumers" Click="TopCPUConsumers_OnClick" FontSize="30" FontWeight="Bold" Padding="10" BorderThickness="0"></Button>
                 </Grid>
+                <Grid Height="Auto">
+                    <Border  Background="SlateGray" CornerRadius="20"/>
+
+                    <Button x:Name="HelpButton" Content="Help" Click="HelpButton_OnClick" FontSize="30" FontWeight="Bold" Padding="10" BorderThickness="0"></Button>
+                </Grid>
+
             </StackPanel>
 
         </StackPanel >
@@ -208,14 +193,14 @@
                     <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.5*"/>
+                    <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock  Text="Database State:" Grid.Row="0" Grid.Column="0" FontSize="25" FontWeight="SemiBold" HorizontalAlignment="Right"/>
-                <TextBlock Text="Database Tier:" Grid.Row="1" Grid.Column="0" FontSize="25" FontWeight="SemiBold" HorizontalAlignment="Right"/>
-                <TextBlock Text="Database Access:" Grid.Row="2" Grid.Column="0" FontSize="25" FontWeight="SemiBold" HorizontalAlignment="Right"/>
-                <TextBlock Text="ReadOnly?:" Grid.Row="3" Grid.Column="0" FontSize="25" FontWeight="SemiBold" HorizontalAlignment="Right"/>
-                <TextBlock Text="Encrypted?:" Grid.Row="4" Grid.Column="0" FontSize="25" FontWeight="SemiBold" HorizontalAlignment="Right"/>
+                <TextBlock  Text="Database State:" Grid.Row="0" Grid.Column="0" FontSize="25" FontWeight="SemiBold" HorizontalAlignment="Center"/>
+                <TextBlock Text="Database Tier:" Grid.Row="1" Grid.Column="0" FontSize="25" FontWeight="SemiBold" HorizontalAlignment="Center"/>
+                <TextBlock Text="Database Access:" Grid.Row="2" Grid.Column="0" FontSize="25" FontWeight="SemiBold" HorizontalAlignment="Center"/>
+                <TextBlock Text="ReadOnly?:" Grid.Row="3" Grid.Column="0" FontSize="25" FontWeight="SemiBold" HorizontalAlignment="Center"/>
+                <TextBlock Text="Encrypted?:" Grid.Row="4" Grid.Column="0" FontSize="25" FontWeight="SemiBold" HorizontalAlignment="Center"/>
 
                 <TextBlock x:Name="state" Grid.Row="0" Grid.Column="1" FontSize="25" Text="Loading" />
                 <TextBlock x:Name="slo"  Grid.Row="1" Grid.Column="1" FontSize="25" Text="Loading"/>
@@ -229,28 +214,462 @@
                 <charting:Chart
                 x:Name="DBSizeChart"
                 Title="Max vs Used(MB)"  LegendTitle="Table Names" Grid.Column="0" Grid.Row="1"   >
-                    <charting:Chart.Series>
+                <charting:Chart.Palette>
+                    <charting:ResourceDictionaryCollection>
+                        <!-- Blue -->
+                        <ResourceDictionary>
+                            <SolidColorBrush
+                    x:Key="Background"
+                    Color="#4586d8" />
+                            <Style
+                    x:Key="DataPointStyle"
+                    TargetType="Control">
+                                <Setter
+                        Property="Background"
+                        Value="{StaticResource Background}" />
+                            </Style>
+                            <Style
+                    x:Key="DataShapeStyle"
+                    TargetType="Shape">
+                                <Setter
+                        Property="Stroke"
+                        Value="{StaticResource Background}" />
+                                <Setter
+                        Property="StrokeThickness"
+                        Value="2" />
+                                <Setter
+                        Property="StrokeMiterLimit"
+                        Value="1" />
+                                <Setter
+                        Property="Fill"
+                        Value="{StaticResource Background}" />
+                            </Style>
+                        </ResourceDictionary>
+                        <!-- Red -->
+                        <ResourceDictionary>
+                            <SolidColorBrush
+                    x:Key="Background"
+                    Color="#dc443f" />
+                            <Style
+                    x:Key="DataPointStyle"
+                    TargetType="Control">
+                                <Setter
+                        Property="Background"
+                        Value="{StaticResource Background}" />
+                            </Style>
+                            <Style
+                    x:Key="DataShapeStyle"
+                    TargetType="Shape">
+                                <Setter
+                        Property="Stroke"
+                        Value="{StaticResource Background}" />
+                                <Setter
+                        Property="StrokeThickness"
+                        Value="2" />
+                                <Setter
+                        Property="StrokeMiterLimit"
+                        Value="1" />
+                                <Setter
+                        Property="Fill"
+                        Value="{StaticResource Background}" />
+                            </Style>
+                        </ResourceDictionary>
+                    </charting:ResourceDictionaryCollection>
+                </charting:Chart.Palette>
+
+
+                <charting:Chart.Series>
                         <charting:PieSeries
                         Title="Max vs Used(MB)"
                         ItemsSource="{Binding DatabaseSize}"
                         IndependentValueBinding="{Binding Name}"
                         DependentValueBinding="{Binding Size}"
-                        IsSelectionEnabled="True"/>
+                        FontSize="30"/>
 
                     </charting:Chart.Series>
-                </charting:Chart>
 
+
+                <charting:Chart.LegendStyle>
+                    <Style
+            TargetType="dataVisualization:Legend">
+                        <Setter
+                Property="VerticalAlignment"
+                Value="Stretch" />
+                        <!--<Setter
+                Property="Background"
+                Value="#444" />-->
+                        <Setter
+                Property="ItemsPanel">
+                            <Setter.Value>
+                                <ItemsPanelTemplate>
+                                    <controls:UniformGrid
+                            Columns="1"
+                            Rows="5" />
+                                </ItemsPanelTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter
+                Property="TitleStyle">
+                            <Setter.Value>
+                                <Style
+                        TargetType="dataVisualization:Title">
+                                    <Setter
+                            Property="Margin"
+                            Value="0,5,0,10" />
+                                    <Setter
+                            Property="FontWeight"
+                            Value="Bold" />
+                                    <Setter
+                            Property="HorizontalAlignment"
+                            Value="Center" />
+                                </Style>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter
+                Property="ItemContainerStyle"
+                xmlns:series="using:WinRTXamlToolkit.Controls.DataVisualization.Charting">
+                            <Setter.Value>
+                                <Style
+                        TargetType="series:LegendItem">
+                                    <Setter
+                            Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate
+                                    TargetType="series:LegendItem">
+                                                <Border
+                                        MinWidth="200"
+                                        Margin="20,10"
+                                        CornerRadius="10"
+                                        VerticalAlignment="Stretch"
+                                        HorizontalAlignment="Stretch"
+                                        Background="{Binding Background}">
+                                                    <dataVisualization:Title
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            FontSize="15"
+                                            FontWeight="SemiBold"
+                                            Content="{TemplateBinding Content}" />
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter
+                Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate
+                        TargetType="dataVisualization:Legend">
+                                    <Border
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Padding="2">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition
+                                        Height="Auto" />
+                                                <RowDefinition />
+                                            </Grid.RowDefinitions>
+                                            <dataVisualization:Title
+                                    Grid.Row="0"
+                                    x:Name="HeaderContent"
+                                    Content="{TemplateBinding Header}"
+                                    ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                    Style="{TemplateBinding TitleStyle}" />
+                                            <ScrollViewer
+                                    Grid.Row="1"
+                                    VerticalScrollBarVisibility="Auto"
+                                    BorderThickness="0"
+                                    Padding="0"
+                                    IsTabStop="False">
+                                                <ItemsPresenter
+                                        x:Name="Items"
+                                        Margin="10,0,10,10" />
+                                            </ScrollViewer>
+                                        </Grid>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </charting:Chart.LegendStyle>
+
+
+            </charting:Chart>
+<!--Tables Sizes Chart -->
                 <charting:Chart
                 x:Name="PieChart"
                 Title="Table Sizes(MB)" LegendTitle="Table Names" Grid.Column="1" Grid.Row="1" >
-                    <charting:Chart.Series>
+                <charting:Chart.Palette>
+                    <charting:ResourceDictionaryCollection>
+                        <!-- Blue -->
+                        <ResourceDictionary>
+                            <SolidColorBrush
+                    x:Key="Background"
+                    Color="#4586d8" />
+                            <Style
+                    x:Key="DataPointStyle"
+                    TargetType="Control">
+                                <Setter
+                        Property="Background"
+                        Value="{StaticResource Background}" />
+                            </Style>
+                            <Style
+                    x:Key="DataShapeStyle"
+                    TargetType="Shape">
+                                <Setter
+                        Property="Stroke"
+                        Value="{StaticResource Background}" />
+                                <Setter
+                        Property="StrokeThickness"
+                        Value="2" />
+                                <Setter
+                        Property="StrokeMiterLimit"
+                        Value="1" />
+                                <Setter
+                        Property="Fill"
+                        Value="{StaticResource Background}" />
+                            </Style>
+                        </ResourceDictionary>
+                        <!-- Red -->
+                        <ResourceDictionary>
+                            <SolidColorBrush
+                    x:Key="Background"
+                    Color="#dc443f" />
+                            <Style
+                    x:Key="DataPointStyle"
+                    TargetType="Control">
+                                <Setter
+                        Property="Background"
+                        Value="{StaticResource Background}" />
+                            </Style>
+                            <Style
+                    x:Key="DataShapeStyle"
+                    TargetType="Shape">
+                                <Setter
+                        Property="Stroke"
+                        Value="{StaticResource Background}" />
+                                <Setter
+                        Property="StrokeThickness"
+                        Value="2" />
+                                <Setter
+                        Property="StrokeMiterLimit"
+                        Value="1" />
+                                <Setter
+                        Property="Fill"
+                        Value="{StaticResource Background}" />
+                            </Style>
+                        </ResourceDictionary>
+                        <ResourceDictionary>
+                            <SolidColorBrush
+                    x:Key="Background"
+                    Color="DarkOrange" />
+                            <Style
+                    x:Key="DataPointStyle"
+                    TargetType="Control">
+                                <Setter
+                        Property="Background"
+                        Value="{StaticResource Background}" />
+                            </Style>
+                            <Style
+                    x:Key="DataShapeStyle"
+                    TargetType="Shape">
+                                <Setter
+                        Property="Stroke"
+                        Value="{StaticResource Background}" />
+                                <Setter
+                        Property="StrokeThickness"
+                        Value="2" />
+                                <Setter
+                        Property="StrokeMiterLimit"
+                        Value="1" />
+                                <Setter
+                        Property="Fill"
+                        Value="{StaticResource Background}" />
+                            </Style>
+                        </ResourceDictionary>
+
+                        <ResourceDictionary>
+                            <SolidColorBrush
+                    x:Key="Background"
+                    Color="Cyan" />
+                            <Style
+                    x:Key="DataPointStyle"
+                    TargetType="Control">
+                                <Setter
+                        Property="Background"
+                        Value="{StaticResource Background}" />
+                            </Style>
+                            <Style
+                    x:Key="DataShapeStyle"
+                    TargetType="Shape">
+                                <Setter
+                        Property="Stroke"
+                        Value="{StaticResource Background}" />
+                                <Setter
+                        Property="StrokeThickness"
+                        Value="2" />
+                                <Setter
+                        Property="StrokeMiterLimit"
+                        Value="1" />
+                                <Setter
+                        Property="Fill"
+                        Value="{StaticResource Background}" />
+                            </Style>
+                        </ResourceDictionary>
+                        <ResourceDictionary>
+                            <SolidColorBrush
+                    x:Key="Background"
+                    Color="Brown" />
+                            <Style
+                    x:Key="DataPointStyle"
+                    TargetType="Control">
+                                <Setter
+                        Property="Background"
+                        Value="{StaticResource Background}" />
+                            </Style>
+                            <Style
+                    x:Key="DataShapeStyle"
+                    TargetType="Shape">
+                                <Setter
+                        Property="Stroke"
+                        Value="{StaticResource Background}" />
+                                <Setter
+                        Property="StrokeThickness"
+                        Value="2" />
+                                <Setter
+                        Property="StrokeMiterLimit"
+                        Value="1" />
+                                <Setter
+                        Property="Fill"
+                        Value="{StaticResource Background}" />
+                            </Style>
+                        </ResourceDictionary>
+                    </charting:ResourceDictionaryCollection>
+                </charting:Chart.Palette>
+
+                
+
+                <charting:Chart.Series>
                         <charting:PieSeries
                         Title="TableSizes(MB)"
                         ItemsSource="{Binding TableList}"
                         IndependentValueBinding="{Binding TableName}"
                         DependentValueBinding="{Binding TableSize}"
-                        IsSelectionEnabled="True"/>
+                       />
                     </charting:Chart.Series>
+                        <charting:Chart.LegendStyle>
+                            <Style
+            TargetType="dataVisualization:Legend">
+                                <Setter
+                Property="VerticalAlignment"
+                Value="Stretch" />
+                                <!--<Setter
+                Property="Background"
+                Value="#444" />-->
+                                <Setter
+                Property="ItemsPanel">
+                                    <Setter.Value>
+                                        <ItemsPanelTemplate>
+                                            <controls:UniformGrid
+                            Columns="1"
+                            Rows="5" />
+                                        </ItemsPanelTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter
+                Property="TitleStyle">
+                                    <Setter.Value>
+                                        <Style
+                        TargetType="dataVisualization:Title">
+                                            <Setter
+                            Property="Margin"
+                            Value="0,5,0,10" />
+                                            <Setter
+                            Property="FontWeight"
+                            Value="Bold" />
+                                            <Setter
+                            Property="HorizontalAlignment"
+                            Value="Center" />
+                                        </Style>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter
+                Property="ItemContainerStyle"
+                xmlns:series="using:WinRTXamlToolkit.Controls.DataVisualization.Charting">
+                                    <Setter.Value>
+                                        <Style
+                        TargetType="series:LegendItem">
+                                            <Setter
+                            Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate
+                                    TargetType="series:LegendItem">
+                                                        <Border
+                                        MinWidth="200"
+                                        Margin="20,10"
+                                        CornerRadius="10"
+                                        VerticalAlignment="Stretch"
+                                        HorizontalAlignment="Stretch"
+                                        Background="{Binding Background}">
+                                                            <dataVisualization:Title
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            FontSize="15"
+                                            FontWeight="SemiBold"
+                                            Content="{TemplateBinding Content}" />
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter
+                Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate
+                        TargetType="dataVisualization:Legend">
+                                            <Border
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Padding="2">
+                                                <Grid>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition
+                                        Height="Auto" />
+                                                        <RowDefinition />
+                                                    </Grid.RowDefinitions>
+                                                    <dataVisualization:Title
+                                    Grid.Row="0"
+                                    x:Name="HeaderContent"
+                                    Content="{TemplateBinding Header}"
+                                    ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                    Style="{TemplateBinding TitleStyle}" />
+                                                    <ScrollViewer
+                                    Grid.Row="1"
+                                    VerticalScrollBarVisibility="Auto"
+                                    BorderThickness="0"
+                                    Padding="0"
+                                    IsTabStop="False">
+                                                        <ItemsPresenter
+                                        x:Name="Items"
+                                        Margin="10,0,10,10" />
+                                                    </ScrollViewer>
+                                                </Grid>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </charting:Chart.LegendStyle>
+
+
+                    
+                   
                 </charting:Chart>
 
             
@@ -282,18 +701,128 @@
                 </GridView>-->
             <!--</Grid>-->
 
+            <!--Active connection Chart-->
+            
             <charting:Chart
                 x:Name="ConnectionsChart"
                 Title="ConnectionCount" LegendTitle="Connections Count" Grid.Row="0" Grid.Column="1" >
+                
                 <charting:Chart.Series>
                     <charting:LineSeries
                         Title="ConnectionCount"
                         ItemsSource="{Binding ConnectionsList}"
                         IndependentValueBinding="{Binding Time}"
                         DependentValueBinding="{Binding Connections}"
-                        IsSelectionEnabled="True"/>
+                        />
                 </charting:Chart.Series>
 
+
+                <charting:Chart.LegendStyle>
+                    <Style
+            TargetType="dataVisualization:Legend">
+                        <Setter
+                Property="VerticalAlignment"
+                Value="Stretch" />
+                        <!--<Setter
+                Property="Background"
+                Value="#444" />-->
+                        <Setter
+                Property="ItemsPanel">
+                            <Setter.Value>
+                                <ItemsPanelTemplate>
+                                    <controls:UniformGrid
+                            Columns="1"
+                            Rows="5" />
+                                </ItemsPanelTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter
+                Property="TitleStyle">
+                            <Setter.Value>
+                                <Style
+                        TargetType="dataVisualization:Title">
+                                    <Setter
+                            Property="Margin"
+                            Value="0,5,0,10" />
+                                    <Setter
+                            Property="FontWeight"
+                            Value="Bold" />
+                                    <Setter
+                            Property="HorizontalAlignment"
+                            Value="Center" />
+                                </Style>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter
+                Property="ItemContainerStyle"
+                xmlns:series="using:WinRTXamlToolkit.Controls.DataVisualization.Charting">
+                            <Setter.Value>
+                                <Style
+                        TargetType="series:LegendItem">
+                                    <Setter
+                            Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate
+                                    TargetType="series:LegendItem">
+                                                <Border
+                                        MinWidth="200"
+                                        Margin="20,10"
+                                        CornerRadius="10"
+                                        VerticalAlignment="Stretch"
+                                        HorizontalAlignment="Stretch"
+                                        Background="{Binding Background}">
+                                                    <dataVisualization:Title
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            FontSize="15"
+                                            FontWeight="SemiBold"
+                                            Content="{TemplateBinding Content}" />
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter
+                Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate
+                        TargetType="dataVisualization:Legend">
+                                    <Border
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Padding="2">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition
+                                        Height="Auto" />
+                                                <RowDefinition />
+                                            </Grid.RowDefinitions>
+                                            <dataVisualization:Title
+                                    Grid.Row="0"
+                                    x:Name="HeaderContent"
+                                    Content="{TemplateBinding Header}"
+                                    ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                    Style="{TemplateBinding TitleStyle}" />
+                                            <ScrollViewer
+                                    Grid.Row="1"
+                                    VerticalScrollBarVisibility="Auto"
+                                    BorderThickness="0"
+                                    Padding="0"
+                                    IsTabStop="False">
+                                                <ItemsPresenter
+                                        x:Name="Items"
+                                        Margin="10,0,10,10" />
+                                            </ScrollViewer>
+                                        </Grid>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </charting:Chart.LegendStyle>
 
 
             </charting:Chart>
@@ -311,6 +840,126 @@
             <charting:Chart
                 x:Name="ConnectionDetailsChart"
                 Title="Connections Overview" LegendTitle="Table Names" Grid.Column="0">
+
+                <charting:Chart.Palette>
+                    <charting:ResourceDictionaryCollection>
+                        <ResourceDictionary>
+                            <SolidColorBrush
+                    x:Key="Background"
+                    Color="#dc443f" />
+                            <Style
+                    x:Key="DataPointStyle"
+                    TargetType="Control">
+                                <Setter
+                        Property="Background"
+                        Value="{StaticResource Background}" />
+                            </Style>
+                            <Style
+                    x:Key="DataShapeStyle"
+                    TargetType="Shape">
+                                <Setter
+                        Property="Stroke"
+                        Value="{StaticResource Background}" />
+                                <Setter
+                        Property="StrokeThickness"
+                        Value="2" />
+                                <Setter
+                        Property="StrokeMiterLimit"
+                        Value="1" />
+                                <Setter
+                        Property="Fill"
+                        Value="{StaticResource Background}" />
+                            </Style>
+                        </ResourceDictionary>
+                        <ResourceDictionary>
+                            <SolidColorBrush
+                    x:Key="Background"
+                    Color="DarkOrange" />
+                            <Style
+                    x:Key="DataPointStyle"
+                    TargetType="Control">
+                                <Setter
+                        Property="Background"
+                        Value="{StaticResource Background}" />
+                            </Style>
+                            <Style
+                    x:Key="DataShapeStyle"
+                    TargetType="Shape">
+                                <Setter
+                        Property="Stroke"
+                        Value="{StaticResource Background}" />
+                                <Setter
+                        Property="StrokeThickness"
+                        Value="2" />
+                                <Setter
+                        Property="StrokeMiterLimit"
+                        Value="1" />
+                                <Setter
+                        Property="Fill"
+                        Value="{StaticResource Background}" />
+                            </Style>
+                        </ResourceDictionary>
+
+                        <ResourceDictionary>
+                            <SolidColorBrush
+                    x:Key="Background"
+                    Color="Cyan" />
+                            <Style
+                    x:Key="DataPointStyle"
+                    TargetType="Control">
+                                <Setter
+                        Property="Background"
+                        Value="{StaticResource Background}" />
+                            </Style>
+                            <Style
+                    x:Key="DataShapeStyle"
+                    TargetType="Shape">
+                                <Setter
+                        Property="Stroke"
+                        Value="{StaticResource Background}" />
+                                <Setter
+                        Property="StrokeThickness"
+                        Value="2" />
+                                <Setter
+                        Property="StrokeMiterLimit"
+                        Value="1" />
+                                <Setter
+                        Property="Fill"
+                        Value="{StaticResource Background}" />
+                            </Style>
+                        </ResourceDictionary>
+                        <ResourceDictionary>
+                            <SolidColorBrush
+                    x:Key="Background"
+                    Color="Brown" />
+                            <Style
+                    x:Key="DataPointStyle"
+                    TargetType="Control">
+                                <Setter
+                        Property="Background"
+                        Value="{StaticResource Background}" />
+                            </Style>
+                            <Style
+                    x:Key="DataShapeStyle"
+                    TargetType="Shape">
+                                <Setter
+                        Property="Stroke"
+                        Value="{StaticResource Background}" />
+                                <Setter
+                        Property="StrokeThickness"
+                        Value="2" />
+                                <Setter
+                        Property="StrokeMiterLimit"
+                        Value="1" />
+                                <Setter
+                        Property="Fill"
+                        Value="{StaticResource Background}" />
+                            </Style>
+                        </ResourceDictionary>
+                    </charting:ResourceDictionaryCollection>
+                </charting:Chart.Palette>
+
+
                 <charting:Chart.Series>
                     <charting:LineSeries
                         Title="Success"
@@ -338,6 +987,118 @@
                         />
 
                 </charting:Chart.Series>
+
+
+                <charting:Chart.LegendStyle>
+                    <Style
+            TargetType="dataVisualization:Legend">
+                        <Setter
+                Property="VerticalAlignment"
+                Value="Stretch" />
+                        <!--<Setter
+                Property="Background"
+                Value="#444" />-->
+                        <Setter
+                Property="ItemsPanel">
+                            <Setter.Value>
+                                <ItemsPanelTemplate>
+                                    <controls:UniformGrid
+                            Columns="1"
+                            Rows="5" />
+                                </ItemsPanelTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter
+                Property="TitleStyle">
+                            <Setter.Value>
+                                <Style
+                        TargetType="dataVisualization:Title">
+                                    <Setter
+                            Property="Margin"
+                            Value="0,5,0,10" />
+                                    <Setter
+                            Property="FontWeight"
+                            Value="Bold" />
+                                    <Setter
+                            Property="HorizontalAlignment"
+                            Value="Center" />
+                                </Style>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter
+                Property="ItemContainerStyle"
+                xmlns:series="using:WinRTXamlToolkit.Controls.DataVisualization.Charting">
+                            <Setter.Value>
+                                <Style
+                        TargetType="series:LegendItem">
+                                    <Setter
+                            Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate
+                                    TargetType="series:LegendItem">
+                                                <Border
+                                        MinWidth="200"
+                                        Margin="20,10"
+                                        CornerRadius="10"
+                                        VerticalAlignment="Stretch"
+                                        HorizontalAlignment="Stretch"
+                                        Background="{Binding Background}">
+                                                    <dataVisualization:Title
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            FontSize="15"
+                                            FontWeight="SemiBold"
+                                            Content="{TemplateBinding Content}" />
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter
+                Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate
+                        TargetType="dataVisualization:Legend">
+                                    <Border
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Padding="2">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition
+                                        Height="Auto" />
+                                                <RowDefinition />
+                                            </Grid.RowDefinitions>
+                                            <dataVisualization:Title
+                                    Grid.Row="0"
+                                    x:Name="HeaderContent"
+                                    Content="{TemplateBinding Header}"
+                                    ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                    Style="{TemplateBinding TitleStyle}" />
+                                            <ScrollViewer
+                                    Grid.Row="1"
+                                    VerticalScrollBarVisibility="Auto"
+                                    BorderThickness="0"
+                                    Padding="0"
+                                    IsTabStop="False">
+                                                <ItemsPresenter
+                                        x:Name="Items"
+                                        Margin="10,0,10,10" />
+                                            </ScrollViewer>
+                                        </Grid>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </charting:Chart.LegendStyle>
+
+
+
+
             </charting:Chart>
 
             <GridView x:Name="ConnectionEvents" Grid.Column="1" ItemTemplate="{StaticResource ConnectionsTemplate}" ItemsSource="{Binding DBConnectionEvents}"
@@ -375,6 +1136,116 @@
 
 
                 </charting:Chart.Series>
+
+
+                <charting:Chart.LegendStyle>
+                    <Style
+            TargetType="dataVisualization:Legend">
+                        <Setter
+                Property="VerticalAlignment"
+                Value="Stretch" />
+                        <!--<Setter
+                Property="Background"
+                Value="#444" />-->
+                        <Setter
+                Property="ItemsPanel">
+                            <Setter.Value>
+                                <ItemsPanelTemplate>
+                                    <controls:UniformGrid
+                            Columns="1"
+                            Rows="5" />
+                                </ItemsPanelTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter
+                Property="TitleStyle">
+                            <Setter.Value>
+                                <Style
+                        TargetType="dataVisualization:Title">
+                                    <Setter
+                            Property="Margin"
+                            Value="0,5,0,10" />
+                                    <Setter
+                            Property="FontWeight"
+                            Value="Bold" />
+                                    <Setter
+                            Property="HorizontalAlignment"
+                            Value="Center" />
+                                </Style>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter
+                Property="ItemContainerStyle"
+                xmlns:series="using:WinRTXamlToolkit.Controls.DataVisualization.Charting">
+                            <Setter.Value>
+                                <Style
+                        TargetType="series:LegendItem">
+                                    <Setter
+                            Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate
+                                    TargetType="series:LegendItem">
+                                                <Border
+                                        MinWidth="200"
+                                        Margin="20,10"
+                                        CornerRadius="10"
+                                        VerticalAlignment="Stretch"
+                                        HorizontalAlignment="Stretch"
+                                        Background="{Binding Background}">
+                                                    <dataVisualization:Title
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            FontSize="15"
+                                            FontWeight="SemiBold"
+                                            Content="{TemplateBinding Content}" />
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter
+                Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate
+                        TargetType="dataVisualization:Legend">
+                                    <Border
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Padding="2">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition
+                                        Height="Auto" />
+                                                <RowDefinition />
+                                            </Grid.RowDefinitions>
+                                            <dataVisualization:Title
+                                    Grid.Row="0"
+                                    x:Name="HeaderContent"
+                                    Content="{TemplateBinding Header}"
+                                    ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                    Style="{TemplateBinding TitleStyle}" />
+                                            <ScrollViewer
+                                    Grid.Row="1"
+                                    VerticalScrollBarVisibility="Auto"
+                                    BorderThickness="0"
+                                    Padding="0"
+                                    IsTabStop="False">
+                                                <ItemsPresenter
+                                        x:Name="Items"
+                                        Margin="10,0,10,10" />
+                                            </ScrollViewer>
+                                        </Grid>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </charting:Chart.LegendStyle>
+
+
             </charting:Chart>
 
             <charting:Chart
@@ -388,6 +1259,115 @@
                         DependentValueBinding="{Binding AverageMemoryUsage}"
                         />
                 </charting:Chart.Series>
+
+                <charting:Chart.LegendStyle>
+                    <Style
+            TargetType="dataVisualization:Legend">
+                        <Setter
+                Property="VerticalAlignment"
+                Value="Stretch" />
+                        <!--<Setter
+                Property="Background"
+                Value="#444" />-->
+                        <Setter
+                Property="ItemsPanel">
+                            <Setter.Value>
+                                <ItemsPanelTemplate>
+                                    <controls:UniformGrid
+                            Columns="1"
+                            Rows="5" />
+                                </ItemsPanelTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter
+                Property="TitleStyle">
+                            <Setter.Value>
+                                <Style
+                        TargetType="dataVisualization:Title">
+                                    <Setter
+                            Property="Margin"
+                            Value="0,5,0,10" />
+                                    <Setter
+                            Property="FontWeight"
+                            Value="Bold" />
+                                    <Setter
+                            Property="HorizontalAlignment"
+                            Value="Center" />
+                                </Style>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter
+                Property="ItemContainerStyle"
+                xmlns:series="using:WinRTXamlToolkit.Controls.DataVisualization.Charting">
+                            <Setter.Value>
+                                <Style
+                        TargetType="series:LegendItem">
+                                    <Setter
+                            Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate
+                                    TargetType="series:LegendItem">
+                                                <Border
+                                        MinWidth="200"
+                                        Margin="20,10"
+                                        CornerRadius="10"
+                                        VerticalAlignment="Stretch"
+                                        HorizontalAlignment="Stretch"
+                                        Background="{Binding Background}">
+                                                    <dataVisualization:Title
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            FontSize="15"
+                                            FontWeight="SemiBold"
+                                            Content="{TemplateBinding Content}" />
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter
+                Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate
+                        TargetType="dataVisualization:Legend">
+                                    <Border
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Padding="2">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition
+                                        Height="Auto" />
+                                                <RowDefinition />
+                                            </Grid.RowDefinitions>
+                                            <dataVisualization:Title
+                                    Grid.Row="0"
+                                    x:Name="HeaderContent"
+                                    Content="{TemplateBinding Header}"
+                                    ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                    Style="{TemplateBinding TitleStyle}" />
+                                            <ScrollViewer
+                                    Grid.Row="1"
+                                    VerticalScrollBarVisibility="Auto"
+                                    BorderThickness="0"
+                                    Padding="0"
+                                    IsTabStop="False">
+                                                <ItemsPresenter
+                                        x:Name="Items"
+                                        Margin="10,0,10,10" />
+                                            </ScrollViewer>
+                                        </Grid>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </charting:Chart.LegendStyle>
+
+
             </charting:Chart>
 
 
@@ -402,6 +1382,115 @@
                         DependentValueBinding="{Binding AverageDataIO}"
                         />
                 </charting:Chart.Series>
+
+                <charting:Chart.LegendStyle>
+                    <Style
+            TargetType="dataVisualization:Legend">
+                        <Setter
+                Property="VerticalAlignment"
+                Value="Stretch" />
+                        <!--<Setter
+                Property="Background"
+                Value="#444" />-->
+                        <Setter
+                Property="ItemsPanel">
+                            <Setter.Value>
+                                <ItemsPanelTemplate>
+                                    <controls:UniformGrid
+                            Columns="1"
+                            Rows="5" />
+                                </ItemsPanelTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter
+                Property="TitleStyle">
+                            <Setter.Value>
+                                <Style
+                        TargetType="dataVisualization:Title">
+                                    <Setter
+                            Property="Margin"
+                            Value="0,5,0,10" />
+                                    <Setter
+                            Property="FontWeight"
+                            Value="Bold" />
+                                    <Setter
+                            Property="HorizontalAlignment"
+                            Value="Center" />
+                                </Style>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter
+                Property="ItemContainerStyle"
+                xmlns:series="using:WinRTXamlToolkit.Controls.DataVisualization.Charting">
+                            <Setter.Value>
+                                <Style
+                        TargetType="series:LegendItem">
+                                    <Setter
+                            Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate
+                                    TargetType="series:LegendItem">
+                                                <Border
+                                        MinWidth="200"
+                                        Margin="20,10"
+                                        CornerRadius="10"
+                                        VerticalAlignment="Stretch"
+                                        HorizontalAlignment="Stretch"
+                                        Background="{Binding Background}">
+                                                    <dataVisualization:Title
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            FontSize="15"
+                                            FontWeight="SemiBold"
+                                            Content="{TemplateBinding Content}" />
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter
+                Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate
+                        TargetType="dataVisualization:Legend">
+                                    <Border
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Padding="2">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition
+                                        Height="Auto" />
+                                                <RowDefinition />
+                                            </Grid.RowDefinitions>
+                                            <dataVisualization:Title
+                                    Grid.Row="0"
+                                    x:Name="HeaderContent"
+                                    Content="{TemplateBinding Header}"
+                                    ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                    Style="{TemplateBinding TitleStyle}" />
+                                            <ScrollViewer
+                                    Grid.Row="1"
+                                    VerticalScrollBarVisibility="Auto"
+                                    BorderThickness="0"
+                                    Padding="0"
+                                    IsTabStop="False">
+                                                <ItemsPresenter
+                                        x:Name="Items"
+                                        Margin="10,0,10,10" />
+                                            </ScrollViewer>
+                                        </Grid>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </charting:Chart.LegendStyle>
+
+
             </charting:Chart>
 
 
@@ -416,6 +1505,116 @@
                         DependentValueBinding="{Binding AverageLogWrite}"
                         />
                 </charting:Chart.Series>
+
+
+                <charting:Chart.LegendStyle>
+                    <Style
+            TargetType="dataVisualization:Legend">
+                        <Setter
+                Property="VerticalAlignment"
+                Value="Stretch" />
+                        <!--<Setter
+                Property="Background"
+                Value="#444" />-->
+                        <Setter
+                Property="ItemsPanel">
+                            <Setter.Value>
+                                <ItemsPanelTemplate>
+                                    <controls:UniformGrid
+                            Columns="1"
+                            Rows="5" />
+                                </ItemsPanelTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter
+                Property="TitleStyle">
+                            <Setter.Value>
+                                <Style
+                        TargetType="dataVisualization:Title">
+                                    <Setter
+                            Property="Margin"
+                            Value="0,5,0,10" />
+                                    <Setter
+                            Property="FontWeight"
+                            Value="Bold" />
+                                    <Setter
+                            Property="HorizontalAlignment"
+                            Value="Center" />
+                                </Style>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter
+                Property="ItemContainerStyle"
+                xmlns:series="using:WinRTXamlToolkit.Controls.DataVisualization.Charting">
+                            <Setter.Value>
+                                <Style
+                        TargetType="series:LegendItem">
+                                    <Setter
+                            Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate
+                                    TargetType="series:LegendItem">
+                                                <Border
+                                        MinWidth="200"
+                                        Margin="20,10"
+                                        CornerRadius="10"
+                                        VerticalAlignment="Stretch"
+                                        HorizontalAlignment="Stretch"
+                                        Background="{Binding Background}">
+                                                    <dataVisualization:Title
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            FontSize="15"
+                                            FontWeight="SemiBold"
+                                            Content="{TemplateBinding Content}" />
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter
+                Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate
+                        TargetType="dataVisualization:Legend">
+                                    <Border
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Padding="2">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition
+                                        Height="Auto" />
+                                                <RowDefinition />
+                                            </Grid.RowDefinitions>
+                                            <dataVisualization:Title
+                                    Grid.Row="0"
+                                    x:Name="HeaderContent"
+                                    Content="{TemplateBinding Header}"
+                                    ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                    Style="{TemplateBinding TitleStyle}" />
+                                            <ScrollViewer
+                                    Grid.Row="1"
+                                    VerticalScrollBarVisibility="Auto"
+                                    BorderThickness="0"
+                                    Padding="0"
+                                    IsTabStop="False">
+                                                <ItemsPresenter
+                                        x:Name="Items"
+                                        Margin="10,0,10,10" />
+                                            </ScrollViewer>
+                                        </Grid>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </charting:Chart.LegendStyle>
+
+
             </charting:Chart>
 
 
@@ -454,23 +1653,54 @@
 
         </Grid>
 
-        <ContentControl  x:Name="container" HorizontalAlignment="Stretch" Width="auto" Margin="0,49,0,298" Grid.Row="2">
-            <Popup x:Name="ExceptionPop" HorizontalAlignment="Stretch" IsOpen="{Binding ExceptionOpen, Mode=TwoWay}" Width="auto">
-                <Grid Background="#FF22476C" x:Name="gdChild" HorizontalAlignment="Stretch" Height="300" Width="auto">
+        <ContentControl  x:Name="container" HorizontalAlignment="Stretch"  Grid.Row="2">
+            <Popup x:Name="ExceptionPop" HorizontalAlignment="Stretch" IsOpen="{Binding Isexceptionopenproperty, Mode=TwoWay}">
+                <Grid Background="#FF22476C" x:Name="gdChild" HorizontalAlignment="Stretch" Height="300">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Orientation="Vertical" Grid.Row="0">
+                        <TextBlock HorizontalAlignment="Center" Text="{Binding Result}" TextWrapping="Wrap" FontSize="25" Width="auto"/>
+                        <Button x:Name="Tryagain" Command="{Binding Exceptionpopupcommand}"  Foreground="White" FontSize="30"  HorizontalAlignment="Center" Content="Try Again" >
+
+                        </Button>
+
+                    </StackPanel>
+
+                </Grid>
+            </Popup>
+        </ContentControl>
+        <ContentControl  x:Name="container1" HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Top">
+            <Popup x:Name="HelpPop" HorizontalAlignment="Stretch" IsOpen="False" IsLightDismissEnabled="True" >
+                <Grid Background="#FF22476C" x:Name="gdChild1" HorizontalAlignment="Stretch" Height="300" >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
-                    <TextBlock HorizontalAlignment="Center" Grid.Row="0" Text="{Binding ExceptionResult}" TextWrapping="Wrap" Width="auto"/>
-                    <Button Margin="547,203,762,-225" Grid.Row="1" x:Name="Tryagain" Command="{Binding Exceptionpopupcommand}"  Foreground="White"  Width="277" HorizontalAlignment="Center" Height="62">
-                        <Viewbox Height="30" Width="200">
-                            <TextBlock Text="Try again"/>
-                        </Viewbox>
-                    </Button>
+                    <TextBlock Text="Information" FontSize="50" FontWeight="SemiBold" Grid.Row="0" HorizontalAlignment="Center"></TextBlock>
+                    <StackPanel Orientation="Vertical" Grid.Row="1">
+                        <RichTextBlock FontSize="20" HorizontalAlignment="Center">
+                            <Paragraph>
+                             <Bold>Basic Details:</Bold>
+                                <LineBreak></LineBreak>
+                                <Bold>Resource Details</Bold>
+                                <LineBreak></LineBreak>
+                                <Bold>Connections Overview</Bold>
+                                <LineBreak></LineBreak>
+                                <Bold>Top CPU Queries</Bold>
+                            </Paragraph>
+                        </RichTextBlock>
+
+                        <Button Content="Ok" FontSize="30" x:Name="GotIt" Click="GotIt_OnClick"  Foreground="White" HorizontalAlignment="Center"  />
+
+                    </StackPanel>
+
+
+
+
                 </Grid>
             </Popup>
         </ContentControl>
-
 
 
     </Grid>

@@ -16,6 +16,8 @@ using AzureSQLApp.Common;
 using AzureSQLApp.ViewModels;
 using AzureSQLApp.Models;
 using System.Threading.Tasks;
+using WinRTXamlToolkit.Controls.DataVisualization.Charting;
+
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace AzureSQLApp.Views
@@ -38,7 +40,7 @@ namespace AzureSQLApp.Views
         {
             DispatchTimerTab1 = new DispatcherTimer();
             DispatchTimerTab1.Tick += DispatchTimer_Tick_Tab1;
-            DispatchTimerTab1.Interval = new TimeSpan(0, 0, 5);
+            DispatchTimerTab1.Interval = new TimeSpan(0, 0, 15);
             DispatchTimerTab1.Start();
 
         }
@@ -115,6 +117,8 @@ namespace AzureSQLApp.Views
                this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += navigationHelper_LoadState;
             this.navigationHelper.SaveState += navigationHelper_SaveState;
+            gdChild.Width = Window.Current.Bounds.Width;
+            gdChild1.Width = Window.Current.Bounds.Width;
         }
 
           private async void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
@@ -130,6 +134,23 @@ namespace AzureSQLApp.Views
             await DatabaseDetails.GetDatabaseSize(selectedDatabase.DatabaseName);
             await DatabaseDetails.GetTablesCommand(selectedDatabase.DatabaseName);
             await DatabaseDetails.GetConnectionCount(selectedDatabase.DatabaseName);
+              ((LineSeries) this.ConnectionsChart.Series[0]).DependentRangeAxis = new LinearAxis()
+              {
+                  
+                  
+                  Orientation = AxisOrientation.Y
+              };
+
+              int i = DatabaseDetails.ConnectionsList.Count;
+              ((LineSeries) this.ConnectionsChart.Series[0]).IndependentAxis = new DateTimeAxis()
+              {
+                  
+                MaxWidth = 600,
+                  Orientation = AxisOrientation.X
+              };
+             
+
+
             DispactcherTimeSetupTab1();
             DispatchTimerTab1.Start();
             BasicDetails.IsEnabled = false;
@@ -243,6 +264,16 @@ namespace AzureSQLApp.Views
             DispatchTimerTab4.Start();
 
 
+        }
+
+        private void GotIt_OnClick(object sender, RoutedEventArgs e)
+        {
+            HelpPop.IsOpen = false;
+        }
+
+        private void HelpButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            HelpPop.IsOpen = true;
         }
     }
 }

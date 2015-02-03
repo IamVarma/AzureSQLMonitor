@@ -40,12 +40,29 @@ namespace AzureSQLApp.Views
         public HomePageView()
         {
             this.InitializeComponent();
+            gdChild.Width = Window.Current.Bounds.Width;
+            gdChild1.Width = Window.Current.Bounds.Width;
             
         }
-        
-      
+
+
+        private void HelpButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            HelpPop.IsOpen = true;
+
+
+        }
+
+        private void GotIt_OnClick(object sender, RoutedEventArgs e)
+        {
+            HelpPop.IsOpen = false;
+        }
+
+        private void HelpPop_OnLoaded(object sender, RoutedEventArgs e)
+        {
             
         }
+    }
 
     }
 

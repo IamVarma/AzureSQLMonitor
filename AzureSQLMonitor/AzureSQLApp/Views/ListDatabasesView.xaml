@@ -67,113 +67,111 @@
         </ResourceDictionary>
     </Page.Resources>
 
-    
-
-        <Grid Background="#FF071C3E">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"></RowDefinition>
-            </Grid.RowDefinitions>
-
-            <Grid Grid.Row="0" Height="110" VerticalAlignment="Center">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.3*"/>
-                    <ColumnDefinition Width="3*"/>
-                    <ColumnDefinition Width="0.3*"/>
 
 
-                </Grid.ColumnDefinitions>
-                <TextBlock x:Name="AppName" FontSize="50" Grid.Column="1" Text="Azure SQL Monitor" VerticalAlignment="Center"></TextBlock>
-                <Button x:Name="Logout" BorderThickness="0" Grid.Column="2" HorizontalAlignment="Right" Command="{Binding LogOut}">
-                    <Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-                        <Grid>
-                            <Grid Name="backgroundGrid" Width="128" Height="128" Visibility="Collapsed" />
-                            <Path Data="M14.800615,5.6499605L14.800615,14.800346C10.630442,17.910477 7.8903284,22.840685 7.8903284,28.44092 7.9003286,37.871319 15.530646,45.511639 24.961039,45.521641 34.391431,45.511639 42.011749,37.871319 42.04175,28.44092 42.03175,22.840685 39.291636,17.910477 35.121462,14.800346L35.121462,5.6599612C43.841825,9.5601254,49.912077,18.280493,49.912077,28.44092L49.922077,28.44092C49.912077,42.231503 38.741611,53.391972 24.961039,53.391972 11.170465,53.391972 0,42.231503 0,28.44092 0,18.270493 6.0902529,9.5501251 14.800615,5.6499605z M19.570043,0L30.237043,0 30.237043,33.917 19.570043,33.917z" Stretch="Uniform" Fill="#FFF1EDED" Width="68" Height="68" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
-                                <Path.RenderTransform>
-                                    <TransformGroup>
-                                        <TransformGroup.Children>
-                                            <RotateTransform Angle="0" />
-                                            <ScaleTransform ScaleX="1" ScaleY="1" />
-                                        </TransformGroup.Children>
-                                    </TransformGroup>
-                                </Path.RenderTransform>
-                            </Path>
-                        </Grid>
-                    </Viewbox>
+    <Grid Background="#FF364B71">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
 
-                </Button>
+        <Grid Grid.Row="0" Height="110" VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.3*"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="0.3*"/>
 
 
-            </Grid>
-
-
-            <ProgressRing x:Name="ProgressBar" Grid.Row="2" Height="66" Width="99" Foreground="#FFFCFDFF" />
-            <Grid Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" Margin="51,0,0,0">
-               
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="1*"></RowDefinition>
-                        <RowDefinition Height="1*"></RowDefinition>
-                        <RowDefinition Height="1*"></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*"></ColumnDefinition>
-                        <ColumnDefinition Width="2*"></ColumnDefinition>
-                        <ColumnDefinition Width="1*"></ColumnDefinition>
-                        <ColumnDefinition Width="Auto"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Name="snametext" Text="Server Name:" FontSize="25" FontWeight="SemiBold" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right"></TextBlock>
-                    <TextBlock Name="sname" Text="{Binding Servername}" FontSize="25" Grid.Row="0" Grid.Column="1" ></TextBlock>
-                    <TextBlock Name="useridtext" Text="Login Name:" FontSize="25" FontWeight="SemiBold" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right"></TextBlock>
-                    <TextBlock Name="uid" Text="{Binding Userid}" FontSize="25" Grid.Row="1" Grid.Column="1"></TextBlock>
-                    <TextBlock Name="versiontext" Text="Version:" FontSize="25" FontWeight="SemiBold"  Grid.Row="0" Grid.Column="2" HorizontalAlignment="Right"></TextBlock>
-                    <TextBlock Name="version" Text="{Binding Version}" FontSize="25" Grid.Row="0" Grid.Column="3"></TextBlock>
-                    <TextBlock Name="timetext" Text="Time:" FontSize="25" FontWeight="SemiBold" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right"></TextBlock>
-                    <TextBlock Name="timetextdata" Text="{Binding Timetext}" FontSize="25" Grid.Row="1" Grid.Column="3"></TextBlock>
-              
-            </Grid>
-
-            
-
-
-           
-            <Grid Grid.Row="2" Grid.Column="0" x:Name="databasesgrid" Margin="51,49,10,-49">
-                <GridView x:Name="DatabaseGridView" HorizontalAlignment="Stretch" VerticalAlignment="Top" ItemTemplate="{StaticResource DatabaseListTemplate}" ItemsSource="{Binding DatabaseList}"
-                      IsItemClickEnabled="True"
-                      helpers:GridViewItemClickCommand.Command="{Binding Path=SelectDatabase}" Visibility="{Binding Gridviewvisibility}">
-                    <ContentPresenter Height="100" Width="100"/>
-                    <GridView.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <WrapGrid Orientation="Horizontal" />
-                        </ItemsPanelTemplate>
-                    </GridView.ItemsPanel>
-                </GridView>
-
-            </Grid>
-            <ContentControl  x:Name="container" HorizontalAlignment="Stretch" Width="auto" Margin="0,49,0,298" Grid.Row="2">
-                <Popup x:Name="ExceptionPop" HorizontalAlignment="Stretch" IsOpen="{Binding ExceptionOpen, Mode=TwoWay}" Width="auto">
-                    <Grid Background="#FF22476C" x:Name="gdChild" HorizontalAlignment="Stretch" Height="300" Width="auto">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                        </Grid.RowDefinitions>
-                        <TextBlock HorizontalAlignment="Center" Grid.Row="0" Text="{Binding ExceptionResult}" TextWrapping="Wrap" Width="auto"/>
-                        <Button Margin="547,203,762,-225" Grid.Row="1" x:Name="Tryagain" Command="{Binding Exceptionpopupcommand}"  Foreground="White"  Width="277" HorizontalAlignment="Center" Height="62">
-                            <Viewbox Height="30" Width="200">
-                                <TextBlock Text="Try again"/>
-                            </Viewbox>
-                        </Button>
+            </Grid.ColumnDefinitions>
+            <TextBlock x:Name="AppName" FontSize="50" Grid.Column="1" Text="Azure SQL Monitor" VerticalAlignment="Center"></TextBlock>
+            <Button x:Name="Logout" BorderThickness="0" Grid.Column="2" HorizontalAlignment="Right" Command="{Binding LogOut}">
+                <Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+                    <Grid>
+                        <Grid Name="backgroundGrid" Width="128" Height="128" Visibility="Collapsed" />
+                        <Path Data="M14.800615,5.6499605L14.800615,14.800346C10.630442,17.910477 7.8903284,22.840685 7.8903284,28.44092 7.9003286,37.871319 15.530646,45.511639 24.961039,45.521641 34.391431,45.511639 42.011749,37.871319 42.04175,28.44092 42.03175,22.840685 39.291636,17.910477 35.121462,14.800346L35.121462,5.6599612C43.841825,9.5601254,49.912077,18.280493,49.912077,28.44092L49.922077,28.44092C49.912077,42.231503 38.741611,53.391972 24.961039,53.391972 11.170465,53.391972 0,42.231503 0,28.44092 0,18.270493 6.0902529,9.5501251 14.800615,5.6499605z M19.570043,0L30.237043,0 30.237043,33.917 19.570043,33.917z" Stretch="Uniform" Fill="#FFF1EDED" Width="68" Height="68" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
+                            <Path.RenderTransform>
+                                <TransformGroup>
+                                    <TransformGroup.Children>
+                                        <RotateTransform Angle="0" />
+                                        <ScaleTransform ScaleX="1" ScaleY="1" />
+                                    </TransformGroup.Children>
+                                </TransformGroup>
+                            </Path.RenderTransform>
+                        </Path>
                     </Grid>
-                </Popup>
-            </ContentControl>
+                </Viewbox>
 
-            <!--  <Button Margin="0,68,0,45" Width="103" Height="41" Click="Button_Click" />-->
+            </Button>
 
 
         </Grid>
 
 
-    
+        <ProgressRing x:Name="ProgressBar" Grid.Row="2" Height="66" Width="99" Foreground="#FFFCFDFF" />
+        <Grid Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" Margin="114,0,0,0">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60" ></RowDefinition>
+                <RowDefinition Height="60"></RowDefinition>
+
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="200"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock Name="snametext" Text="Server Name:" FontSize="25" FontWeight="SemiBold" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right"></TextBlock>
+            <TextBlock Name="sname" Text="{Binding Servername}" FontSize="25" Grid.Row="0" Grid.Column="1" ></TextBlock>
+            <TextBlock Name="useridtext" Text="Login Name:" FontSize="25" FontWeight="SemiBold" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right"></TextBlock>
+            <TextBlock Name="uid" Text="{Binding Userid}" FontSize="25" Grid.Row="1" Grid.Column="1"></TextBlock>
+            <TextBlock Name="versiontext" Text="Version:" FontSize="25" FontWeight="SemiBold"  Grid.Row="0" Grid.Column="2" HorizontalAlignment="Right"></TextBlock>
+            <TextBlock Name="version" Text="{Binding Version}" FontSize="25" Grid.Row="0" Grid.Column="3"></TextBlock>
+            <TextBlock Name="timetext" Text="Time:" FontSize="25" FontWeight="SemiBold" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right"></TextBlock>
+            <TextBlock Name="timetextdata" Text="{Binding Timetext}" FontSize="25" Grid.Row="1" Grid.Column="3"></TextBlock>
+
+        </Grid>
+
+
+
+
+
+        <Grid Grid.Row="2" Grid.Column="0" x:Name="databasesgrid" Margin="51,49,10,-49">
+            <GridView x:Name="DatabaseGridView" HorizontalAlignment="Stretch" VerticalAlignment="Top" ItemTemplate="{StaticResource DatabaseListTemplate}" ItemsSource="{Binding DatabaseList}"
+                      IsItemClickEnabled="True"
+                      helpers:GridViewItemClickCommand.Command="{Binding Path=SelectDatabase}" Visibility="{Binding Gridviewvisibility}">
+                <ContentPresenter Height="100" Width="100"/>
+                <GridView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapGrid Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </GridView.ItemsPanel>
+            </GridView>
+
+        </Grid>
+        <ContentControl  x:Name="container" HorizontalAlignment="Stretch"  Grid.Row="2">
+            <Popup x:Name="ExceptionPop" HorizontalAlignment="Stretch" IsOpen="{Binding Isexceptionopenproperty, Mode=TwoWay}">
+                <Grid Background="#FF22476C" x:Name="gdChild" HorizontalAlignment="Stretch" Height="300">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Orientation="Vertical" Grid.Row="0">
+                        <TextBlock HorizontalAlignment="Center" Text="{Binding Result}" TextWrapping="Wrap" FontSize="25" Width="auto"/>
+                        <Button x:Name="Tryagain" Command="{Binding Exceptionpopupcommand}"  Foreground="White" FontSize="30"  HorizontalAlignment="Center" Content="Try Again" >
+
+                        </Button>
+
+                    </StackPanel>
+
+                </Grid>
+            </Popup>
+        </ContentControl>
+        <!--  <Button Margin="0,68,0,45" Width="103" Height="41" Click="Button_Click" />-->
+    </Grid>
+
+
+
 
 
 

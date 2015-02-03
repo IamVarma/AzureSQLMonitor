@@ -42,7 +42,7 @@ namespace AzureSQLApp.Views
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += navigationHelper_LoadState;
             this.navigationHelper.SaveState += navigationHelper_SaveState;
-            
+            gdChild.Width = Window.Current.Bounds.Width;
 
 
         }
