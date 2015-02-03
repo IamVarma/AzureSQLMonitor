@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ServiceConfiguration serviceName="AzureSQLWCFService.Azure" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="4" osVersion="*" schemaVersion="2014-06.2.4">
+  <Role name="AzureSQLWCFService">
+    <Instances count="1" />
+    <ConfigurationSettings>
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.Enabled" value="true" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountUsername" value="Varmag" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountEncryptedPassword" value="MIIBnQYJKoZIhvcNAQcDoIIBjjCCAYoCAQAxggFOMIIBSgIBADAyMB4xHDAaBgNVBAMME1dpbmRvd3MgQXp1cmUgVG9vbHMCEHUysl6ZyY+qSKMsTn+752IwDQYJKoZIhvcNAQEBBQAEggEAbI6Zp9jxbWFKqk1+MlOZ8jg1xZDrBnxgz1BGopP0YNOdTXzoMcEw1z//uU+ThjNIJEUQRmlkkGJCnZ6KLwErRKmx9WNDjD6R27J+JygPltDGYywxvUMdcXm+0OP3KfWt9E805JrTSTUwyqb0q5lDX8+OLmT9JLUyfsRQe+nQvixq7NMpvMl4M3dAo/hxJx4T9H3c5HBzIbJ/0PWROMUb99jCbXqw1fnoOhFjHc8p0NJLi8PfWBdRuh7VD68OGvPGSdU4soAdrDSO0TU6Ze/Ph0/sVFEJOPp1OWYB6wPNVcyMbUPhwWclMXrsjUvGPA7CydyznBvUtcTnVdWPBbFUJDAzBgkqhkiG9w0BBwEwFAYIKoZIhvcNAwcECNp92+p5Cv09gBBg5+1gYW84kecjbsc2tQmE" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountExpiration" value="2016-02-03T23:59:59.0000000+05:30" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteForwarder.Enabled" value="true" />
+    </ConfigurationSettings>
+    <Certificates>
+      <Certificate name="Microsoft.WindowsAzure.Plugins.RemoteAccess.PasswordEncryption" thumbprint="45829B4E4BB094F696FFEC0E4EB7BE084CEAAC87" thumbprintAlgorithm="sha1" />
+    </Certificates>
+  </Role>
+</ServiceConfiguration>

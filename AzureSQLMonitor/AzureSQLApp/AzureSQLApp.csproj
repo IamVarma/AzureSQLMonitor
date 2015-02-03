@@ -19,6 +19,8 @@
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <AppxBundlePlatforms>neutral</AppxBundlePlatforms>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -133,6 +135,11 @@
     <Compile Include="Models\TableDetails.cs" />
     <Compile Include="Models\TopCPUConsumersClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\AzureSQLService1\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\AzureSQLService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -163,6 +170,13 @@
     <None Include="AzureSQLApp_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\ServiceReferences.Designer.ClientConfig" />
+    <None Include="Service References\AzureSQLService1\SqlMonitorService.wsdl" />
+    <None Include="Service References\AzureSQLService1\SqlMonitorService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AzureSQLService1\SqlMonitorService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\AzureSQLService\SqlMonitorService.wsdl" />
     <None Include="Service References\AzureSQLService\SqlMonitorService.xsd">
       <SubType>Designer</SubType>
@@ -175,8 +189,6 @@
     <Content Include="Assets\Logo.scale-100.png" />
     <Content Include="Assets\SmallLogo.scale-100.png" />
     <Content Include="Assets\SplashScreen.scale-100.png" />
-    <Content Include="Assets\SplashScreen.scale-140.png" />
-    <Content Include="Assets\SplashScreen.scale-180.png" />
     <Content Include="Assets\StoreLogo.scale-100.png" />
     <Content Include="Images\arrow_button_metal_green_up.png" />
     <Content Include="Images\arrow_button_metal_red_down.png" />
@@ -189,6 +201,13 @@
     <None Include="Service References\AzureSQLService\configuration.svcinfo" />
     <None Include="Service References\AzureSQLService\configuration91.svcinfo" />
     <None Include="Service References\AzureSQLService\SqlMonitorService.disco" />
+    <None Include="Service References\AzureSQLService1\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\AzureSQLService1\configuration.svcinfo" />
+    <None Include="Service References\AzureSQLService1\configuration91.svcinfo" />
+    <None Include="Service References\AzureSQLService1\SqlMonitorService.disco" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -217,6 +236,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Service References\AzureSQLService1\" />
     <WCFMetadataStorage Include="Service References\AzureSQLService\" />
   </ItemGroup>
   <ItemGroup>

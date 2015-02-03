@@ -10,9 +10,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureSQLApp", "AzureSQLApp\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureSQLWCFService", "AzureSQLWCFService\AzureSQLWCFService.csproj", "{A40DF579-0223-41AF-9297-AF51D0DA7CB8}"
 EndProject
+Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "AzureSQLWCFService.Azure", "AzureSQLWCFService.Azure\AzureSQLWCFService.Azure.ccproj", "{9EFB8CBF-1213-495A-BE31-F272D14FDF48}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 3
+		SccNumberOfProjects = 4
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://azuresqlmonitor.visualstudio.com/defaultcollection
 		SccLocalPath0 = .
@@ -22,6 +24,9 @@ Global
 		SccProjectUniqueName2 = AzureSQLWCFService\\AzureSQLWCFService.csproj
 		SccProjectName2 = AzureSQLWCFService
 		SccLocalPath2 = AzureSQLWCFService
+		SccProjectUniqueName3 = AzureSQLWCFService.Azure\\AzureSQLWCFService.Azure.ccproj
+		SccProjectName3 = AzureSQLWCFService.Azure
+		SccLocalPath3 = AzureSQLWCFService.Azure
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -68,6 +73,16 @@ Global
 		{A40DF579-0223-41AF-9297-AF51D0DA7CB8}.Release|ARM.ActiveCfg = Release|Any CPU
 		{A40DF579-0223-41AF-9297-AF51D0DA7CB8}.Release|x64.ActiveCfg = Release|Any CPU
 		{A40DF579-0223-41AF-9297-AF51D0DA7CB8}.Release|x86.ActiveCfg = Release|Any CPU
+		{9EFB8CBF-1213-495A-BE31-F272D14FDF48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EFB8CBF-1213-495A-BE31-F272D14FDF48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EFB8CBF-1213-495A-BE31-F272D14FDF48}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{9EFB8CBF-1213-495A-BE31-F272D14FDF48}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{9EFB8CBF-1213-495A-BE31-F272D14FDF48}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9EFB8CBF-1213-495A-BE31-F272D14FDF48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EFB8CBF-1213-495A-BE31-F272D14FDF48}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9EFB8CBF-1213-495A-BE31-F272D14FDF48}.Release|ARM.ActiveCfg = Release|Any CPU
+		{9EFB8CBF-1213-495A-BE31-F272D14FDF48}.Release|x64.ActiveCfg = Release|Any CPU
+		{9EFB8CBF-1213-495A-BE31-F272D14FDF48}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
