@@ -47,9 +47,19 @@ namespace AzureSQLWCFService
                         {
 
                             dr.Read();
-                            _databaseSize = new DatabaseSizeClass { Name = "MaxSize", Size = float.Parse(dr["MaxSize"].ToString()) };
+                            string dbsizemax = float.Parse(dr["MaxSize"].ToString()).ToString("F2");
+                            string dbsizeused = float.Parse(dr["UsedSize"].ToString()).ToString("F2");
+                      
+                            //dbsize = float.Parse(dr["UsedSize"].ToString());
+                            //decimal dbsizeused = Math.Round((Decimal)dbsize, 2, MidpointRounding.AwayFromZero);
+                            //_databaseSize = new DatabaseSizeClass { Name = "TotalSize (" + dr["MaxSize"].ToString() + " MB)", Size = float.Parse(dbsizemax.ToString()) };
+                            //DatabaseSize.Add(_databaseSize);
+                            //_databaseSize = new DatabaseSizeClass { Name = "UsedSize (" + dr["UsedSize"].ToString() + " MB)", Size = float.Parse(dbsizeused.ToString()) };
+                            //DatabaseSize.Add(_databaseSize);
+
+                            _databaseSize = new DatabaseSizeClass { Name = "TotalSize (" + dr["MaxSize"].ToString() + " MB)", Size = float.Parse(dbsizemax) };
                             DatabaseSize.Add(_databaseSize);
-                            _databaseSize = new DatabaseSizeClass { Name = "UsedSize", Size = float.Parse(dr["UsedSize"].ToString()) };
+                            _databaseSize = new DatabaseSizeClass { Name = "UsedSize (" + dr["UsedSize"].ToString() + " MB)", Size = float.Parse(dbsizeused) };
                             DatabaseSize.Add(_databaseSize);
 
                         }

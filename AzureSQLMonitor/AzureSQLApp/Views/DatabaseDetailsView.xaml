@@ -81,6 +81,7 @@
         <Grid Grid.Row="0" Height="110" VerticalAlignment="Center">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.3*"/>
+                <ColumnDefinition Width="0.3*"/>
                 <ColumnDefinition Width="3*"/>
                 <ColumnDefinition Width="0.3*"/>
 
@@ -108,8 +109,11 @@
 
             </Button>
 
-            <TextBlock x:Name="AppName" FontSize="50" Grid.Column="1" Text="AdventureWorks2012" VerticalAlignment="Bottom" Margin="0,0,0,20"></TextBlock>
 
+
+            <Image Source="/Images/cloud_database-512.png" Width="60" Height="60" Grid.Column="1" HorizontalAlignment="Right"/>
+            <TextBlock Text=" Azure SQL Database Monitor" VerticalAlignment="Bottom" FontSize="70" Grid.Column="2" HorizontalAlignment="Left"/>
+            
 
             <Button x:Name="Logout" BorderThickness="0" Grid.Column="2" HorizontalAlignment="Right" Command="{Binding LogOut}">
                 <Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
@@ -132,7 +136,7 @@
         </Grid>
 
         <StackPanel Grid.Row="1">
-            <TextBlock x:Name="DBName" FontSize="50" Grid.Column="1" Text="AdventureWorks2012" HorizontalAlignment="Center" ></TextBlock>
+            <TextBlock x:Name="DBName" FontSize="50" Grid.Column="1" Text="AdventureWorks2012" HorizontalAlignment="Center" Foreground="GreenYellow"></TextBlock>
 
             <StackPanel  Orientation="Horizontal" HorizontalAlignment="Center">
 
@@ -401,7 +405,7 @@
 <!--Tables Sizes Chart -->
                 <charting:Chart
                 x:Name="PieChart"
-                Title="Table Sizes(MB)" LegendTitle="Table Names" Grid.Column="1" Grid.Row="1" >
+                Title="Top 5 Tables in size(MB)" LegendTitle="Table Names" Grid.Column="1" Grid.Row="1" >
                 <charting:Chart.Palette>
                     <charting:ResourceDictionaryCollection>
                         <!-- Blue -->

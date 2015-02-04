@@ -50,7 +50,7 @@ namespace AzureSQLWCFService
 
                             while (dr.Read())
                             {
-                                _tabledetails = new TableSizeDetails { TableName = dr["TableName"].ToString(), TableSize = dr["Size"].ToString() };
+                                _tabledetails = new TableSizeDetails { TableName = dr["TableName"].ToString() + " (" + dr["Size"].ToString()+" MB)", TableSize = dr["Size"].ToString() };
                                 DatabaseTableDetails.Add(_tabledetails);
                                 _tabledetails = null;
 
