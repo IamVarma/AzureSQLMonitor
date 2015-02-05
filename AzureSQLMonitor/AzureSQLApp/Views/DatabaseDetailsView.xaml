@@ -137,6 +137,7 @@
         </Grid>
 
         <StackPanel Grid.Row="1">
+           <!--<TextBlock x:Name="DBNametext" FontSize="50" Grid.Column="1" Text="DB Name: " HorizontalAlignment="Center"/>-->
             <TextBlock x:Name="DBName" FontSize="50" Grid.Column="1" Text="AdventureWorks2012" HorizontalAlignment="Center" Foreground="GreenYellow"></TextBlock>
 
             <StackPanel  Orientation="Horizontal" HorizontalAlignment="Center">
@@ -181,7 +182,7 @@
         <Grid Grid.Row="2" x:Name="BasicDetailsGrid">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="1.5*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
@@ -199,6 +200,7 @@
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="30"/>
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock  Text="Database State:" Grid.Row="0" Grid.Column="0" FontSize="25" FontWeight="SemiBold" HorizontalAlignment="Left"/>
@@ -207,11 +209,11 @@
                 <TextBlock Text="Is ReadOnly:" Grid.Row="3" Grid.Column="0" FontSize="25" FontWeight="SemiBold" HorizontalAlignment="Left"/>
                 <TextBlock Text="Is Encrypted:" Grid.Row="4" Grid.Column="0" FontSize="25" FontWeight="SemiBold" HorizontalAlignment="Left"/>
 
-                <TextBlock x:Name="state" Grid.Row="0" Grid.Column="1" FontSize="25" Text="Loading" HorizontalAlignment="Left" Foreground="GreenYellow"/>
-                <TextBlock x:Name="slo"  Grid.Row="1" Grid.Column="1" FontSize="25" Text="Loading" HorizontalAlignment="Left" Foreground="GreenYellow"/>
-                <TextBlock x:Name="access"  Grid.Row="2" Grid.Column="1" FontSize="25" Text="Loading" HorizontalAlignment="Left" Foreground="GreenYellow"/>
-                <TextBlock x:Name="readstatus"  Grid.Row="3" Grid.Column="1" FontSize="25" Text="Loading" HorizontalAlignment="Left" Foreground="GreenYellow"/>
-                <TextBlock x:Name="encryptonly"  Grid.Row="4" Grid.Column="1" FontSize="25" Text="Loading" HorizontalAlignment="Left" Foreground="GreenYellow"/>
+                <TextBlock x:Name="state" Grid.Row="0" Grid.Column="2" FontSize="25" Text="Loading..." HorizontalAlignment="Left" Foreground="GreenYellow"/>
+                <TextBlock x:Name="slo"  Grid.Row="1" Grid.Column="2" FontSize="25" Text="Loading..." HorizontalAlignment="Left" Foreground="GreenYellow"/>
+                <TextBlock x:Name="access"  Grid.Row="2" Grid.Column="2" FontSize="25" Text="Loading..." HorizontalAlignment="Left" Foreground="GreenYellow"/>
+                <TextBlock x:Name="readstatus"  Grid.Row="3" Grid.Column="2" FontSize="25" Text="Loading..." HorizontalAlignment="Left" Foreground="GreenYellow"/>
+                <TextBlock x:Name="encryptonly"  Grid.Row="4" Grid.Column="2" FontSize="25" Text="Loading..." HorizontalAlignment="Left" Foreground="GreenYellow"/>
             </Grid>
 
           
@@ -385,7 +387,8 @@
                                     Style="{TemplateBinding TitleStyle}" />
                                             <ScrollViewer
                                     Grid.Row="1"
-                                    VerticalScrollBarVisibility="Auto"
+                                    VerticalScrollBarVisibility="Disabled"
+                                                MinHeight="400"
                                     BorderThickness="0"
                                     Padding="0"
                                     IsTabStop="False">
@@ -656,7 +659,8 @@
                                     Style="{TemplateBinding TitleStyle}" />
                                                     <ScrollViewer
                                     Grid.Row="1"
-                                    VerticalScrollBarVisibility="Auto"
+                                    VerticalScrollBarVisibility="Disabled"
+                                                        MinHeight="200"
                                     BorderThickness="0"
                                     Padding="0"
                                     IsTabStop="False">
@@ -813,7 +817,8 @@
                                     Style="{TemplateBinding TitleStyle}" />
                                             <ScrollViewer
                                     Grid.Row="1"
-                                    VerticalScrollBarVisibility="Auto"
+                                    VerticalScrollBarVisibility="Disabled"
+                                                MinHeight="200"
                                     BorderThickness="0"
                                     Padding="0"
                                     IsTabStop="False">
@@ -1085,7 +1090,8 @@
                                     Style="{TemplateBinding TitleStyle}" />
                                             <ScrollViewer
                                     Grid.Row="1"
-                                    VerticalScrollBarVisibility="Auto"
+                                    VerticalScrollBarVisibility="Disabled"
+                                                MinHeight="200"
                                     BorderThickness="0"
                                     Padding="0"
                                     IsTabStop="False">
@@ -1117,7 +1123,7 @@
 
 
 
-        <Grid Grid.Row="2" x:Name="ResourceUsageGrid" Visibility="Collapsed">
+        <Grid Grid.Row="2" x:Name="ResourceUsageGrid" Visibility="Collapsed" ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
@@ -1234,7 +1240,8 @@
                                     Style="{TemplateBinding TitleStyle}" />
                                             <ScrollViewer
                                     Grid.Row="1"
-                                    VerticalScrollBarVisibility="Auto"
+                                    VerticalScrollBarVisibility="Disabled"
+                                                MinHeight="200"
                                     BorderThickness="0"
                                     Padding="0"
                                     IsTabStop="False">
@@ -1356,7 +1363,8 @@
                                     Style="{TemplateBinding TitleStyle}" />
                                             <ScrollViewer
                                     Grid.Row="1"
-                                    VerticalScrollBarVisibility="Auto"
+                                    VerticalScrollBarVisibility="Disabled"
+                                                MinHeight="200"
                                     BorderThickness="0"
                                     Padding="0"
                                     IsTabStop="False">
@@ -1479,7 +1487,8 @@
                                     Style="{TemplateBinding TitleStyle}" />
                                             <ScrollViewer
                                     Grid.Row="1"
-                                    VerticalScrollBarVisibility="Auto"
+                                    VerticalScrollBarVisibility="Disabled"
+                                                MinHeight="200"
                                     BorderThickness="0"
                                     Padding="0"
                                     IsTabStop="False">
@@ -1603,7 +1612,8 @@
                                     Style="{TemplateBinding TitleStyle}" />
                                             <ScrollViewer
                                     Grid.Row="1"
-                                    VerticalScrollBarVisibility="Auto"
+                                    VerticalScrollBarVisibility="Disabled"
+                                                MinHeight="200"
                                     BorderThickness="0"
                                     Padding="0"
                                     IsTabStop="False">
@@ -1650,11 +1660,11 @@
 
             </Grid>
 
-            <GridView x:Name="CpuConsumersGridView" Grid.Row="1" ItemTemplate="{StaticResource CpuConsumersTemplate}" ItemsSource="{Binding TopCpuConsumers}">
+            <ListView x:Name="CpuConsumersGridView" Grid.Row="1" ItemTemplate="{StaticResource CpuConsumersTemplate}" ItemsSource="{Binding TopCpuConsumers}">
 
                 <ContentPresenter Height="1000"/>
 
-            </GridView>
+            </ListView>
 
         </Grid>
 
