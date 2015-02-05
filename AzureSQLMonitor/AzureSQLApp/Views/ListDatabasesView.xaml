@@ -7,6 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     xmlns:helpers="using:AzureSQLApp.Helpers"
+    xmlns:cfo="using:CharmFlyoutLibrary"
     DataContext="{Binding ListDatabasesViewModel, RelativeSource={RelativeSource Self}}">
 
     <Page.Resources>
@@ -71,18 +72,16 @@
 
     <Grid Background="#FF364B71">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="0.3*"/>
+            <RowDefinition Height="0.3*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" Height="110" VerticalAlignment="Center">
+        <Grid Grid.Row="0" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.3*"/>
                 <ColumnDefinition Width="3*"/>
                 <ColumnDefinition Width="0.3*"/>
-
-
             </Grid.ColumnDefinitions>
             <TextBlock x:Name="AppName" FontSize="50" Grid.Column="1" Text="Azure SQL Monitor" VerticalAlignment="Center"></TextBlock>
             <Button x:Name="Logout" BorderThickness="0" Grid.Column="2" HorizontalAlignment="Right" Command="{Binding LogOut}">
@@ -109,7 +108,7 @@
 
 
         <ProgressRing x:Name="ProgressBar" Grid.Row="2" Height="66" Width="99" Foreground="#FFFCFDFF" />
-        <Grid Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" Margin="114,0,0,0">
+        <Grid Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left"  Margin="114,0,0,0">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="60" ></RowDefinition>
@@ -132,12 +131,7 @@
             <TextBlock Name="timetextdata" Text="{Binding Timetext}" FontSize="25" Grid.Row="1" Grid.Column="3" Foreground="GreenYellow"></TextBlock>
 
         </Grid>
-
-
-
-
-
-        <Grid Grid.Row="2" Grid.Column="0" x:Name="databasesgrid" Margin="51,49,10,-49">
+        <Grid Grid.Row="2" Grid.Column="0" x:Name="databasesgrid"  VerticalAlignment="Top" Margin="31,10,10,0">
             <GridView x:Name="DatabaseGridView" HorizontalAlignment="Stretch" VerticalAlignment="Top" ItemTemplate="{StaticResource DatabaseListTemplate}" ItemsSource="{Binding DatabaseList}"
                       IsItemClickEnabled="True"
                       helpers:GridViewItemClickCommand.Command="{Binding Path=SelectDatabase}" Visibility="{Binding Gridviewvisibility}">
@@ -167,12 +161,49 @@
                 </Grid>
             </Popup>
         </ContentControl>
-        <!--  <Button Margin="0,68,0,45" Width="103" Height="41" Click="Button_Click" />-->
+        <cfo:CharmFlyout
+            x:Name="PrivacyCharm"
+            Heading="Privacy Policy"
+            HeadingBackgroundBrush="SkyBlue">
+            <StackPanel>
+                <RichTextBlock TextWrapping="Wrap" FontSize="20">
+                    <Paragraph>This App does not store any user credentials or make any modifications to the SQL server databases. We use the credentials to login to the SQL server and fectch  the monitoring information for that instance. Please click on the below link for more information.</Paragraph>
+                </RichTextBlock>
+                <HyperlinkButton FontSize="20" NavigateUri="http://blogs.msdn.com/b/varmag/archive/2014/12/03/setting-up-logins-to-monitor-azure-sql-databases.aspx">Read more</HyperlinkButton>
+            </StackPanel>
+        </cfo:CharmFlyout>
+        <cfo:CharmFlyout
+            x:Name="HowCharm"
+            Heading="How does it work?"
+            HeadingBackgroundBrush="SkyBlue">
+            <StackPanel>
+                <RichTextBlock TextWrapping="Wrap" FontSize="20">
+                    <Paragraph>Every functionality of this app is documented at the link below. Also, all the queries executed on the Databases are listed in the blog.</Paragraph>
+                </RichTextBlock>
+                <HyperlinkButton FontSize="20" NavigateUri="http://blogs.msdn.com/b/varmag/archive/2014/12/03/setting-up-logins-to-monitor-azure-sql-databases.aspx">Read more</HyperlinkButton>
+                <Grid
+                    Background="#FF4E0000" HorizontalAlignment="Left">
+                </Grid>
+            </StackPanel>
+        </cfo:CharmFlyout>
+        <cfo:CharmFlyout
+            x:Name="DevelopedBy"
+            Heading="Developed By"
+            HeadingBackgroundBrush="SkyBlue">
+            <StackPanel>
+                <TextBlock
+                    FontSize="20">Akbar Faristha</TextBlock>
+                <TextBlock
+                    FontSize="20">Chandra Shekhar</TextBlock>
+                <TextBlock
+                    FontSize="20">Varma Gadhiraju</TextBlock>
+                <Grid
+                    Background="#FF4E0000" HorizontalAlignment="Left">
+                </Grid>
+            </StackPanel>
+        </cfo:CharmFlyout>
+
+
+
     </Grid>
-
-
-
-
-
-
 </Page>

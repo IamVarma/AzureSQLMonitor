@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    xmlns:cfo="using:CharmFlyoutLibrary"
     DataContext="{Binding LoginModel, RelativeSource={RelativeSource Self}}">
 
 
@@ -26,8 +27,8 @@
                 <TextBlock Grid.Column="2" HorizontalAlignment="Center"  Text="  Azure SQL Database Monitor   " VerticalAlignment="Center" FontSize="30"/>
             </StackPanel>
         </Viewbox>
-       
-        <Grid Grid.Row="1" HorizontalAlignment="Center">
+
+        <Grid Grid.Row="1" HorizontalAlignment="Center" x:Name="LoginGrid" Visibility="Visible">
         <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
@@ -168,9 +169,51 @@
             </Popup>
         </ContentControl>
 
+        <cfo:CharmFlyout
+            x:Name="PrivacyCharm"
+            Heading="Privacy Policy"
+            HeadingBackgroundBrush="SkyBlue">
+            <StackPanel>
+                <RichTextBlock TextWrapping="Wrap" FontSize="20">
+                    <Paragraph>This App does not store any user credentials or make any modifications to the SQL server databases. We use the credentials to login to the SQL server and fectch  the monitoring information for that instance. Please click on the below link for more information.</Paragraph>
+                </RichTextBlock>
+                <HyperlinkButton FontSize="20" NavigateUri="http://blogs.msdn.com/b/varmag/archive/2014/12/03/setting-up-logins-to-monitor-azure-sql-databases.aspx">Read more</HyperlinkButton>
+            </StackPanel>
+        </cfo:CharmFlyout>
+        <cfo:CharmFlyout
+            x:Name="HowCharm"
+            Heading="How does it work?"
+            HeadingBackgroundBrush="SkyBlue">
+            <StackPanel>
+                <RichTextBlock TextWrapping="Wrap" FontSize="20">
+                    <Paragraph>Every functionality of this app is documented at the link below. Also, all the queries executed on the Databases are listed in the blog.</Paragraph>
+                </RichTextBlock>
+                <HyperlinkButton FontSize="20" NavigateUri="http://blogs.msdn.com/b/varmag/archive/2014/12/03/setting-up-logins-to-monitor-azure-sql-databases.aspx">Read more</HyperlinkButton>
+                <Grid
+                    Background="#FF4E0000" HorizontalAlignment="Left">
+                </Grid>
+            </StackPanel>
+        </cfo:CharmFlyout>
+        <cfo:CharmFlyout
+            x:Name="DevelopedBy"
+            Heading="Developed By"
+            HeadingBackgroundBrush="SkyBlue">
+            <StackPanel>
+                <TextBlock
+                    FontSize="20">Akbar Faristha</TextBlock>
+                <TextBlock
+                    FontSize="20">Chandra Shekhar</TextBlock>
+                <TextBlock
+                    FontSize="20">Varma Gadhiraju</TextBlock>
+                <Grid
+                    Background="#FF4E0000" HorizontalAlignment="Left">
+                </Grid>
+            </StackPanel>
+        </cfo:CharmFlyout>
+        
 
     </Grid>
-
+    
 
 
 </Page>

@@ -248,6 +248,9 @@
     <WCFMetadataStorage Include="Service References\AzureSQLService2\" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="CharmFlyoutLibrary">
+      <HintPath>..\packages\CharmFlyout.1.0.12\lib\winrt45\CharmFlyoutLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="GalaSoft.MvvmLight">
       <HintPath>..\packages\MvvmLightLibs.5.0.2.0\lib\netcore451\GalaSoft.MvvmLight.dll</HintPath>
     </Reference>

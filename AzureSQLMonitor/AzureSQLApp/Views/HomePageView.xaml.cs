@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Navigation;
 using AzureSQLApp.ViewModels;
 using AzureSQLApp.Views;
 using AzureSQLApp.Common;
+using Windows.UI.ApplicationSettings;
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace AzureSQLApp.Views
@@ -42,7 +43,20 @@ namespace AzureSQLApp.Views
             this.InitializeComponent();
             gdChild.Width = Window.Current.Bounds.Width;
             gdChild1.Width = Window.Current.Bounds.Width;
+            PrivacyCharm.Height = Window.Current.Bounds.Height;
+           
+            DevelopedBy.Height = Window.Current.Bounds.Height;
+            HowCharm.Height = Window.Current.Bounds.Height;
+            SettingsPane.GetForCurrentView().CommandsRequested += CommandsRequested;
             
+            
+        }
+
+
+        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        {
+            SettingsPane.GetForCurrentView().CommandsRequested -= CommandsRequested;
+            base.OnNavigatingFrom(e);
         }
 
 
@@ -62,6 +76,14 @@ namespace AzureSQLApp.Views
         {
             
         }
+
+        private void CommandsRequested(SettingsPane sender, SettingsPaneCommandsRequestedEventArgs args)
+        {
+            args.Request.ApplicationCommands.Add(new SettingsCommand("a", "Privacy Policy", (p) => { PrivacyCharm.IsOpen = true; }));
+            args.Request.ApplicationCommands.Add(new SettingsCommand("b", "How does it work?", (p) => { HowCharm.IsOpen = true; }));
+            args.Request.ApplicationCommands.Add(new SettingsCommand("s", "Developed By", (p) => { DevelopedBy.IsOpen = true; }));
+        }
+
     }
 
     }
