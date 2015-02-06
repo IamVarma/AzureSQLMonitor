@@ -16,6 +16,8 @@ using AzureSQLApp.ViewModels;
 using AzureSQLApp.Views;
 using AzureSQLApp.Common;
 using Windows.UI.ApplicationSettings;
+using Windows.UI.ViewManagement;
+
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace AzureSQLApp.Views
@@ -41,6 +43,11 @@ namespace AzureSQLApp.Views
         public HomePageView()
         {
             this.InitializeComponent();
+
+            this.Loaded += page_Loaded;
+            this.Unloaded += page_Unloaded;
+
+
             gdChild.Width = Window.Current.Bounds.Width;
             gdChild1.Width = Window.Current.Bounds.Width;
             PrivacyCharm.Height = Window.Current.Bounds.Height;
@@ -83,6 +90,53 @@ namespace AzureSQLApp.Views
             args.Request.ApplicationCommands.Add(new SettingsCommand("b", "How does it work?", (p) => { HowCharm.IsOpen = true; }));
             args.Request.ApplicationCommands.Add(new SettingsCommand("s", "Developed By", (p) => { DevelopedBy.IsOpen = true; }));
         }
+
+
+        private void page_Loaded(object sender, RoutedEventArgs e)
+        {
+            Window.Current.SizeChanged += Window_SizeChanged;
+            DetermineVisualState();
+        }
+
+        private void page_Unloaded(object sender, RoutedEventArgs e)
+        {
+            Window.Current.SizeChanged -= Window_SizeChanged;
+        }
+
+        private void Window_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
+        {
+            DetermineVisualState();
+        }
+
+        private void DetermineVisualState()
+        {
+            var state = string.Empty;
+            var applicationView = ApplicationView.GetForCurrentView();
+            var size = Window.Current.Bounds;
+
+            if (applicationView.IsFullScreen)
+            {
+                if (applicationView.Orientation == ApplicationViewOrientation.Landscape)
+                {
+                    state = "FullScreenLandscape";
+                }
+                else
+                {
+                    ScreenSzieGrid.Width = Window.Current.Bounds.Width;
+                    state = "FullScreenPortrait";
+                }
+            }
+            else
+            {
+
+                state = "Narrow";
+                ScreenSzieGrid.Width = Window.Current.Bounds.Width;
+    
+            }
+
+                VisualStateManager.GoToState(this, state, true);
+        }
+
 
     }
 

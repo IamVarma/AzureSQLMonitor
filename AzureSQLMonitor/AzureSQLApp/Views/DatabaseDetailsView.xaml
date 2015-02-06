@@ -136,7 +136,7 @@
             </Button>
         </Grid>
 
-        <StackPanel Grid.Row="1">
+        <StackPanel Grid.Row="1" x:Name="OptionsPanel">
            <!--<TextBlock x:Name="DBNametext" FontSize="50" Grid.Column="1" Text="DB Name: " HorizontalAlignment="Center"/>-->
             <TextBlock x:Name="DBName" FontSize="50" Grid.Column="1" Text="AdventureWorks2012" HorizontalAlignment="Center" Foreground="GreenYellow"></TextBlock>
 
@@ -1669,7 +1669,7 @@
         </Grid>
 
         <ContentControl  x:Name="container" HorizontalAlignment="Stretch"  Grid.Row="2">
-            <Popup x:Name="ExceptionPop" HorizontalAlignment="Stretch" IsOpen="{Binding Isexceptionopenproperty, Mode=TwoWay}">
+            <Popup x:Name="ExceptionPop" HorizontalAlignment="Stretch" IsOpen="{Binding Isexceptionopenproperty, Mode=TwoWay}" IsLightDismissEnabled="True">
                 <Grid Background="#FF22476C" x:Name="gdChild" HorizontalAlignment="Stretch" Height="300">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
@@ -1716,6 +1716,36 @@
                 </Grid>
             </Popup>
         </ContentControl>
+
+        <ContentControl  x:Name="ScreeSizeControl" HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Top">
+            <Popup x:Name="ScreeSizePop" HorizontalAlignment="Stretch" IsOpen="False">
+                <Grid Background="#FF22476C" x:Name="ScreenSzieGrid" HorizontalAlignment="Stretch" Height="200" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Alert!" FontSize="50" FontWeight="SemiBold" Grid.Row="0" HorizontalAlignment="Center"></TextBlock>
+                    <StackPanel Orientation="Vertical" Grid.Row="1">
+                        <RichTextBlock FontSize="20" HorizontalAlignment="Center" Height="120" TextWrapping="Wrap">
+                            <Paragraph>
+                                This App suppports only FullScreen Landscape mode, please switch to fullscreen.
+
+                            </Paragraph>
+                        </RichTextBlock>
+
+
+                    </StackPanel>
+
+
+
+
+                </Grid>
+            </Popup>
+        </ContentControl>
+
+
+
+
         <cfo:CharmFlyout
             x:Name="PrivacyCharm"
             Heading="Privacy Policy"
@@ -1757,6 +1787,116 @@
                 </Grid>
             </StackPanel>
         </cfo:CharmFlyout>
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="Narrow">
+                    <Storyboard>
+
+                        <ObjectAnimationUsingKeyFrames
+                    Storyboard.TargetName="ScreeSizePop"
+                    Storyboard.TargetProperty="IsOpen">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="True" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames
+                    Storyboard.TargetName="OptionsPanel"
+                    Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames
+                    Storyboard.TargetName="BasicDetailsGrid"
+                    Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames
+                    Storyboard.TargetName="ResourceUsageGrid"
+                    Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames
+                    Storyboard.TargetName="ConnectionsGrid"
+                    Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames
+                    Storyboard.TargetName="CPUConsumersGrid"
+                    Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
+
+                    </Storyboard>
+                </VisualState>
+
+                <VisualState x:Name="FullScreenPortrait">
+                    <Storyboard>
+
+                        <ObjectAnimationUsingKeyFrames
+                    Storyboard.TargetName="ScreeSizePop"
+                    Storyboard.TargetProperty="IsOpen">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="True" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames
+                    Storyboard.TargetName="OptionsPanel"
+                    Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames
+                    Storyboard.TargetName="BasicDetailsGrid"
+                    Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames
+                    Storyboard.TargetName="ResourceUsageGrid"
+                    Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames
+                    Storyboard.TargetName="ConnectionsGrid"
+                    Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames
+                    Storyboard.TargetName="CPUConsumersGrid"
+                    Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
+
+                    </Storyboard>
+                </VisualState>
+
+
+                <VisualState x:Name="FullScreenLandscape">
+                    <Storyboard>
+
+                        <ObjectAnimationUsingKeyFrames
+                    Storyboard.TargetName="ScreeSizePop"
+                    Storyboard.TargetProperty="IsOpen">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="False" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <!--<ObjectAnimationUsingKeyFrames
+                    Storyboard.TargetName="OptionsPanel"
+                    Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>-->
+                        <!--<ObjectAnimationUsingKeyFrames
+                    Storyboard.TargetName="BasicDetailsGrid"
+                    Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames
+                    Storyboard.TargetName="BasicDetails"
+                    Storyboard.TargetProperty="IsEnabled">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="false" />
+                        </ObjectAnimationUsingKeyFrames>-->
+
+                    </Storyboard>
+                </VisualState>
+
+
+
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
 
 
     </Grid>

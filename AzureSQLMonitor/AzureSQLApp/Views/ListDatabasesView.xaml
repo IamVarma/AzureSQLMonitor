@@ -108,7 +108,7 @@
 
 
         <ProgressRing x:Name="ProgressBar" Grid.Row="2" Height="66" Width="99" Foreground="#FFFCFDFF" />
-        <Grid Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left"  Margin="114,0,0,0">
+        <Grid Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left"  Margin="114,0,0,0" x:Name="DetailsGrid">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="60" ></RowDefinition>
@@ -147,7 +147,7 @@
 
         </Grid>
         <ContentControl  x:Name="container" HorizontalAlignment="Stretch"  Grid.Row="2">
-            <Popup x:Name="ExceptionPop" HorizontalAlignment="Stretch" IsOpen="{Binding Isexceptionopenproperty, Mode=TwoWay}">
+            <Popup x:Name="ExceptionPop" HorizontalAlignment="Stretch" IsOpen="{Binding Isexceptionopenproperty, Mode=TwoWay}" IsLightDismissEnabled="True">
                 <Grid Background="#FF22476C" x:Name="gdChild" HorizontalAlignment="Stretch" Height="300">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
@@ -163,6 +163,33 @@
                 </Grid>
             </Popup>
         </ContentControl>
+
+        <ContentControl  x:Name="ScreeSizeControl" HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Top">
+            <Popup x:Name="ScreeSizePop" HorizontalAlignment="Stretch" IsOpen="False">
+                <Grid Background="#FF22476C" x:Name="ScreenSzieGrid" HorizontalAlignment="Stretch" Height="200" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Alert!" FontSize="50" FontWeight="SemiBold" Grid.Row="0" HorizontalAlignment="Center"></TextBlock>
+                    <StackPanel Orientation="Vertical" Grid.Row="1">
+                        <RichTextBlock FontSize="20" HorizontalAlignment="Center" Height="120" TextWrapping="Wrap">
+                            <Paragraph>
+                                This App suppports only FullScreen Landscape mode, please switch to fullscreen.
+
+                            </Paragraph>
+                        </RichTextBlock>
+
+
+                    </StackPanel>
+
+
+
+
+                </Grid>
+            </Popup>
+        </ContentControl>
+
         <cfo:CharmFlyout
             x:Name="PrivacyCharm"
             Heading="Privacy Policy"
@@ -205,6 +232,78 @@
             </StackPanel>
         </cfo:CharmFlyout>
 
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="Narrow">
+                    <Storyboard>
+
+                        <ObjectAnimationUsingKeyFrames
+                    Storyboard.TargetName="ScreeSizePop"
+                    Storyboard.TargetProperty="IsOpen">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="True" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames
+                    Storyboard.TargetName="DetailsGrid"
+                    Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames
+                    Storyboard.TargetName="databasesgrid"
+                    Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
+                        
+                    </Storyboard>
+                </VisualState>
+
+                <VisualState x:Name="FullScreenPortrait">
+                    <Storyboard>
+
+                        <ObjectAnimationUsingKeyFrames
+                    Storyboard.TargetName="ScreeSizePop"
+                    Storyboard.TargetProperty="IsOpen">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="True" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames
+                    Storyboard.TargetName="DetailsGrid"
+                    Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames
+                    Storyboard.TargetName="databasesgrid"
+                    Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
+
+                    </Storyboard>
+                </VisualState>
+
+
+                <VisualState x:Name="FullScreenLandscape">
+                    <Storyboard>
+
+                        <ObjectAnimationUsingKeyFrames
+                    Storyboard.TargetName="ScreeSizePop"
+                    Storyboard.TargetProperty="IsOpen">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="False" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames
+                    Storyboard.TargetName="DetailsGrid"
+                    Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames
+                    Storyboard.TargetName="databasesgrid"
+                    Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+
+
+
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
 
 
     </Grid>

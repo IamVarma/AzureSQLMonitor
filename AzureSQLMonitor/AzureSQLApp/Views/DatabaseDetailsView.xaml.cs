@@ -18,6 +18,7 @@ using AzureSQLApp.Models;
 using System.Threading.Tasks;
 using WinRTXamlToolkit.Controls.DataVisualization.Charting;
 using Windows.UI.ApplicationSettings;
+using Windows.UI.ViewManagement;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -118,6 +119,7 @@ namespace AzureSQLApp.Views
                this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += navigationHelper_LoadState;
             this.navigationHelper.SaveState += navigationHelper_SaveState;
+            this.Unloaded += page_Unloaded;
             gdChild.Width = Window.Current.Bounds.Width;
             gdChild1.Width = Window.Current.Bounds.Width;
             PrivacyCharm.Height = Window.Current.Bounds.Height;
@@ -128,6 +130,8 @@ namespace AzureSQLApp.Views
 
           private async void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
+            Window.Current.SizeChanged += Window_SizeChanged;
+            DetermineVisualState();
 
             selectedDatabase = (Databases)e.NavigationParameter;
             DBName.Text = selectedDatabase.DatabaseName;
@@ -291,6 +295,46 @@ namespace AzureSQLApp.Views
         {
             SettingsPane.GetForCurrentView().CommandsRequested -= CommandsRequested;
             base.OnNavigatingFrom(e);
+        }
+
+
+        private void page_Unloaded(object sender, RoutedEventArgs e)
+        {
+            Window.Current.SizeChanged -= Window_SizeChanged;
+        }
+
+        private void Window_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
+        {
+            DetermineVisualState();
+        }
+
+        private void DetermineVisualState()
+        {
+            var state = string.Empty;
+            var applicationView = ApplicationView.GetForCurrentView();
+            var size = Window.Current.Bounds;
+
+            if (applicationView.IsFullScreen)
+            {
+                if (applicationView.Orientation == ApplicationViewOrientation.Landscape)
+                {
+                    state = "FullScreenLandscape";
+                }
+                else
+                {
+                    ScreenSzieGrid.Width = Window.Current.Bounds.Width;
+                    state = "FullScreenPortrait";
+                }
+            }
+            else
+            {
+
+                state = "Narrow";
+                ScreenSzieGrid.Width = Window.Current.Bounds.Width;
+
+            }
+
+            VisualStateManager.GoToState(this, state, true);
         }
     }
 }
