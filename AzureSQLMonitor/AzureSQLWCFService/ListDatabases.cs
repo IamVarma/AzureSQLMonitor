@@ -112,7 +112,7 @@ namespace AzureSQLWCFService
                                 {
                                     while (dr.Read())
                                     {
-                                        _dbase[whileindex].DatabaseSize = dr["dbasesize"].ToString();//+" (MB)";
+                                        _dbase[whileindex].DatabaseSize = dr["dbasesize"].ToString() +" (MB)";
                                         DBList.Add(_dbase[whileindex]);
                                     }
 

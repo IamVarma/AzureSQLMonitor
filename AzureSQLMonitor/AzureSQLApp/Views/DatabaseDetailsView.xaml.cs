@@ -37,6 +37,7 @@ namespace AzureSQLApp.Views
         DispatcherTimer DispatchTimerTab2;
         DispatcherTimer DispatchTimerTab3;
         DispatcherTimer DispatchTimerTab4;
+     
 
         public void DispactcherTimeSetupTab1()
         {
@@ -80,8 +81,12 @@ namespace AzureSQLApp.Views
         async void DispatchTimer_Tick_Tab1(object sender, object e)
         {
             if(BasicDetailsGrid.Visibility==Visibility.Visible)
+            {
                 await DatabaseDetails.GetConnectionCount(selectedDatabase.DatabaseName);
-    
+                await DatabaseDetails.GetDatabaseSize(selectedDatabase.DatabaseName);
+                await DatabaseDetails.GetTablesCommand(selectedDatabase.DatabaseName);
+            }
+                
         }
 
 
@@ -107,6 +112,7 @@ namespace AzureSQLApp.Views
             }
         }
 
+    
 
             public DatabaseDetailsViewModel DatabaseDetails
             {
@@ -166,6 +172,7 @@ namespace AzureSQLApp.Views
             DispactcherTimeSetupTab2();
             DispactcherTimeSetupTab3();
             DispactcherTimeSetupTab4();
+  
         }
 
 

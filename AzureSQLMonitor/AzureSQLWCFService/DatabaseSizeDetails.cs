@@ -28,7 +28,7 @@ namespace AzureSQLWCFService
 
             //}
 
-            string querytext = "select cast(DATABASEPROPERTYEX  ( '"+dbname+"','MaxSizeInBytes' ) as bigint)/1048576000 as MaxSize, SUM(reserved_page_count)*8.0/1048576 as UsedSize FROM sys.dm_db_partition_stats;";
+            string querytext = "select cast(DATABASEPROPERTYEX  ( '"+dbname+"','MaxSizeInBytes' ) as bigint)/1048576000 as MaxSize, SUM(reserved_page_count)*8.0/1024 as UsedSize FROM sys.dm_db_partition_stats;";
             var connectionString = "Server=tcp:" + ServerName + ",1433;Database=" + dbname + ";User ID=" + LoginName + ";Password=" + Password + ";Trusted_Connection=False;Encrypt=True;Connection Timeout=10;Application Name=AzureMonitor;";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
