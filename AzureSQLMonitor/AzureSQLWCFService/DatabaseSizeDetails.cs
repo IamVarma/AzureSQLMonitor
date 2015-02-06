@@ -28,7 +28,7 @@ namespace AzureSQLWCFService
 
             //}
 
-            string querytext = "select cast(DATABASEPROPERTYEX  ( '"+dbname+"','MaxSizeInBytes' ) as bigint)/1048576000 as MaxSize, SUM(reserved_page_count)*8.0/1024 as UsedSize FROM sys.dm_db_partition_stats;";
+            string querytext = "select cast(DATABASEPROPERTYEX  ( '" + dbname + "','MaxSizeInBytes' ) as bigint)/1024000 as MaxSize, SUM(reserved_page_count)*8.0/1024 as UsedSize FROM sys.dm_db_partition_stats;";
             var connectionString = "Server=tcp:" + ServerName + ",1433;Database=" + dbname + ";User ID=" + LoginName + ";Password=" + Password + ";Trusted_Connection=False;Encrypt=True;Connection Timeout=10;Application Name=AzureMonitor;";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -49,6 +49,8 @@ namespace AzureSQLWCFService
                             dr.Read();
                             string dbsizemax = float.Parse(dr["MaxSize"].ToString()).ToString("F2");
                             string dbsizeused = float.Parse(dr["UsedSize"].ToString()).ToString("F2");
+                            float maxsize = float.Parse(dr["MaxSize"].ToString());
+                            maxsize = maxsize / 1024;
                       
                             //dbsize = float.Parse(dr["UsedSize"].ToString());
                             //decimal dbsizeused = Math.Round((Decimal)dbsize, 2, MidpointRounding.AwayFromZero);
@@ -57,7 +59,7 @@ namespace AzureSQLWCFService
                             //_databaseSize = new DatabaseSizeClass { Name = "UsedSize (" + dr["UsedSize"].ToString() + " MB)", Size = float.Parse(dbsizeused.ToString()) };
                             //DatabaseSize.Add(_databaseSize);
 
-                            _databaseSize = new DatabaseSizeClass { Name = "TotalSize (" + dr["MaxSize"].ToString() + " MB)", Size = float.Parse(dbsizemax) };
+                            _databaseSize = new DatabaseSizeClass { Name = "TotalSize (" + maxsize.ToString() + " GB)", Size = float.Parse(dbsizemax) };
                             DatabaseSize.Add(_databaseSize);
                             _databaseSize = new DatabaseSizeClass { Name = "UsedSize (" + dr["UsedSize"].ToString() + " MB)", Size = float.Parse(dbsizeused) };
                             DatabaseSize.Add(_databaseSize);
