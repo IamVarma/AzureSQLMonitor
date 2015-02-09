@@ -152,10 +152,27 @@
                         <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
                     <TextBlock Text="Login CheckList" FontSize="50" FontWeight="SemiBold" Grid.Row="0" HorizontalAlignment="Center"></TextBlock>
-                    <StackPanel Orientation="Vertical" Grid.Row="1" Height="200">
-                        <RichTextBlock FontSize="20" HorizontalAlignment="Center" Height="120"><Paragraph>
-                            1. Configure SQL Instance firewall to allow windows azure services.
-                           <LineBreak></LineBreak>2. Verify the Login is valid.<LineBreak></LineBreak>3. Verify the password.<LineBreak></LineBreak>4. Ensure you are able to connect using web portal.
+                    <StackPanel Orientation="Vertical" Grid.Row="1" Height="400">
+                        <RichTextBlock FontSize="20" HorizontalAlignment="Center" Height="300"><Paragraph>
+                            Issues connecting to your SQL Azure instance?
+                                <LineBreak/>
+                            1. Configure SQL Instance to allow windows azure services (in the Azure portal). 
+                                <LineBreak/> 
+                            2. Verify the Login ID and password are valid.
+                                <LineBreak/> 
+                            3. Log into the web portal and see if the service is active and you're able to connect.
+                                <LineBreak/>
+                                <LineBreak/>
+                            For arvanced troubleshooting, please follow the links below:
+                                <LineBreak/>
+                                <Hyperlink NavigateUri="http://support.microsoft.com/kb/2980233?wa=wsignin1.0">
+                                    http://support.microsoft.com/kb/2980233?wa=wsignin1.0
+                                </Hyperlink>
+                                <LineBreak/>
+                                <Hyperlink NavigateUri="http://social.technet.microsoft.com/wiki/contents/articles/1719.windows-azure-sql-database-connectivity-troubleshooting-guide.aspx">
+                                    http://social.technet.microsoft.com/wiki/contents/articles/1719.windows-azure-sql-database-connectivity-troubleshooting-guide.aspx
+                                </Hyperlink>
+                                
                             </Paragraph>
                         </RichTextBlock>
                         <Button Content="OK" FontSize="30" x:Name="GotIt" Click="GotIt_OnClick"  Foreground="White" HorizontalAlignment="Center"  Margin="255,0,254,0"  />

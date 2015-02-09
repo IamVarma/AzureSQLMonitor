@@ -502,7 +502,7 @@
                         <ResourceDictionary>
                             <SolidColorBrush
                     x:Key="Background"
-                    Color="Cyan" />
+                    Color="Green" />
                             <Style
                     x:Key="DataPointStyle"
                     TargetType="Control">
@@ -530,7 +530,7 @@
                         <ResourceDictionary>
                             <SolidColorBrush
                     x:Key="Background"
-                    Color="Brown" />
+                    Color="DarkBlue" />
                             <Style
                     x:Key="DataPointStyle"
                     TargetType="Control">
@@ -856,7 +856,7 @@
                         <ResourceDictionary>
                             <SolidColorBrush
                     x:Key="Background"
-                    Color="#dc443f" />
+                    Color="Green" />
                             <Style
                     x:Key="DataPointStyle"
                     TargetType="Control">
@@ -913,7 +913,7 @@
                         <ResourceDictionary>
                             <SolidColorBrush
                     x:Key="Background"
-                    Color="Cyan" />
+                    Color="DarkBlue" />
                             <Style
                     x:Key="DataPointStyle"
                     TargetType="Control">
@@ -1696,13 +1696,23 @@
                     <StackPanel Orientation="Vertical" Grid.Row="1">
                         <RichTextBlock FontSize="20" HorizontalAlignment="Center">
                             <Paragraph>
-                             <Bold>Basic Details:</Bold>
-                                <LineBreak></LineBreak>
-                                <Bold>Resource Details</Bold>
-                                <LineBreak></LineBreak>
-                                <Bold>Connections Overview</Bold>
-                                <LineBreak></LineBreak>
-                                <Bold>Top CPU Queries</Bold>
+                                <Bold>About the app:</Bold>
+                                <Hyperlink NavigateUri="https://azuresqlmonitor.wordpress.com/2015/02/09/about-this-app/">Click Here</Hyperlink>
+                                <LineBreak/>
+                                <LineBreak/>                              
+                                <Bold>Basic Details tab:</Bold>
+                                <Hyperlink NavigateUri="https://azuresqlmonitor.wordpress.com/2015/02/09/how-do-i-make-sense-out-the-graphs-and-the-data-tab1/">Click Here</Hyperlink>
+                                <LineBreak/>
+                                <Bold>Resource usage tab:</Bold>
+                                <Hyperlink NavigateUri=""></Hyperlink>
+                                <LineBreak/>
+                                <Bold>Connections overview tab:</Bold>
+                                <Hyperlink NavigateUri=""></Hyperlink>
+                                <LineBreak/>
+                                <Bold>Top CPU queries tab:</Bold>
+                                <Hyperlink NavigateUri=""></Hyperlink>
+                                <LineBreak/>
+
                             </Paragraph>
                         </RichTextBlock>
 

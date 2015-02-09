@@ -80,11 +80,14 @@
         <Grid Grid.Row="0" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.3*"/>
+                <ColumnDefinition Width="0.3*"/>
                 <ColumnDefinition Width="3*"/>
                 <ColumnDefinition Width="0.3*"/>
             </Grid.ColumnDefinitions>
-            <TextBlock x:Name="AppName" FontSize="50" Grid.Column="1" Text="Azure SQL Monitor" VerticalAlignment="Center"></TextBlock>
-            <Button x:Name="Logout" BorderThickness="0" Grid.Column="2" HorizontalAlignment="Right" Command="{Binding LogOut}">
+            <Image Source="/Images/cloud_database-512.png" Width="60" Height="60" Grid.Column="1" HorizontalAlignment="Right"/>
+            <TextBlock Text=" Azure SQL Database Monitor" VerticalAlignment="Center" FontSize="50" Grid.Column="2" HorizontalAlignment="Left"/>
+
+            <Button x:Name="Logout" BorderThickness="0" Grid.Column="3" HorizontalAlignment="Right" Command="{Binding LogOut}">
                 <Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
                     <Grid>
                         <Grid Name="backgroundGrid" Width="128" Height="128" Visibility="Collapsed" />
@@ -223,7 +226,7 @@
                 <TextBlock
                     FontSize="20">Akbar Faristha</TextBlock>
                 <TextBlock
-                    FontSize="20">Chandra Shekhar</TextBlock>
+                    FontSize="20">Chandra Shekhar Maddila</TextBlock>
                 <TextBlock
                     FontSize="20">Varma Gadhiraju</TextBlock>
                 <Grid
