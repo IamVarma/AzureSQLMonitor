@@ -112,7 +112,7 @@
 
 
 
-            <Image Source="/Images/cloud_database-512.png" Width="60" Height="60" Grid.Column="1" HorizontalAlignment="Right"/>
+            <Image Source="/Images/cloud_database-512.png" Width="100" Height="100" Grid.Column="1" HorizontalAlignment="Right"/>
             <TextBlock Text=" Azure SQL Database Monitor" VerticalAlignment="Center" FontSize="50" Grid.Column="2" HorizontalAlignment="Left"/>
             
 
