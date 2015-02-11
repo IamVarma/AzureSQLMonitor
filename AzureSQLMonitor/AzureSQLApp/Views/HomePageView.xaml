@@ -40,14 +40,11 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
-
-            </Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="3*"/>
-                <ColumnDefinition Width="28*"/>
-
             </Grid.ColumnDefinitions>
             <TextBlock Text="Server Instance" Grid.Row="0" Grid.Column="0"  FontSize="30" FontWeight="Bold" Margin="0,0,0,22"/>
             <TextBox x:Name="ServerName" Grid.Row="0" Grid.Column="1" Text="{Binding ServerName, Mode=TwoWay}" Width="300" Margin="0,0,0,22"/>
@@ -116,11 +113,9 @@
                     </Viewbox>
 
                 </Button>
-
-
-
+                
             </Grid>
-        
+     
             <Image Grid.Column="0" Source="/Images/cloud5.png" Width="600"></Image>
             
         
@@ -146,14 +141,14 @@
 
         <ContentControl  x:Name="container1" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Top">
             <Popup x:Name="HelpPop" HorizontalAlignment="Stretch" IsOpen="False" IsLightDismissEnabled="True" Loaded="HelpPop_OnLoaded" >
-                <Grid Background="#FF22476C" x:Name="gdChild1" HorizontalAlignment="Stretch" Height="300" >
+                <Grid Background="#FF22476C" x:Name="gdChild1" HorizontalAlignment="Stretch" Height="400" >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
                     <TextBlock Text="Login CheckList" FontSize="50" FontWeight="SemiBold" Grid.Row="0" HorizontalAlignment="Center"></TextBlock>
-                    <StackPanel Orientation="Vertical" Grid.Row="1" Height="400">
-                        <RichTextBlock FontSize="20" HorizontalAlignment="Center" Height="300"><Paragraph>
+                    <StackPanel Orientation="Vertical" Grid.Row="1" Height="450">
+                        <RichTextBlock FontSize="20" HorizontalAlignment="Center" Height="350"><Paragraph>
                             Issues connecting to your SQL Azure instance?
                                 <LineBreak/>
                             1. Configure SQL Instance to allow windows azure services (in the Azure portal). 
@@ -172,7 +167,14 @@
                                 <Hyperlink NavigateUri="http://social.technet.microsoft.com/wiki/contents/articles/1719.windows-azure-sql-database-connectivity-troubleshooting-guide.aspx">
                                     http://social.technet.microsoft.com/wiki/contents/articles/1719.windows-azure-sql-database-connectivity-troubleshooting-guide.aspx
                                 </Hyperlink>
+                                <LineBreak/>
+                                <LineBreak/>
                                 
+                                ***We recommend customers to use a READONLY user with
+                                <Hyperlink NavigateUri="https://msdn.microsoft.com/library/azure/ff394114.aspx">'VIEW DATABASE STATE'</Hyperlink> permissions to log into this app***
+                                <LineBreak/>
+                                <LineBreak/>
+                                *** We never save any login information, like login credentials, in the app and/or our servers***
                             </Paragraph>
                         </RichTextBlock>
                         <Button Content="OK" FontSize="30" x:Name="GotIt" Click="GotIt_OnClick"  Foreground="White" HorizontalAlignment="Center"  Margin="255,0,254,0"  />
