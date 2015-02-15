@@ -17,6 +17,7 @@ using Windows.UI.Xaml.Navigation;
 using AzureSQLApp.Views;
 using AzureSQLApp.Common;
 using AzureSQLApp.ViewModels;
+using System.ServiceModel;
 // The Blank Application template is documented at http://go.microsoft.com/fwlink/?LinkId=234227
 
 namespace AzureSQLApp
@@ -33,7 +34,10 @@ namespace AzureSQLApp
         /// 
 
         public static Frame AppFrame { get; set; }
-        public static AzureSQLService.SqlMonitorServiceClient Servicehandle = new AzureSQLService.SqlMonitorServiceClient();
+        static BasicHttpBinding binding = new BasicHttpBinding(BasicHttpSecurityMode.Transport);
+
+        static EndpointAddress epa = new EndpointAddress("https://www.azuresqlmonitor.in:443/SqlMonitorService.svc");
+        public static AzureSQLService.SqlMonitorServiceClient Servicehandle = new AzureSQLService.SqlMonitorServiceClient(binding,epa);
         
 
         public App()

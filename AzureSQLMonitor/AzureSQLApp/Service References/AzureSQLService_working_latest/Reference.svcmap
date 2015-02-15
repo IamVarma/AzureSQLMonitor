@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="79203ced-2d91-406d-a9d6-9afaf3a19052" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="1030f538-fdee-4bf1-ae25-1bcc5c310594" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -21,13 +21,13 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://www.azuresqlmonitor.in/SqlMonitorService.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://azuresqlmonitorws.cloudapp.net/SqlMonitorService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="SqlMonitorService.disco" MetadataType="Disco" ID="70fb080d-6ce3-4e7f-9c76-646598a3e157" SourceId="1" SourceUrl="http://www.azuresqlmonitor.in/SqlMonitorService.svc?disco" />
-    <MetadataFile FileName="SqlMonitorService.wsdl" MetadataType="Wsdl" ID="f55bfa98-9768-459b-8036-b91c5513e4e0" SourceId="1" SourceUrl="http://www.azuresqlmonitor.in/SqlMonitorService.svc?wsdl" />
-    <MetadataFile FileName="SqlMonitorService.xsd" MetadataType="Schema" ID="4a9ccabc-c47b-44d4-903b-a55ea935810b" SourceId="1" SourceUrl="http://www.azuresqlmonitor.in/SqlMonitorService.svc?xsd=xsd0" />
-    <MetadataFile FileName="SqlMonitorService1.xsd" MetadataType="Schema" ID="f89c0dec-2a7c-4422-a1a0-ab9923f40592" SourceId="1" SourceUrl="http://www.azuresqlmonitor.in/SqlMonitorService.svc?xsd=xsd1" />
+    <MetadataFile FileName="SqlMonitorService.xsd" MetadataType="Schema" ID="ebb31e83-6a04-48a5-85a6-b31edca694b4" SourceId="1" SourceUrl="http://azuresqlmonitorws.cloudapp.net/SqlMonitorService.svc?xsd=xsd0" />
+    <MetadataFile FileName="SqlMonitorService.wsdl" MetadataType="Wsdl" ID="69ee0114-bae7-4d0b-b53f-bb4c8cacda98" SourceId="1" SourceUrl="http://azuresqlmonitorws.cloudapp.net/SqlMonitorService.svc?wsdl" />
+    <MetadataFile FileName="SqlMonitorService.disco" MetadataType="Disco" ID="c1a2f735-9d91-4a03-a4a9-6ddc440e1a79" SourceId="1" SourceUrl="http://azuresqlmonitorws.cloudapp.net/SqlMonitorService.svc?disco" />
+    <MetadataFile FileName="SqlMonitorService1.xsd" MetadataType="Schema" ID="645b89e3-28af-4a24-915d-fed5b7c1cc6e" SourceId="1" SourceUrl="http://azuresqlmonitorws.cloudapp.net/SqlMonitorService.svc?xsd=xsd1" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
