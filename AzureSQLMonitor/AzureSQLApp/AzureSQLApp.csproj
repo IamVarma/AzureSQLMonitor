@@ -135,8 +135,8 @@
     <Compile Include="Models\TableDetails.cs" />
     <Compile Include="Models\TopCPUConsumersClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service References\AzureSQLService2\Reference.cs" />
-    <Compile Include="Service References\AzureSQLService2\Reference1.cs">
+    <Compile Include="Service References\AzureSQLService\Reference.cs" />
+    <Compile Include="Service References\AzureSQLService\Reference1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -181,11 +181,11 @@
     <None Include="AzureSQLApp_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\ServiceReferences.Designer.ClientConfig" />
-    <None Include="Service References\AzureSQLService2\SqlMonitorService.wsdl" />
-    <None Include="Service References\AzureSQLService2\SqlMonitorService.xsd">
+    <None Include="Service References\AzureSQLService\SqlMonitorService.wsdl" />
+    <None Include="Service References\AzureSQLService\SqlMonitorService.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\AzureSQLService2\SqlMonitorService1.xsd">
+    <None Include="Service References\AzureSQLService\SqlMonitorService1.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\AzureSQLService_working\SqlMonitorService.wsdl" />
@@ -231,13 +231,13 @@
     <Content Include="Images\new_onlinelogomaker-021015-1850021015-1852_large.png" />
     <Content Include="Images\new_onlinelogomaker-021015-1850021015-1852_medium.png" />
     <Content Include="Images\new_onlinelogomaker-021015-1850021015-1852_small.png" />
-    <Content Include="Service References\AzureSQLService2\configuration.svcinfo" />
-    <Content Include="Service References\AzureSQLService2\configuration91.svcinfo" />
-    <Content Include="Service References\AzureSQLService2\Reference.svcmap">
+    <Content Include="Service References\AzureSQLService\configuration.svcinfo" />
+    <Content Include="Service References\AzureSQLService\configuration91.svcinfo" />
+    <Content Include="Service References\AzureSQLService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference1.cs</LastGenOutput>
     </Content>
-    <Content Include="Service References\AzureSQLService2\SqlMonitorService.disco" />
+    <Content Include="Service References\AzureSQLService\SqlMonitorService.disco" />
     <None Include="Service References\AzureSQLService_working_latest\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>

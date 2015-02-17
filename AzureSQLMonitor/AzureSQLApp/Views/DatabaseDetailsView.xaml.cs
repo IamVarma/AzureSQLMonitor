@@ -150,14 +150,14 @@ namespace AzureSQLApp.Views
             await DatabaseDetails.GetTablesCommand(selectedDatabase.DatabaseName);
             await DatabaseDetails.GetConnectionCount(selectedDatabase.DatabaseName);
 
-            SetBasicGraph();
+            
             DispactcherTimeSetupTab1();
             DispatchTimerTab1.Start();
             BasicDetails.IsEnabled = false;
             DispactcherTimeSetupTab2();
             DispactcherTimeSetupTab3();
             DispactcherTimeSetupTab4();
-  
+         //   SetBasicGraph();
         }
 
         
@@ -290,25 +290,31 @@ namespace AzureSQLApp.Views
 
         private void SetBasicGraph()
         {
-
-            //((LineSeries)this.ConnectionsChart.Series[0]).DependentRangeAxis = new LinearAxis()
+            //try
             //{
-            //    Orientation = AxisOrientation.Y
-            //};
+                ((LineSeries)this.ConnectionsChart.Series[0]).DependentRangeAxis = new LinearAxis()
+                {
+                    Orientation = AxisOrientation.Y
+                };
 
-            //int i = DatabaseDetails.ConnectionsList.Count;
-            //((LineSeries)this.ConnectionsChart.Series[0]).IndependentAxis = new DateTimeAxis()
+                int i = DatabaseDetails.ConnectionsList.Count;
+                ((LineSeries)this.ConnectionsChart.Series[0]).IndependentAxis = new DateTimeAxis()
+                {
+                    Orientation = AxisOrientation.X,
+
+                    Minimum = DatabaseDetails.ConnectionsList[0].Time,
+
+                    Maximum = DatabaseDetails.ConnectionsList[i - 1].Time,
+                    IntervalType = DateTimeIntervalType.Seconds,
+                    Interval = 15
+                    //MaxWidth = 500
+
+                };
+            //}
+            //catch
             //{
-            //    Orientation = AxisOrientation.X,
 
-            //    Minimum = DatabaseDetails.ConnectionsList[0].Time,
-
-            //    Maximum = DatabaseDetails.ConnectionsList[i - 1].Time,
-            //    IntervalType = DateTimeIntervalType.Seconds,
-            //    Interval = 15,
-            //    MaxWidth=500
-
-            //};
+            //}
         }
 
 
@@ -333,7 +339,7 @@ namespace AzureSQLApp.Views
 
                 Maximum = DatabaseDetails.DatabaseResourceUsage[0].EndTime,
                 IntervalType = DateTimeIntervalType.Seconds,
-                Interval = 15,
+                Interval = 10,
                 MaxWidth = 500
 
                 
@@ -357,7 +363,7 @@ namespace AzureSQLApp.Views
 
                 Maximum = DatabaseDetails.DatabaseResourceUsage[0].EndTime,
                 IntervalType = DateTimeIntervalType.Seconds,
-                Interval = 15,
+                Interval = 10,
                 MaxWidth = 500
 
 
@@ -381,7 +387,7 @@ namespace AzureSQLApp.Views
 
                 Maximum = DatabaseDetails.DatabaseResourceUsage[0].EndTime,
                 IntervalType = DateTimeIntervalType.Seconds,
-                Interval = 15,
+                Interval = 10,
                 MaxWidth = 500
 
 
@@ -406,7 +412,7 @@ namespace AzureSQLApp.Views
 
                 Maximum = DatabaseDetails.DatabaseResourceUsage[0].EndTime,
                 IntervalType = DateTimeIntervalType.Seconds,
-                Interval = 15,
+                Interval = 10,
                 MaxWidth = 500
 
 
