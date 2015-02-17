@@ -714,7 +714,7 @@
             
             <charting:Chart
                 x:Name="ConnectionsChart"
-                Title="ConnectionCount" LegendTitle="Connections Count" Grid.Row="0" Grid.Column="1" >
+                Title="ConnectionCount" LegendTitle="Connections Count" Grid.Row="0" Grid.Column="1"  >
                 
                 <charting:Chart.Series>
                     <charting:LineSeries
@@ -724,7 +724,12 @@
                         DependentValueBinding="{Binding Connections}"
                         />
                 </charting:Chart.Series>
-
+                <!--<charting:Chart.Axes>
+                    <charting:DateTimeAxis
+            Orientation="X">
+          
+                    </charting:DateTimeAxis>
+                </charting:Chart.Axes>-->
 
                 <charting:Chart.LegendStyle>
                     <Style

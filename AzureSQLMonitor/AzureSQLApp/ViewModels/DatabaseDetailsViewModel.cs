@@ -161,7 +161,7 @@ namespace AzureSQLApp.ViewModels
 
         public DatabaseDetailsViewModel()
         {
-          ConnectionsList = new ObservableCollection<ConnectionsCount>();
+//          ConnectionsList = new ObservableCollection<ConnectionsCount>();
           DatabaseSize = new ObservableCollection<DatabaseSizeClass>();
           DBConnectionDetails = new ObservableCollection<DBConnectionClass>();
             TopCpuConsumers = new ObservableCollection<TopCPUConsumersClass>();
@@ -227,8 +227,11 @@ namespace AzureSQLApp.ViewModels
                    {
                        ConnectionsList.Add(templist);
                    }
-                    }
 
+               var x=  ConnectionsList;
+
+                    }
+                
             catch(Exception e)
             {
                 ExceptionResult = "Error:" + connections;
