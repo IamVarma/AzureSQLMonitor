@@ -141,21 +141,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Service References\AzureSQLService_working\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
-    <Compile Include="Service References\AzureSQLService_working_latest\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
-    <Compile Include="Service References\ServiceReference_local\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
     <Compile Include="ViewModels\DatabaseDetailsViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\ListDatabasesViewModel.cs" />
@@ -188,27 +173,6 @@
     <None Include="Service References\AzureSQLService\SqlMonitorService1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\AzureSQLService_working\SqlMonitorService.wsdl" />
-    <None Include="Service References\AzureSQLService_working\SqlMonitorService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\AzureSQLService_working\SqlMonitorService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\AzureSQLService_working_latest\SqlMonitorService.wsdl" />
-    <None Include="Service References\AzureSQLService_working_latest\SqlMonitorService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\AzureSQLService_working_latest\SqlMonitorService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ServiceReference_local\SqlMonitorService.wsdl" />
-    <None Include="Service References\ServiceReference_local\SqlMonitorService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ServiceReference_local\SqlMonitorService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Logo.scale-100.png" />
@@ -238,27 +202,6 @@
       <LastGenOutput>Reference1.cs</LastGenOutput>
     </Content>
     <Content Include="Service References\AzureSQLService\SqlMonitorService.disco" />
-    <None Include="Service References\AzureSQLService_working_latest\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Service References\AzureSQLService_working_latest\configuration.svcinfo" />
-    <None Include="Service References\AzureSQLService_working_latest\configuration91.svcinfo" />
-    <None Include="Service References\AzureSQLService_working_latest\SqlMonitorService.disco" />
-    <None Include="Service References\ServiceReference_local\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Service References\ServiceReference_local\configuration.svcinfo" />
-    <None Include="Service References\ServiceReference_local\configuration91.svcinfo" />
-    <None Include="Service References\ServiceReference_local\SqlMonitorService.disco" />
-    <None Include="Service References\AzureSQLService_working\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Service References\AzureSQLService_working\configuration.svcinfo" />
-    <None Include="Service References\AzureSQLService_working\configuration91.svcinfo" />
-    <None Include="Service References\AzureSQLService_working\SqlMonitorService.disco" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -285,11 +228,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadataStorage Include="Service References\AzureSQLService_working\" />
-    <WCFMetadataStorage Include="Service References\AzureSQLService_working_latest\" />
-    <WCFMetadataStorage Include="Service References\ServiceReference_local\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="CharmFlyoutLibrary">
