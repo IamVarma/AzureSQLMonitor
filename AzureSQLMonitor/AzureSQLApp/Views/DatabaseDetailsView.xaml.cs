@@ -126,6 +126,7 @@ namespace AzureSQLApp.Views
             this.navigationHelper.LoadState += navigationHelper_LoadState;
             this.navigationHelper.SaveState += navigationHelper_SaveState;
             this.Unloaded += page_Unloaded;
+           
             gdChild.Width = Window.Current.Bounds.Width;
             gdChild1.Width = Window.Current.Bounds.Width;
             PrivacyCharm.Height = Window.Current.Bounds.Height;
@@ -150,16 +151,20 @@ namespace AzureSQLApp.Views
             await DatabaseDetails.GetTablesCommand(selectedDatabase.DatabaseName);
             await DatabaseDetails.GetConnectionCount(selectedDatabase.DatabaseName);
 
-            
             DispactcherTimeSetupTab1();
             DispatchTimerTab1.Start();
             BasicDetails.IsEnabled = false;
             DispactcherTimeSetupTab2();
             DispactcherTimeSetupTab3();
             DispactcherTimeSetupTab4();
-         //   SetBasicGraph();
+           // SetBasicGraph();
         }
 
+
+          private async void page_Loaded(object sender, RoutedEventArgs e)
+          {
+              
+          }
         
           // private void page_Loaded(object sender, RoutedEventArgs e)
           //{
@@ -302,13 +307,13 @@ namespace AzureSQLApp.Views
                 {
                     Orientation = AxisOrientation.X,
 
-                   // Visibility= Windows.UI.Xaml.Visibility.Collapsed
+                   //// Visibility= Windows.UI.Xaml.Visibility.Collapsed
 
                     Minimum = DatabaseDetails.ConnectionsList[0].Time,
                     Maximum = DatabaseDetails.ConnectionsList[i - 1].Time,
-                    IntervalType = DateTimeIntervalType.Seconds,
-                    Interval = 15
-                    //MaxWidth = 500
+                    //IntervalType = DateTimeIntervalType.Seconds,
+                    //Interval = 15,
+                    MaxWidth = 500
 
                 };
             //}
@@ -426,6 +431,9 @@ namespace AzureSQLApp.Views
         {
 
            //// ConnectionDetailsChart
+
+            
+
 
            // //((LineSeries)this.ConnectionDetailsChart.Series[0]).DependentRangeAxis = new LinearAxis()
            // //      {
