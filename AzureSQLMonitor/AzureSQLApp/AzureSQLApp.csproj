@@ -135,8 +135,7 @@
     <Compile Include="Models\TableDetails.cs" />
     <Compile Include="Models\TopCPUConsumersClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service References\AzureSQLService\Reference.cs" />
-    <Compile Include="Service References\AzureSQLService\Reference1.cs">
+    <Compile Include="Service References\AzureSQLService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -195,13 +194,13 @@
     <Content Include="Images\new_onlinelogomaker-021015-1850021015-1852_large.png" />
     <Content Include="Images\new_onlinelogomaker-021015-1850021015-1852_medium.png" />
     <Content Include="Images\new_onlinelogomaker-021015-1850021015-1852_small.png" />
-    <Content Include="Service References\AzureSQLService\configuration.svcinfo" />
-    <Content Include="Service References\AzureSQLService\configuration91.svcinfo" />
-    <Content Include="Service References\AzureSQLService\Reference.svcmap">
+    <None Include="Service References\AzureSQLService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference1.cs</LastGenOutput>
-    </Content>
-    <Content Include="Service References\AzureSQLService\SqlMonitorService.disco" />
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\AzureSQLService\configuration.svcinfo" />
+    <None Include="Service References\AzureSQLService\configuration91.svcinfo" />
+    <None Include="Service References\AzureSQLService\SqlMonitorService.disco" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -255,6 +254,9 @@
     <Reference Include="WinRTXamlToolkit.Controls.DataVisualization">
       <HintPath>..\packages\WinRTXamlToolkit.Controls.DataVisualization.Windows.1.7.9.0\lib\netcore451\WinRTXamlToolkit.Controls.DataVisualization.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\AzureSQLService\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>

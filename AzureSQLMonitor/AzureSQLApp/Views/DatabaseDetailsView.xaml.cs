@@ -302,8 +302,9 @@ namespace AzureSQLApp.Views
                 {
                     Orientation = AxisOrientation.X,
 
-                    Minimum = DatabaseDetails.ConnectionsList[0].Time,
+                   // Visibility= Windows.UI.Xaml.Visibility.Collapsed
 
+                    Minimum = DatabaseDetails.ConnectionsList[0].Time,
                     Maximum = DatabaseDetails.ConnectionsList[i - 1].Time,
                     IntervalType = DateTimeIntervalType.Seconds,
                     Interval = 15
