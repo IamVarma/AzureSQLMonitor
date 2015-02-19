@@ -34,7 +34,7 @@ namespace AzureSQLWCFService
 
             //}
 
-            string querytext = "select top(5) end_time as Time, success_count as success, connection_failure_count as connectionfail, terminated_connection_count as terminate, throttled_connection_count as throttled  from sys.database_connection_stats where database_name='"+dbname+"' order by end_time desc ";
+            string querytext = "select top(5) end_time as Time, success_count as success, connection_failure_count as connectionfail, terminated_connection_count as terminate, throttled_connection_count as throttled  from sys.database_connection_stats where database_name='" + dbname + "' and CAST(end_time as Date) = CAST(getDate() as DATE) order by end_time desc ";
             var connectionString = "Server=tcp:" + ServerName + ",1433;Database=master;User ID=" + LoginName + ";Password=" + Password + ";Trusted_Connection=False;Encrypt=True;Connection Timeout=10;Application Name=AzureMonitor;";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
