@@ -157,13 +157,20 @@ namespace AzureSQLApp.Views
             DispactcherTimeSetupTab2();
             DispactcherTimeSetupTab3();
             DispactcherTimeSetupTab4();
-           // SetBasicGraph();
+
+            setupbasicdetails();
+
+
+           // 
         }
 
 
-          private async void page_Loaded(object sender, RoutedEventArgs e)
+          private async void setupbasicdetails()
           {
-              
+              await DatabaseDetails.GetDatabaseSize(selectedDatabase.DatabaseName);
+              await DatabaseDetails.GetTablesCommand(selectedDatabase.DatabaseName);
+              await DatabaseDetails.GetConnectionCount(selectedDatabase.DatabaseName);
+              SetBasicGraph();
           }
         
           // private void page_Loaded(object sender, RoutedEventArgs e)
