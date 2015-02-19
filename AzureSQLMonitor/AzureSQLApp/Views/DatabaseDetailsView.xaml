@@ -850,8 +850,8 @@
 
         <Grid Grid.Row="2" x:Name="ConnectionsGrid" Visibility="Collapsed">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
             <charting:Chart
@@ -1119,11 +1119,11 @@
 
             </charting:Chart>
 
-            <GridView x:Name="ConnectionEvents" Grid.Column="1" ItemTemplate="{StaticResource ConnectionsTemplate}" ItemsSource="{Binding DBConnectionEvents}"
+            <!--<GridView x:Name="ConnectionEvents" Grid.Column="1" ItemTemplate="{StaticResource ConnectionsTemplate}" ItemsSource="{Binding DBConnectionEvents}"
                            >
                 <ContentPresenter Height="100" Width="100"/>
 
-            </GridView>
+            </GridView>-->
 
         </Grid>
 

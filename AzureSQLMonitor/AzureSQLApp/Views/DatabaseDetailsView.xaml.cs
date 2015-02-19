@@ -430,71 +430,90 @@ namespace AzureSQLApp.Views
         private void SetConnectionDetailsGraph()
         {
 
-           //// ConnectionDetailsChart
 
+            //int i = DatabaseDetails.DBConnectionDetails.Count;
+            //((LineSeries)this.ConnectionDetailsChart.Series[0]).IndependentAxis = new DateTimeAxis()
+            //{
+            //    Orientation = AxisOrientation.X,
+            //    //ShowGridLines = true,
+            //    Minimum = DatabaseDetails.DBConnectionDetails[i - 1].Time,
+
+            //    Maximum = DatabaseDetails.DBConnectionDetails[0].Time,
+            //    IntervalType = DateTimeIntervalType.Seconds,
+            //    Interval = 20
+            //};
             
+            //((LineSeries)this.ConnectionDetailsChart.Series[0]).DependentRangeAxis = new LinearAxis()
+            //      {
+            //          Orientation = AxisOrientation.Y
+            //          //ShowGridLines = true
 
+            //      };
 
-           // //((LineSeries)this.ConnectionDetailsChart.Series[0]).DependentRangeAxis = new LinearAxis()
-           // //      {
-           // //          Orientation = AxisOrientation.Y,
-           // //          ShowGridLines = true
+            //int i = DatabaseDetails.DBConnectionDetails.Count;
+            //((LineSeries)this.ConnectionDetailsChart.Series[0]).IndependentAxis = new DateTimeAxis()
+            //{
+            //    Orientation = AxisOrientation.X,
+            //    //ShowGridLines = true,
+            //    Minimum = DatabaseDetails.DBConnectionDetails[i - 1].Time,
 
-           // //      };
+            //    Maximum = DatabaseDetails.DBConnectionDetails[0].Time,
+            //    //IntervalType = DateTimeIntervalType.Seconds,
+            //    //Interval = 15
+                
+            //};
+            //((LineSeries)this.ConnectionDetailsChart.Series[1]).DependentRangeAxis = new LinearAxis()
+            //{
+            //    Orientation = AxisOrientation.Y
+            //    //ShowGridLines = true
 
-           // int i = DatabaseDetails.DBConnectionDetails.Count;
-           // ((LineSeries)this.ConnectionDetailsChart.Series[0]).IndependentAxis = new DateTimeAxis()
-           // {
-           //     Orientation = AxisOrientation.X,
-           //     ShowGridLines = true,
-           //     Minimum = DatabaseDetails.DBConnectionDetails[i-1].Time,
+            //};
 
-           //     Maximum = DatabaseDetails.DBConnectionDetails[0].Time,
-           //     IntervalType = DateTimeIntervalType.Seconds,
-           //     Interval = 15
-               
+            //((LineSeries)this.ConnectionDetailsChart.Series[1]).IndependentAxis = new DateTimeAxis()
+            //{
+            //    Orientation = AxisOrientation.X,
 
+            //    //Visibility = Windows.UI.Xaml.Visibility.Collapsed,
 
-           // };
-           // ((LineSeries)this.ConnectionDetailsChart.Series[1]).IndependentAxis = new DateTimeAxis()
-           // {
-           //     Orientation = AxisOrientation.X,
-           //     ShowGridLines = true,
-           //     Minimum = DatabaseDetails.DBConnectionDetails[i - 1].Time,
+            //    //ShowGridLines = true,
+            //    Minimum = DatabaseDetails.DBConnectionDetails[i - 1].Time,
 
-           //     Maximum = DatabaseDetails.DBConnectionDetails[0].Time,
-           //     IntervalType = DateTimeIntervalType.Seconds,
-           //     Interval = 15
-
-
-
-           // };
-           // ((LineSeries)this.ConnectionDetailsChart.Series[2]).IndependentAxis = new DateTimeAxis()
-           // {
-           //     Orientation = AxisOrientation.X,
-           //     ShowGridLines = true,
-           //     Minimum = DatabaseDetails.DBConnectionDetails[i - 1].Time,
-
-           //     Maximum = DatabaseDetails.DBConnectionDetails[0].Time,
-           //     IntervalType = DateTimeIntervalType.Seconds,
-           //     Interval = 15
+            //    Maximum = DatabaseDetails.DBConnectionDetails[0].Time
+            //    //IntervalType = DateTimeIntervalType.Seconds,
+            //    //Interval = 15
 
 
 
-           // };
-           // ((LineSeries)this.ConnectionDetailsChart.Series[3]).IndependentAxis = new DateTimeAxis()
-           // {
-           //     Orientation = AxisOrientation.X,
-           //     ShowGridLines = true,
-           //     Minimum = DatabaseDetails.DBConnectionDetails[i - 1].Time,
+            //};
+            //((LineSeries)this.ConnectionDetailsChart.Series[2]).IndependentAxis = new DateTimeAxis()
+            //{
+            //    Orientation = AxisOrientation.X,
+            //    Visibility = Windows.UI.Xaml.Visibility.Collapsed
 
-           //     Maximum = DatabaseDetails.DBConnectionDetails[0].Time,
-           //     IntervalType = DateTimeIntervalType.Seconds,
-           //     Interval = 15
+            //    //ShowGridLines = true,
+            //    //Minimum = DatabaseDetails.DBConnectionDetails[i - 1].Time,
+
+            //    //Maximum = DatabaseDetails.DBConnectionDetails[0].Time,
+            //    //IntervalType = DateTimeIntervalType.Seconds,
+            //    //Interval = 15
 
 
 
-           // };
+            //};
+            //((LineSeries)this.ConnectionDetailsChart.Series[3]).IndependentAxis = new DateTimeAxis()
+            //{
+            //    Orientation = AxisOrientation.X,
+            //    Visibility = Windows.UI.Xaml.Visibility.Collapsed
+
+            //    //ShowGridLines = true,
+            //    //Minimum = DatabaseDetails.DBConnectionDetails[i - 1].Time,
+
+            //    //Maximum = DatabaseDetails.DBConnectionDetails[0].Time,
+            //    //IntervalType = DateTimeIntervalType.Seconds,
+            //    //Interval = 15
+
+
+            //};
 
 
         }
