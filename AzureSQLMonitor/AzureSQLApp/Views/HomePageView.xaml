@@ -148,30 +148,33 @@
                     </Grid.RowDefinitions>
                     <TextBlock Text="Login CheckList" FontSize="50" FontWeight="SemiBold" Grid.Row="0" HorizontalAlignment="Center"></TextBlock>
                     <StackPanel Orientation="Vertical" Grid.Row="1" Height="450">
-                        <RichTextBlock FontSize="20" HorizontalAlignment="Center" Height="350"><Paragraph>
-                            Issues connecting to your SQL Azure instance?
+                        <RichTextBlock FontSize="20" HorizontalAlignment="Center" Height="350">
+                            <Paragraph>
+                            Need help connecting to the Azure SQL Instance? Please follow the checklist below.
                                 <LineBreak/>
-                            1. Configure SQL Instance to allow windows azure services (in the Azure portal). 
+                                <LineBreak/>
+                            1. Configure SQL Instance Firewall to allow Windows Azure Services (in the Azure portal). 
                                 <LineBreak/> 
-                            2. Verify the Login ID and password are valid.
+                            2. Verify the Login ID and Password are valid.
                                 <LineBreak/> 
                             3. Log into the web portal and see if the service is active and you're able to connect.
                                 <LineBreak/>
                                 <LineBreak/>
-                            For arvanced troubleshooting, please follow the links below:
+                            For advanced troubleshooting, please follow the links below:
                                 <LineBreak/>
                                 <Hyperlink NavigateUri="http://support.microsoft.com/kb/2980233?wa=wsignin1.0">
-                                    http://support.microsoft.com/kb/2980233?wa=wsignin1.0
+                                    . http://support.microsoft.com/kb/2980233?wa=wsignin1.0
                                 </Hyperlink>
                                 <LineBreak/>
                                 <Hyperlink NavigateUri="http://social.technet.microsoft.com/wiki/contents/articles/1719.windows-azure-sql-database-connectivity-troubleshooting-guide.aspx">
-                                    http://social.technet.microsoft.com/wiki/contents/articles/1719.windows-azure-sql-database-connectivity-troubleshooting-guide.aspx
+                                    . Windows-azure-sql-database-connectivity-troubleshooting-guide
                                 </Hyperlink>
                                 <LineBreak/>
                                 <LineBreak/>
-                                
-                                ***We recommend customers to use a READONLY user with
-                                <Hyperlink NavigateUri="https://msdn.microsoft.com/library/azure/ff394114.aspx">'VIEW DATABASE STATE'</Hyperlink> permissions to log into this app***
+
+                                ***We recommend to use a Login with VIEW DATABASE STATE permissions only. Follow the article below to setup one.***
+                                <LineBreak/>
+                                <Hyperlink NavigateUri="https://azuresqlmonitor.wordpress.com/2015/02/19/setting-up-logins-to-monitor-azure-sql-databases/">Setup Login account</Hyperlink> 
                                 <LineBreak/>
                                 <LineBreak/>
                                 *** We never save any login information, like login credentials, in the app and/or our servers***
@@ -199,7 +202,7 @@
                     <StackPanel Orientation="Vertical" Grid.Row="1">
                         <RichTextBlock FontSize="20" HorizontalAlignment="Center" Height="120" TextWrapping="Wrap">
                             <Paragraph>
-                                This App suppports only FullScreen Landscape mode, please switch to fullscreen.
+                                This App only suppports FullScreen Landscape mode, please switch to fullscreen.
                                 
                             </Paragraph>
                         </RichTextBlock>
@@ -222,7 +225,7 @@
                 <RichTextBlock TextWrapping="Wrap" FontSize="20">
                     <Paragraph>This App does not store any user credentials or make any modifications to the SQL server databases. We use the credentials to login to the SQL server and fectch  the monitoring information for that instance. Please click on the below link for more information.</Paragraph>
                 </RichTextBlock>
-                <HyperlinkButton FontSize="20" NavigateUri="http://blogs.msdn.com/b/varmag/archive/2014/12/03/setting-up-logins-to-monitor-azure-sql-databases.aspx">Read more</HyperlinkButton>
+                <HyperlinkButton FontSize="20" NavigateUri="https://azuresqlmonitor.wordpress.com/2015/02/19/privacy-policy/">Read more</HyperlinkButton>
             </StackPanel>
         </cfo:CharmFlyout>
         <cfo:CharmFlyout
@@ -233,7 +236,7 @@
                 <RichTextBlock TextWrapping="Wrap" FontSize="20">
                     <Paragraph>Every functionality of this app is documented at the link below. Also, all the queries executed on the Databases are listed in the blog.</Paragraph>
                 </RichTextBlock>
-                <HyperlinkButton FontSize="20" NavigateUri="http://blogs.msdn.com/b/varmag/archive/2014/12/03/setting-up-logins-to-monitor-azure-sql-databases.aspx">Read more</HyperlinkButton>
+                <HyperlinkButton FontSize="20" NavigateUri="https://azuresqlmonitor.wordpress.com/">Read more</HyperlinkButton>
                 <Grid
                     Background="#FF4E0000" HorizontalAlignment="Left">
                 </Grid>

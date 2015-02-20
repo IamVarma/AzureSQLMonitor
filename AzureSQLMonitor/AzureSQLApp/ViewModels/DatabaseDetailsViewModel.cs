@@ -271,10 +271,10 @@ namespace AzureSQLApp.ViewModels
                info = JsonConvert.DeserializeObject<string[]>(connectionDetails);
 
                DBConnectionDetails = JsonConvert.DeserializeObject<ObservableCollection<DBConnectionClass>>(info[0]);
-             //  DBConnectionEvents = JsonConvert.DeserializeObject<ObservableCollection<DBConnectionEventsClass>>(info[1]);
+               DBConnectionEvents = JsonConvert.DeserializeObject<ObservableCollection<DBConnectionEventsClass>>(info[1]);
            }
 
-           catch(Exception e)
+           catch (Exception e)
            {
                ExceptionResult = "Error:" + connectionDetails;
                ExceptionOpen = true;

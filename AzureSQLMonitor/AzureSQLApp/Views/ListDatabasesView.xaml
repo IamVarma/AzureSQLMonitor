@@ -178,7 +178,7 @@
                     <StackPanel Orientation="Vertical" Grid.Row="1">
                         <RichTextBlock FontSize="20" HorizontalAlignment="Center" Height="120" TextWrapping="Wrap">
                             <Paragraph>
-                                This App suppports only FullScreen Landscape mode, please switch to fullscreen.
+                                This App only supports FullScreen Landscape mode, please switch to fullscreen.
 
                             </Paragraph>
                         </RichTextBlock>
@@ -201,7 +201,7 @@
                 <RichTextBlock TextWrapping="Wrap" FontSize="20">
                     <Paragraph>This App does not store any user credentials or make any modifications to the SQL server databases. We use the credentials to login to the SQL server and fectch  the monitoring information for that instance. Please click on the below link for more information.</Paragraph>
                 </RichTextBlock>
-                <HyperlinkButton FontSize="20" NavigateUri="http://blogs.msdn.com/b/varmag/archive/2014/12/03/setting-up-logins-to-monitor-azure-sql-databases.aspx">Read more</HyperlinkButton>
+                <HyperlinkButton FontSize="20" NavigateUri="https://azuresqlmonitor.wordpress.com/2015/02/19/privacy-policy/">Read more</HyperlinkButton>
             </StackPanel>
         </cfo:CharmFlyout>
         <cfo:CharmFlyout
@@ -212,7 +212,7 @@
                 <RichTextBlock TextWrapping="Wrap" FontSize="20">
                     <Paragraph>Every functionality of this app is documented at the link below. Also, all the queries executed on the Databases are listed in the blog.</Paragraph>
                 </RichTextBlock>
-                <HyperlinkButton FontSize="20" NavigateUri="http://blogs.msdn.com/b/varmag/archive/2014/12/03/setting-up-logins-to-monitor-azure-sql-databases.aspx">Read more</HyperlinkButton>
+                <HyperlinkButton FontSize="20" NavigateUri="https://azuresqlmonitor.wordpress.com/">Read more</HyperlinkButton>
                 <Grid
                     Background="#FF4E0000" HorizontalAlignment="Left">
                 </Grid>
