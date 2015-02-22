@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest">
-  <Identity Name="8fc7c9b2-f9ea-4909-894b-c85cc42854a8" Publisher="CN=varmag" Version="1.0.0.1" />
+  <Identity Name="4321ShadowFaxx.AzureSQLMonitor" Publisher="CN=18920972-1A29-4D87-A310-83DF2BF9482F" Version="1.1.0.1" />
   <Properties>
     <DisplayName>AzureSQLMonitor</DisplayName>
-    <PublisherDisplayName>https://azuresqlmonitor.wordpress.com</PublisherDisplayName>
+    <PublisherDisplayName>Shadowfax works</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
   <Prerequisites>
