@@ -126,7 +126,12 @@ namespace AzureSQLApp.Views
             this.navigationHelper.LoadState += navigationHelper_LoadState;
             this.navigationHelper.SaveState += navigationHelper_SaveState;
             this.Unloaded += page_Unloaded;
-           
+            BasicDetailsGrid.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+            BasicDetails.IsEnabled = false;
+            ResourceDetails.IsEnabled = false;
+            ConnectionDetails.IsEnabled = false;
+            TopCPUConsumers.IsEnabled = false;
+            ProgressBar.IsActive = true;
             gdChild.Width = Window.Current.Bounds.Width;
             gdChild1.Width = Window.Current.Bounds.Width;
             PrivacyCharm.Height = Window.Current.Bounds.Height;
@@ -171,6 +176,12 @@ namespace AzureSQLApp.Views
               await DatabaseDetails.GetTablesCommand(selectedDatabase.DatabaseName);
               await DatabaseDetails.GetConnectionCount(selectedDatabase.DatabaseName);
               SetBasicGraph();
+              ProgressBar.IsActive = false;
+              BasicDetailsGrid.Visibility = Windows.UI.Xaml.Visibility.Visible;
+              BasicDetails.IsEnabled = false;
+              ResourceDetails.IsEnabled = true;
+              ConnectionDetails.IsEnabled = true;
+              TopCPUConsumers.IsEnabled = true;
           }
         
           // private void page_Loaded(object sender, RoutedEventArgs e)
@@ -450,8 +461,8 @@ namespace AzureSQLApp.Views
         private void SetConnectionDetailsGraph()
         {
 
-            DateTime utcTime = DateTime.UtcNow;
-            TimeSpan twoHours = new TimeSpan(2, 0, 0);
+            //DateTime utcTime = DateTime.UtcNow;
+            //TimeSpan twoHours = new TimeSpan(2, 0, 0);
 
           //int ff=  (this.ConnectionDetailsChart).Axes.Count;
           //int fd = 0;
@@ -467,16 +478,19 @@ namespace AzureSQLApp.Views
 
             //      };
 
-            ((LineSeries)this.ConnectionDetailsChart.Series[0]).IndependentAxis = new DateTimeAxis()
-        {
-            Orientation = AxisOrientation.X,
-            //ShowGridLines = true,
-            Minimum = utcTime - twoHours,
+            //((LineSeries)this.ConnectionDetailsChart.Series[0]).TransitionDuration = twoHours;
 
-            Maximum = utcTime,
-            IntervalType = DateTimeIntervalType.Minutes,
-            Interval = 10
-        };
+
+        //    ((LineSeries)this.ConnectionDetailsChart.Series[0]).IndependentAxis = new DateTimeAxis()
+        //{
+        //    Orientation = AxisOrientation.X,
+        //    //ShowGridLines = true,
+        //    Minimum = utcTime - twoHours,
+
+        //    Maximum = utcTime,
+        //    IntervalType = DateTimeIntervalType.Minutes,
+        //    Interval = 10
+        //};
 
            // ConnectionDetailsChart.
 

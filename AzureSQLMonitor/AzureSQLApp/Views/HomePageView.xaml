@@ -24,7 +24,7 @@
         <Viewbox Grid.Row="0"  VerticalAlignment="Center">
             <StackPanel Orientation="Horizontal">
                 <Image Grid.Column="0" Source="/Images/cloud_database-512.png" Width="100" Height="100"/>
-                <TextBlock Grid.Column="2" HorizontalAlignment="Center"  Text="  Azure SQL Database Monitor   " VerticalAlignment="Center" FontSize="30"/>
+                <TextBlock Grid.Column="2" HorizontalAlignment="Center"  Text="  Azure SQL Monitor   " VerticalAlignment="Center" FontSize="30"/>
             </StackPanel>
         </Viewbox>
 
@@ -223,7 +223,7 @@
             HeadingBackgroundBrush="SkyBlue">
             <StackPanel>
                 <RichTextBlock TextWrapping="Wrap" FontSize="20">
-                    <Paragraph>This App does not store any user credentials or make any modifications to the SQL server databases. We use the credentials to login to the SQL server and fectch  the monitoring information for that instance. Please click on the below link for more information.</Paragraph>
+                    <Paragraph>This App does not store any user credentials or make any modifications to the SQL server databases. We use the credentials to login to the SQL server and fetch  the monitoring information for that instance. Please click on the below link for more information.</Paragraph>
                 </RichTextBlock>
                 <HyperlinkButton FontSize="20" NavigateUri="https://azuresqlmonitor.wordpress.com/2015/02/19/privacy-policy/">Read more</HyperlinkButton>
             </StackPanel>

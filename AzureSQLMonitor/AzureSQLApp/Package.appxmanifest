@@ -2,8 +2,8 @@
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest">
   <Identity Name="8fc7c9b2-f9ea-4909-894b-c85cc42854a8" Publisher="CN=varmag" Version="1.0.0.1" />
   <Properties>
-    <DisplayName>AzureSQLApp</DisplayName>
-    <PublisherDisplayName>varmag</PublisherDisplayName>
+    <DisplayName>AzureSQLMonitor</DisplayName>
+    <PublisherDisplayName>https://azuresqlmonitor.wordpress.com</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
   <Prerequisites>
@@ -15,7 +15,9 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="AzureSQLApp.App">
-      <m2:VisualElements DisplayName="AzureSQLApp" Square150x150Logo="Assets\Logo.png" Square30x30Logo="Assets\SmallLogo.png" Description="AzureSQLAppD:\App Dev\AzureSQLMonitor\AzureSQLMonitor\AzureSQLApp\Package.appxmanifest" ForegroundText="light" BackgroundColor="gray">
+      <m2:VisualElements DisplayName="AzureSQLMonitor" Square150x150Logo="Assets\Logo.png" Square30x30Logo="Assets\SmallLogo.png" Description="AzureSQLAppD:\App Dev\AzureSQLMonitor\AzureSQLMonitor\AzureSQLApp\Package.appxmanifest" ForegroundText="light" BackgroundColor="gray">
+        <m2:DefaultTile ShortName="AzureSQLMonitor">
+        </m2:DefaultTile>
         <m2:SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="gray" />
         <m2:InitialRotationPreference>
           <m2:Rotation Preference="landscape" />
