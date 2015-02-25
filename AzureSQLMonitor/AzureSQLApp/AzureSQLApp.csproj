@@ -188,7 +188,14 @@
     <Content Include="Assets\StoreLogo.scale-100.png" />
     <Content Include="Assets\StoreLogo.scale-140.png" />
     <Content Include="Assets\StoreLogo.scale-180.png" />
+    <Content Include="Images\120-120_rsz_3cloud_database-512.png" />
+    <Content Include="Images\150-150_rsz_2cloud_database-512.png" />
+    <Content Include="Images\210-210_rsz_1cloud_database-512.png" />
+    <Content Include="Images\270-270_rsz_cloud_database-512.png" />
     <Content Include="Images\30-30-rsz_onlinelogomaker-021015-1850.png" />
+    <Content Include="Images\50-50_rsz_6cloud_database-512.png" />
+    <Content Include="Images\70-70_rsz_5cloud_database-512.png" />
+    <Content Include="Images\90-90_rsz_4cloud_database-512.png" />
     <Content Include="Images\arrow_button_metal_green_up.png" />
     <Content Include="Images\arrow_button_metal_red_down.png" />
     <Content Include="Images\cloud5.png" />
