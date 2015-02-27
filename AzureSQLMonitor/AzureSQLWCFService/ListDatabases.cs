@@ -122,7 +122,8 @@ namespace AzureSQLWCFService
                         
                        catch (Exception ex)
                                 {
-                                    return "Problem listing databases::"+ex.Message;
+                                    _dbase.RemoveAt(whileindex);
+                                    //return "Problem listing databases::"+ex.Message;
                                 }
 
 

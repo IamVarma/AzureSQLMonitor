@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest">
-  <Identity Name="4321ShadowFaxx.AzureSQLMonitor" Publisher="CN=18920972-1A29-4D87-A310-83DF2BF9482F" Version="1.1.0.1" />
+  <Identity Name="4321ShadowFaxx.AzureSQLMonitor" Publisher="CN=18920972-1A29-4D87-A310-83DF2BF9482F" Version="1.1.0.2" />
   <Properties>
     <DisplayName>AzureSQLMonitor</DisplayName>
     <PublisherDisplayName>Shadowfax works</PublisherDisplayName>

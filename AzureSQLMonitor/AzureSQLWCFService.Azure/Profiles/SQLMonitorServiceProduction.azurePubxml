@@ -9,14 +9,14 @@
     <AzureEnableRemoteDesktop>True</AzureEnableRemoteDesktop>
     <AzureEnableWebDeploy>False</AzureEnableWebDeploy>
     <AzureFallbackToDeleteAndRecreateIfUpgradeFails>False</AzureFallbackToDeleteAndRecreateIfUpgradeFails>
-    <AzureHostedServiceLabel>azuresqlmonitorws</AzureHostedServiceLabel>
-    <AzureHostedServiceName>azuresqlmonitorws</AzureHostedServiceName>
+    <AzureHostedServiceLabel>azuresqldbmonitorws</AzureHostedServiceLabel>
+    <AzureHostedServiceName>azuresqldbmonitorws</AzureHostedServiceName>
     <AzureEnableIntelliTrace>False</AzureEnableIntelliTrace>
     <AzureEnableProfiling>False</AzureEnableProfiling>
     <AzureServiceConfiguration>Cloud</AzureServiceConfiguration>
     <AzureSolutionConfiguration>Release</AzureSolutionConfiguration>
-    <AzureStorageAccountLabel>azuresqlmonitorstorae</AzureStorageAccountLabel>
-    <AzureStorageAccountName>azuresqlmonitorstorae</AzureStorageAccountName>
+    <AzureStorageAccountLabel>azuresqldbmonitorstorage</AzureStorageAccountLabel>
+    <AzureStorageAccountName>azuresqldbmonitorstorage</AzureStorageAccountName>
     <AzureAppendTimestampToDeploymentLabel>True</AzureAppendTimestampToDeploymentLabel>
   </PropertyGroup>
 </Project>
