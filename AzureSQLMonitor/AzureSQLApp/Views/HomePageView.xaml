@@ -258,6 +258,20 @@
                 </Grid>
             </StackPanel>
         </cfo:CharmFlyout>
+        <cfo:CharmFlyout
+            x:Name="RateApp"
+            Heading="Rate AzureSQLMonitor"
+            HeadingBackgroundBrush="SkyBlue">
+            <StackPanel>
+                <RichTextBlock TextWrapping="Wrap" FontSize="20">
+                    <Paragraph>Please Rate and provide Feedback</Paragraph>
+                </RichTextBlock>
+                <HyperlinkButton FontSize="20" NavigateUri="http://apps.microsoft.com/windows/en-in/app/azuresqlmonitor/17d2e3ab-4a28-4988-9816-083e66985665">Click Here</HyperlinkButton>
+                <Grid
+                    Background="#FF4E0000" HorizontalAlignment="Left">
+                </Grid>
+            </StackPanel>
+        </cfo:CharmFlyout>
 
 
         <VisualStateManager.VisualStateGroups>

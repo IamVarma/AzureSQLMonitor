@@ -1721,11 +1721,13 @@
                                 <Bold>Top CPU queries tab:</Bold>
                                 <Hyperlink NavigateUri="https://azuresqlmonitor.wordpress.com/2015/02/19/how-do-i-make-sense-out-of-the-graphs-and-the-data-top-cpu-queries-tab/">Click Here</Hyperlink>
                                 <LineBreak/>
-
+                                <Bold>Rate the App:</Bold>
+                                <Hyperlink NavigateUri="http://apps.microsoft.com/windows/en-in/app/azuresqlmonitor/17d2e3ab-4a28-4988-9816-083e66985665">Click Here</Hyperlink>
+                                <LineBreak/>
                             </Paragraph>
                         </RichTextBlock>
 
-                        <Button Content="Ok" FontSize="30" x:Name="GotIt" Click="GotIt_OnClick"  Foreground="White" HorizontalAlignment="Center"  />
+                        <Button Content="Ok" FontSize="20" x:Name="GotIt" Click="GotIt_OnClick"  Foreground="White" HorizontalAlignment="Center"  />
 
                     </StackPanel>
 
@@ -1801,6 +1803,20 @@
                     FontSize="20">Chandra Shekhar</TextBlock>
                 <TextBlock
                     FontSize="20">Varma Gadhiraju</TextBlock>
+                <Grid
+                    Background="#FF4E0000" HorizontalAlignment="Left">
+                </Grid>
+            </StackPanel>
+        </cfo:CharmFlyout>
+        <cfo:CharmFlyout
+            x:Name="RateApp"
+            Heading="Rate AzureSQLMonitor"
+            HeadingBackgroundBrush="SkyBlue">
+            <StackPanel>
+                <RichTextBlock TextWrapping="Wrap" FontSize="20">
+                    <Paragraph>Please Rate and provide Feedback</Paragraph>
+                </RichTextBlock>
+                <HyperlinkButton FontSize="20" NavigateUri="http://apps.microsoft.com/windows/en-in/app/azuresqlmonitor/17d2e3ab-4a28-4988-9816-083e66985665">Click Here</HyperlinkButton>
                 <Grid
                     Background="#FF4E0000" HorizontalAlignment="Left">
                 </Grid>

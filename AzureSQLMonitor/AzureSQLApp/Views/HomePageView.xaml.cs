@@ -51,6 +51,7 @@ namespace AzureSQLApp.Views
             gdChild.Width = Window.Current.Bounds.Width;
             gdChild1.Width = Window.Current.Bounds.Width;
             PrivacyCharm.Height = Window.Current.Bounds.Height;
+            RateApp.Height = Window.Current.Bounds.Height;
            
             DevelopedBy.Height = Window.Current.Bounds.Height;
             HowCharm.Height = Window.Current.Bounds.Height;
@@ -89,6 +90,7 @@ namespace AzureSQLApp.Views
             args.Request.ApplicationCommands.Add(new SettingsCommand("a", "Privacy Policy", (p) => { PrivacyCharm.IsOpen = true; }));
             args.Request.ApplicationCommands.Add(new SettingsCommand("b", "How does it work?", (p) => { HowCharm.IsOpen = true; }));
             args.Request.ApplicationCommands.Add(new SettingsCommand("s", "Developed By", (p) => { DevelopedBy.IsOpen = true; }));
+            args.Request.ApplicationCommands.Add(new SettingsCommand("s", "Rate AzureSQLMonitor", (p) => { RateApp.IsOpen = true; }));
         }
 
 
